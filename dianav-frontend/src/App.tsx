@@ -87,7 +87,7 @@ function App() {
 
   const handleNewChat = () => {
     const newId = (Date.now() + Math.random()).toString();
-    setChats([{ id: newId, heading: 'New Chat', messages: [] }, ...chats]);
+    setChats(prevChats => [{ id: newId, heading: 'New Chat', messages: [] }, ...prevChats]);
     setActiveChatId(newId);
     setInput('');
     setShowWelcome(true);
@@ -101,8 +101,14 @@ function App() {
             {sidebarOpen ? '<' : '>'}
           </button>
         </div>
-        {sidebarOpen && <>
-          <button className="dianav-newchat-btn" onClick={handleNewChat}>+ New Chat</button>
+        <div className="dianav-newchat-row">
+          {sidebarOpen ? (
+            <button className="dianav-newchat-btn" onClick={handleNewChat}>+ New Chat</button>
+          ) : (
+            <button className="dianav-newchat-btn-collapsed" title="New Chat" onClick={handleNewChat}>+</button>
+          )}
+        </div>
+        {sidebarOpen && (
           <div className="dianav-chat-list">
             {chats.map(chat => (
               <div
@@ -114,17 +120,13 @@ function App() {
               </div>
             ))}
           </div>
-        </>}
+        )}
       </aside>
       <div className={`dianav-center-wrap${sidebarOpen ? '' : ' center-absolute'}`}>
         <div className="dianav-root dianav-root-wide">
           <header className="dianav-header">
             <div className="dianav-logo">
-              {/* Tata logo placeholder, replace later */}
-              <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="18" cy="18" r="18" fill="#fff" />
-                <text x="18" y="24" textAnchor="middle" fontSize="18" fill="#184077" fontFamily="Arial" fontWeight="bold">T</text>
-              </svg>
+              <img src="/tata-logo.png" alt="Tata Motors Logo" style={{ width: 48, height: 48, objectFit: 'contain' }} />
             </div>
             <div className="dianav-title">DIAGNOSTIC NAVIGATOR</div>
             <div className="dianav-ai-label">AI Assistant</div>
