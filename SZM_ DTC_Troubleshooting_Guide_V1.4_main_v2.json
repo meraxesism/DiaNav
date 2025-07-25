@@ -1,0 +1,4830 @@
+[
+  {
+    "id": 1,
+    "x": 29,
+    "y": 100,
+    "width": 251,
+    "height": 24,
+    "label": "DTC_Code, Node 1",
+    "BBox": [
+      29,
+      100,
+      280,
+      124
+    ],
+    "page": 7,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 1"
+  },
+  {
+    "id": 3,
+    "x": 29,
+    "y": 134,
+    "width": 98,
+    "height": 15,
+    "label": "Text, Node 1",
+    "BBox": [
+      29,
+      134,
+      127,
+      149
+    ],
+    "page": 7,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 1"
+  },
+  {
+    "id": 5,
+    "x": 47,
+    "y": 156,
+    "width": 519,
+    "height": 202,
+    "label": "Table, Node 1",
+    "BBox": [
+      47,
+      156,
+      566,
+      358
+    ],
+    "page": 7,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 1"
+  },
+  {
+    "id": 7,
+    "x": 25,
+    "y": 104,
+    "width": 144,
+    "height": 18,
+    "label": "Text, Node 1",
+    "BBox": [
+      25,
+      104,
+      169,
+      122
+    ],
+    "page": 8,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 1"
+  },
+  {
+    "id": 9,
+    "x": 154,
+    "y": 123,
+    "width": 327,
+    "height": 509,
+    "label": "Image, Node 1",
+    "BBox": [
+      154,
+      123,
+      481,
+      632
+    ],
+    "page": 8,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 1"
+  },
+  {
+    "id": 14,
+    "x": 17,
+    "y": 96,
+    "width": 576,
+    "height": 83,
+    "label": "Text, Node 1",
+    "BBox": [
+      17,
+      96,
+      593,
+      179
+    ],
+    "page": 9,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 1"
+  },
+  {
+    "id": 15,
+    "x": 23,
+    "y": 98,
+    "width": 571,
+    "height": 42,
+    "label": "DTC_Code, Node 2",
+    "BBox": [
+      23,
+      98,
+      594,
+      140
+    ],
+    "page": 10,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 2"
+  },
+  {
+    "id": 16,
+    "x": 30,
+    "y": 145,
+    "width": 108,
+    "height": 17,
+    "label": "Text, Node 2",
+    "BBox": [
+      30,
+      145,
+      138,
+      162
+    ],
+    "page": 10,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 2"
+  },
+  {
+    "id": 17,
+    "x": 48,
+    "y": 170,
+    "width": 515,
+    "height": 225,
+    "label": "Table, Node 2",
+    "BBox": [
+      48,
+      170,
+      563,
+      395
+    ],
+    "page": 10,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 2"
+  },
+  {
+    "id": 19,
+    "x": 28,
+    "y": 105,
+    "width": 122,
+    "height": 16,
+    "label": "Text, Node 2",
+    "BBox": [
+      28,
+      105,
+      150,
+      121
+    ],
+    "page": 11,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 2"
+  },
+  {
+    "id": 24,
+    "x": 91,
+    "y": 121,
+    "width": 385,
+    "height": 515,
+    "label": "Image, Node 2",
+    "BBox": [
+      91,
+      121,
+      476,
+      636
+    ],
+    "page": 11,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 2"
+  },
+  {
+    "id": 26,
+    "x": 32,
+    "y": 102,
+    "width": 543,
+    "height": 72,
+    "label": "Text, Node 2",
+    "BBox": [
+      32,
+      102,
+      575,
+      174
+    ],
+    "page": 12,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 2"
+  },
+  {
+    "id": 27,
+    "x": 23,
+    "y": 93,
+    "width": 436,
+    "height": 31,
+    "label": "DTC_Code, Node 3",
+    "BBox": [
+      23,
+      93,
+      459,
+      124
+    ],
+    "page": 13,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 3"
+  },
+  {
+    "id": 29,
+    "x": 29,
+    "y": 134,
+    "width": 78,
+    "height": 16,
+    "label": "Text, Node 3",
+    "BBox": [
+      29,
+      134,
+      107,
+      150
+    ],
+    "page": 13,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 3"
+  },
+  {
+    "id": 30,
+    "x": 45,
+    "y": 157,
+    "width": 520,
+    "height": 202,
+    "label": "Table, Node 3",
+    "BBox": [
+      45,
+      157,
+      565,
+      359
+    ],
+    "page": 13,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 3"
+  },
+  {
+    "id": 31,
+    "x": 26,
+    "y": 104,
+    "width": 154,
+    "height": 18,
+    "label": "Text, Node 3",
+    "BBox": [
+      26,
+      104,
+      180,
+      122
+    ],
+    "page": 14,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 3"
+  },
+  {
+    "id": 32,
+    "x": 42,
+    "y": 150,
+    "width": 423,
+    "height": 451,
+    "label": "Image, Node 3",
+    "BBox": [
+      42,
+      150,
+      465,
+      601
+    ],
+    "page": 14,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 3"
+  },
+  {
+    "id": 33,
+    "x": 21,
+    "y": 126,
+    "width": 560,
+    "height": 74,
+    "label": "Text, Node 3",
+    "BBox": [
+      21,
+      126,
+      581,
+      200
+    ],
+    "page": 15,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 3"
+  },
+  {
+    "id": 34,
+    "x": 22,
+    "y": 124,
+    "width": 358,
+    "height": 29,
+    "label": "DTC_Code, Node 4",
+    "BBox": [
+      22,
+      124,
+      380,
+      153
+    ],
+    "page": 16,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 4"
+  },
+  {
+    "id": 35,
+    "x": 25,
+    "y": 160,
+    "width": 83,
+    "height": 16,
+    "label": "Text, Node 4",
+    "BBox": [
+      25,
+      160,
+      108,
+      176
+    ],
+    "page": 16,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 4"
+  },
+  {
+    "id": 36,
+    "x": 46,
+    "y": 184,
+    "width": 521,
+    "height": 195,
+    "label": "Table, Node 4",
+    "BBox": [
+      46,
+      184,
+      567,
+      379
+    ],
+    "page": 16,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 4"
+  },
+  {
+    "id": 37,
+    "x": 24,
+    "y": 102,
+    "width": 154,
+    "height": 18,
+    "label": "Text, Node 4",
+    "BBox": [
+      24,
+      102,
+      178,
+      120
+    ],
+    "page": 17,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 4"
+  },
+  {
+    "id": 38,
+    "x": 106,
+    "y": 124,
+    "width": 431,
+    "height": 466,
+    "label": "Image, Node 4",
+    "BBox": [
+      106,
+      124,
+      537,
+      590
+    ],
+    "page": 17,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 4"
+  },
+  {
+    "id": 39,
+    "x": 24,
+    "y": 101,
+    "width": 567,
+    "height": 73,
+    "label": "Text, Node 4",
+    "BBox": [
+      24,
+      101,
+      591,
+      174
+    ],
+    "page": 18,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 4"
+  },
+  {
+    "id": 40,
+    "x": 26,
+    "y": 101,
+    "width": 302,
+    "height": 26,
+    "label": "DTC_Code, Node 5",
+    "BBox": [
+      26,
+      101,
+      328,
+      127
+    ],
+    "page": 19,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 5"
+  },
+  {
+    "id": 41,
+    "x": 27,
+    "y": 131,
+    "width": 109,
+    "height": 20,
+    "label": "Text, Node 5",
+    "BBox": [
+      27,
+      131,
+      136,
+      151
+    ],
+    "page": 19,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 5"
+  },
+  {
+    "id": 42,
+    "x": 44,
+    "y": 155,
+    "width": 524,
+    "height": 235,
+    "label": "Table, Node 5",
+    "BBox": [
+      44,
+      155,
+      568,
+      390
+    ],
+    "page": 19,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 5"
+  },
+  {
+    "id": 44,
+    "x": 27,
+    "y": 102,
+    "width": 158,
+    "height": 22,
+    "label": "Text, Node 5",
+    "BBox": [
+      27,
+      102,
+      185,
+      124
+    ],
+    "page": 20,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 5"
+  },
+  {
+    "id": 45,
+    "x": 108,
+    "y": 131,
+    "width": 394,
+    "height": 523,
+    "label": "Image, Node 5",
+    "BBox": [
+      108,
+      131,
+      502,
+      654
+    ],
+    "page": 20,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 5"
+  },
+  {
+    "id": 46,
+    "x": 25,
+    "y": 98,
+    "width": 550,
+    "height": 78,
+    "label": "Text, Node 5",
+    "BBox": [
+      25,
+      98,
+      575,
+      176
+    ],
+    "page": 21,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 5"
+  },
+  {
+    "id": 50,
+    "x": 23,
+    "y": 98,
+    "width": 409,
+    "height": 24,
+    "label": "DTC_Code, Node 6",
+    "BBox": [
+      23,
+      98,
+      432,
+      122
+    ],
+    "page": 22,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 6"
+  },
+  {
+    "id": 51,
+    "x": 16,
+    "y": 133,
+    "width": 124,
+    "height": 17,
+    "label": "Text, Node 6",
+    "BBox": [
+      16,
+      133,
+      140,
+      150
+    ],
+    "page": 22,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 6"
+  },
+  {
+    "id": 52,
+    "x": 43,
+    "y": 158,
+    "width": 522,
+    "height": 225,
+    "label": "Table, Node 6",
+    "BBox": [
+      43,
+      158,
+      565,
+      383
+    ],
+    "page": 22,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 6"
+  },
+  {
+    "id": 53,
+    "x": 28,
+    "y": 104,
+    "width": 142,
+    "height": 18,
+    "label": "Text, Node 6",
+    "BBox": [
+      28,
+      104,
+      170,
+      122
+    ],
+    "page": 23,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 6"
+  },
+  {
+    "id": 54,
+    "x": 114,
+    "y": 135,
+    "width": 405,
+    "height": 489,
+    "label": "Image, Node 6",
+    "BBox": [
+      114,
+      135,
+      519,
+      624
+    ],
+    "page": 23,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 6"
+  },
+  {
+    "id": 57,
+    "x": 20,
+    "y": 100,
+    "width": 558,
+    "height": 79,
+    "label": "Text, Node 6",
+    "BBox": [
+      20,
+      100,
+      578,
+      179
+    ],
+    "page": 24,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 6"
+  },
+  {
+    "id": 59,
+    "x": 26,
+    "y": 99,
+    "width": 557,
+    "height": 38,
+    "label": "DTC_Code, Node 7",
+    "BBox": [
+      26,
+      99,
+      583,
+      137
+    ],
+    "page": 25,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 7"
+  },
+  {
+    "id": 60,
+    "x": 26,
+    "y": 146,
+    "width": 98,
+    "height": 19,
+    "label": "Text, Node 7",
+    "BBox": [
+      26,
+      146,
+      124,
+      165
+    ],
+    "page": 25,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 7"
+  },
+  {
+    "id": 61,
+    "x": 47,
+    "y": 170,
+    "width": 521,
+    "height": 254,
+    "label": "Table, Node 7",
+    "BBox": [
+      47,
+      170,
+      568,
+      424
+    ],
+    "page": 25,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 7"
+  },
+  {
+    "id": 62,
+    "x": 30,
+    "y": 103,
+    "width": 134,
+    "height": 23,
+    "label": "Text, Node 7",
+    "BBox": [
+      30,
+      103,
+      164,
+      126
+    ],
+    "page": 26,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 7"
+  },
+  {
+    "id": 63,
+    "x": 92,
+    "y": 134,
+    "width": 416,
+    "height": 517,
+    "label": "Image, Node 7",
+    "BBox": [
+      92,
+      134,
+      508,
+      651
+    ],
+    "page": 26,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 7"
+  },
+  {
+    "id": 64,
+    "x": 24,
+    "y": 102,
+    "width": 551,
+    "height": 73,
+    "label": "Text, Node 7",
+    "BBox": [
+      24,
+      102,
+      575,
+      175
+    ],
+    "page": 27,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 7"
+  },
+  {
+    "id": 65,
+    "x": 26,
+    "y": 101,
+    "width": 409,
+    "height": 21,
+    "label": "DTC_Code, Node 8",
+    "BBox": [
+      26,
+      101,
+      435,
+      122
+    ],
+    "page": 28,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 8"
+  },
+  {
+    "id": 66,
+    "x": 25,
+    "y": 133,
+    "width": 116,
+    "height": 16,
+    "label": "Text, Node 8",
+    "BBox": [
+      25,
+      133,
+      141,
+      149
+    ],
+    "page": 28,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 8"
+  },
+  {
+    "id": 67,
+    "x": 44,
+    "y": 157,
+    "width": 536,
+    "height": 207,
+    "label": "Table, Node 8",
+    "BBox": [
+      44,
+      157,
+      580,
+      364
+    ],
+    "page": 28,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 8"
+  },
+  {
+    "id": 68,
+    "x": 19,
+    "y": 100,
+    "width": 168,
+    "height": 23,
+    "label": "Text, Node 8",
+    "BBox": [
+      19,
+      100,
+      187,
+      123
+    ],
+    "page": 29,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 8"
+  },
+  {
+    "id": 70,
+    "x": 31,
+    "y": 148,
+    "width": 428,
+    "height": 462,
+    "label": "Image, Node 8",
+    "BBox": [
+      31,
+      148,
+      459,
+      610
+    ],
+    "page": 29,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 8"
+  },
+  {
+    "id": 71,
+    "x": 21,
+    "y": 111,
+    "width": 566,
+    "height": 73,
+    "label": "Text, Node 8",
+    "BBox": [
+      21,
+      111,
+      587,
+      184
+    ],
+    "page": 30,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 8"
+  },
+  {
+    "id": 72,
+    "x": 18,
+    "y": 98,
+    "width": 381,
+    "height": 26,
+    "label": "DTC_Code, Node 9",
+    "BBox": [
+      18,
+      98,
+      399,
+      124
+    ],
+    "page": 31,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 9"
+  },
+  {
+    "id": 74,
+    "x": 33,
+    "y": 132,
+    "width": 81,
+    "height": 18,
+    "label": "Text, Node 9",
+    "BBox": [
+      33,
+      132,
+      114,
+      150
+    ],
+    "page": 31,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 9"
+  },
+  {
+    "id": 77,
+    "x": 44,
+    "y": 156,
+    "width": 524,
+    "height": 208,
+    "label": "Table, Node 9",
+    "BBox": [
+      44,
+      156,
+      568,
+      364
+    ],
+    "page": 31,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 9"
+  },
+  {
+    "id": 79,
+    "x": 34,
+    "y": 103,
+    "width": 142,
+    "height": 18,
+    "label": "Text, Node 9",
+    "BBox": [
+      34,
+      103,
+      176,
+      121
+    ],
+    "page": 32,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 9"
+  },
+  {
+    "id": 81,
+    "x": 50,
+    "y": 129,
+    "width": 506,
+    "height": 457,
+    "label": "Image, Node 9",
+    "BBox": [
+      50,
+      129,
+      556,
+      586
+    ],
+    "page": 32,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 9"
+  },
+  {
+    "id": 82,
+    "x": 20,
+    "y": 105,
+    "width": 551,
+    "height": 75,
+    "label": "Text, Node 9",
+    "BBox": [
+      20,
+      105,
+      571,
+      180
+    ],
+    "page": 33,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 9"
+  },
+  {
+    "id": 83,
+    "x": 20,
+    "y": 99,
+    "width": 314,
+    "height": 23,
+    "label": "DTC_Code, Node 10",
+    "BBox": [
+      20,
+      99,
+      334,
+      122
+    ],
+    "page": 34,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 10"
+  },
+  {
+    "id": 86,
+    "x": 27,
+    "y": 134,
+    "width": 78,
+    "height": 15,
+    "label": "Text, Node 10",
+    "BBox": [
+      27,
+      134,
+      105,
+      149
+    ],
+    "page": 34,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 10"
+  },
+  {
+    "id": 88,
+    "x": 47,
+    "y": 156,
+    "width": 517,
+    "height": 215,
+    "label": "Table, Node 10",
+    "BBox": [
+      47,
+      156,
+      564,
+      371
+    ],
+    "page": 34,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 10"
+  },
+  {
+    "id": 89,
+    "x": 32,
+    "y": 104,
+    "width": 148,
+    "height": 19,
+    "label": "Text, Node 10",
+    "BBox": [
+      32,
+      104,
+      180,
+      123
+    ],
+    "page": 35,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 10"
+  },
+  {
+    "id": 90,
+    "x": 45,
+    "y": 130,
+    "width": 497,
+    "height": 502,
+    "label": "Image, Node 10",
+    "BBox": [
+      45,
+      130,
+      542,
+      632
+    ],
+    "page": 35,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 10"
+  },
+  {
+    "id": 91,
+    "x": 16,
+    "y": 122,
+    "width": 568,
+    "height": 80,
+    "label": "Text, Node 10",
+    "BBox": [
+      16,
+      122,
+      584,
+      202
+    ],
+    "page": 36,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 10"
+  },
+  {
+    "id": 92,
+    "x": 23,
+    "y": 125,
+    "width": 432,
+    "height": 28,
+    "label": "DTC_Code, Node 11",
+    "BBox": [
+      23,
+      125,
+      455,
+      153
+    ],
+    "page": 37,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 11"
+  },
+  {
+    "id": 93,
+    "x": 25,
+    "y": 162,
+    "width": 96,
+    "height": 14,
+    "label": "Text, Node 11",
+    "BBox": [
+      25,
+      162,
+      121,
+      176
+    ],
+    "page": 37,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 11"
+  },
+  {
+    "id": 95,
+    "x": 45,
+    "y": 185,
+    "width": 522,
+    "height": 232,
+    "label": "Table, Node 11",
+    "BBox": [
+      45,
+      185,
+      567,
+      417
+    ],
+    "page": 37,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 11"
+  },
+  {
+    "id": 96,
+    "x": 25,
+    "y": 117,
+    "width": 146,
+    "height": 16,
+    "label": "Text, Node 11",
+    "BBox": [
+      25,
+      117,
+      171,
+      133
+    ],
+    "page": 38,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 11"
+  },
+  {
+    "id": 98,
+    "x": 38,
+    "y": 136,
+    "width": 381,
+    "height": 506,
+    "label": "Image, Node 11",
+    "BBox": [
+      38,
+      136,
+      419,
+      642
+    ],
+    "page": 38,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 11"
+  },
+  {
+    "id": 99,
+    "x": 23,
+    "y": 102,
+    "width": 542,
+    "height": 70,
+    "label": "Text, Node 11",
+    "BBox": [
+      23,
+      102,
+      565,
+      172
+    ],
+    "page": 39,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 11"
+  },
+  {
+    "id": 100,
+    "x": 26,
+    "y": 100,
+    "width": 558,
+    "height": 42,
+    "label": "DTC_Code, Node 12",
+    "BBox": [
+      26,
+      100,
+      584,
+      142
+    ],
+    "page": 40,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 12"
+  },
+  {
+    "id": 101,
+    "x": 9,
+    "y": 149,
+    "width": 167,
+    "height": 18,
+    "label": "Text, Node 12",
+    "BBox": [
+      9,
+      149,
+      176,
+      167
+    ],
+    "page": 40,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 12"
+  },
+  {
+    "id": 102,
+    "x": 32,
+    "y": 170,
+    "width": 549,
+    "height": 246,
+    "label": "Table, Node 12",
+    "BBox": [
+      32,
+      170,
+      581,
+      416
+    ],
+    "page": 40,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 12"
+  },
+  {
+    "id": 103,
+    "x": 18,
+    "y": 115,
+    "width": 158,
+    "height": 18,
+    "label": "Text, Node 12",
+    "BBox": [
+      18,
+      115,
+      176,
+      133
+    ],
+    "page": 41,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 12"
+  },
+  {
+    "id": 106,
+    "x": 52,
+    "y": 140,
+    "width": 460,
+    "height": 518,
+    "label": "Image, Node 12",
+    "BBox": [
+      52,
+      140,
+      512,
+      658
+    ],
+    "page": 41,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 12"
+  },
+  {
+    "id": 108,
+    "x": 25,
+    "y": 109,
+    "width": 540,
+    "height": 73,
+    "label": "Text, Node 12",
+    "BBox": [
+      25,
+      109,
+      565,
+      182
+    ],
+    "page": 42,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 12"
+  },
+  {
+    "id": 109,
+    "x": 22,
+    "y": 100,
+    "width": 395,
+    "height": 25,
+    "label": "DTC_Code, Node 13",
+    "BBox": [
+      22,
+      100,
+      417,
+      125
+    ],
+    "page": 43,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 13"
+  },
+  {
+    "id": 110,
+    "x": 31,
+    "y": 132,
+    "width": 103,
+    "height": 20,
+    "label": "Text, Node 13",
+    "BBox": [
+      31,
+      132,
+      134,
+      152
+    ],
+    "page": 43,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 13"
+  },
+  {
+    "id": 111,
+    "x": 40,
+    "y": 155,
+    "width": 542,
+    "height": 184,
+    "label": "Table, Node 13",
+    "BBox": [
+      40,
+      155,
+      582,
+      339
+    ],
+    "page": 43,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 13"
+  },
+  {
+    "id": 112,
+    "x": 30,
+    "y": 103,
+    "width": 125,
+    "height": 21,
+    "label": "Text, Node 13",
+    "BBox": [
+      30,
+      103,
+      155,
+      124
+    ],
+    "page": 44,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 13"
+  },
+  {
+    "id": 113,
+    "x": 92,
+    "y": 136,
+    "width": 442,
+    "height": 465,
+    "label": "Image, Node 13",
+    "BBox": [
+      92,
+      136,
+      534,
+      601
+    ],
+    "page": 44,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 13"
+  },
+  {
+    "id": 114,
+    "x": 23,
+    "y": 109,
+    "width": 552,
+    "height": 84,
+    "label": "Text, Node 13",
+    "BBox": [
+      23,
+      109,
+      575,
+      193
+    ],
+    "page": 45,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 13"
+  },
+  {
+    "id": 117,
+    "x": 23,
+    "y": 100,
+    "width": 358,
+    "height": 25,
+    "label": "DTC_Code, Node 14",
+    "BBox": [
+      23,
+      100,
+      381,
+      125
+    ],
+    "page": 46,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 14"
+  },
+  {
+    "id": 120,
+    "x": 26,
+    "y": 134,
+    "width": 107,
+    "height": 27,
+    "label": "Text, Node 14",
+    "BBox": [
+      26,
+      134,
+      133,
+      161
+    ],
+    "page": 46,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 14"
+  },
+  {
+    "id": 121,
+    "x": 29,
+    "y": 161,
+    "width": 539,
+    "height": 192,
+    "label": "Table, Node 14",
+    "BBox": [
+      29,
+      161,
+      568,
+      353
+    ],
+    "page": 46,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 14"
+  },
+  {
+    "id": 122,
+    "x": 24,
+    "y": 103,
+    "width": 137,
+    "height": 21,
+    "label": "Text, Node 14",
+    "BBox": [
+      24,
+      103,
+      161,
+      124
+    ],
+    "page": 47,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 14"
+  },
+  {
+    "id": 124,
+    "x": 67,
+    "y": 132,
+    "width": 455,
+    "height": 476,
+    "label": "Image, Node 14",
+    "BBox": [
+      67,
+      132,
+      522,
+      608
+    ],
+    "page": 47,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 14"
+  },
+  {
+    "id": 125,
+    "x": 32,
+    "y": 113,
+    "width": 535,
+    "height": 71,
+    "label": "Text, Node 14",
+    "BBox": [
+      32,
+      113,
+      567,
+      184
+    ],
+    "page": 48,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 14"
+  },
+  {
+    "id": 126,
+    "x": 27,
+    "y": 97,
+    "width": 284,
+    "height": 28,
+    "label": "DTC_Code, Node 15",
+    "BBox": [
+      27,
+      97,
+      311,
+      125
+    ],
+    "page": 49,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 15"
+  },
+  {
+    "id": 127,
+    "x": 20,
+    "y": 131,
+    "width": 120,
+    "height": 18,
+    "label": "Text, Node 15",
+    "BBox": [
+      20,
+      131,
+      140,
+      149
+    ],
+    "page": 49,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 15"
+  },
+  {
+    "id": 128,
+    "x": 32,
+    "y": 155,
+    "width": 546,
+    "height": 236,
+    "label": "Table, Node 15",
+    "BBox": [
+      32,
+      155,
+      578,
+      391
+    ],
+    "page": 49,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 15"
+  },
+  {
+    "id": 131,
+    "x": 26,
+    "y": 102,
+    "width": 158,
+    "height": 20,
+    "label": "Text, Node 15",
+    "BBox": [
+      26,
+      102,
+      184,
+      122
+    ],
+    "page": 50,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 15"
+  },
+  {
+    "id": 132,
+    "x": 86,
+    "y": 127,
+    "width": 447,
+    "height": 522,
+    "label": "Image, Node 15",
+    "BBox": [
+      86,
+      127,
+      533,
+      649
+    ],
+    "page": 50,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 15"
+  },
+  {
+    "id": 133,
+    "x": 23,
+    "y": 110,
+    "width": 549,
+    "height": 73,
+    "label": "Text, Node 15",
+    "BBox": [
+      23,
+      110,
+      572,
+      183
+    ],
+    "page": 51,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 15"
+  },
+  {
+    "id": 134,
+    "x": 24,
+    "y": 102,
+    "width": 412,
+    "height": 22,
+    "label": "DTC_Code, Node 16",
+    "BBox": [
+      24,
+      102,
+      436,
+      124
+    ],
+    "page": 52,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 16"
+  },
+  {
+    "id": 135,
+    "x": 27,
+    "y": 130,
+    "width": 97,
+    "height": 17,
+    "label": "Text, Node 16",
+    "BBox": [
+      27,
+      130,
+      124,
+      147
+    ],
+    "page": 52,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 16"
+  },
+  {
+    "id": 136,
+    "x": 47,
+    "y": 155,
+    "width": 523,
+    "height": 233,
+    "label": "Table, Node 16",
+    "BBox": [
+      47,
+      155,
+      570,
+      388
+    ],
+    "page": 52,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 16"
+  },
+  {
+    "id": 138,
+    "x": 29,
+    "y": 105,
+    "width": 145,
+    "height": 18,
+    "label": "Text, Node 16",
+    "BBox": [
+      29,
+      105,
+      174,
+      123
+    ],
+    "page": 53,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 16"
+  },
+  {
+    "id": 139,
+    "x": 79,
+    "y": 132,
+    "width": 422,
+    "height": 492,
+    "label": "Image, Node 16",
+    "BBox": [
+      79,
+      132,
+      501,
+      624
+    ],
+    "page": 53,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 16"
+  },
+  {
+    "id": 142,
+    "x": 24,
+    "y": 105,
+    "width": 546,
+    "height": 73,
+    "label": "Text, Node 16",
+    "BBox": [
+      24,
+      105,
+      570,
+      178
+    ],
+    "page": 54,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 16"
+  },
+  {
+    "id": 144,
+    "x": 27,
+    "y": 99,
+    "width": 337,
+    "height": 22,
+    "label": "DTC_Code, Node 17",
+    "BBox": [
+      27,
+      99,
+      364,
+      121
+    ],
+    "page": 55,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 17"
+  },
+  {
+    "id": 148,
+    "x": 28,
+    "y": 134,
+    "width": 92,
+    "height": 18,
+    "label": "Text, Node 17",
+    "BBox": [
+      28,
+      134,
+      120,
+      152
+    ],
+    "page": 55,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 17"
+  },
+  {
+    "id": 151,
+    "x": 40,
+    "y": 156,
+    "width": 529,
+    "height": 216,
+    "label": "Table, Node 17",
+    "BBox": [
+      40,
+      156,
+      569,
+      372
+    ],
+    "page": 55,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 17"
+  },
+  {
+    "id": 153,
+    "x": 29,
+    "y": 100,
+    "width": 143,
+    "height": 23,
+    "label": "Text, Node 17",
+    "BBox": [
+      29,
+      100,
+      172,
+      123
+    ],
+    "page": 56,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 17"
+  },
+  {
+    "id": 154,
+    "x": 93,
+    "y": 142,
+    "width": 401,
+    "height": 427,
+    "label": "Image, Node 17",
+    "BBox": [
+      93,
+      142,
+      494,
+      569
+    ],
+    "page": 56,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 17"
+  },
+  {
+    "id": 156,
+    "x": 12,
+    "y": 114,
+    "width": 560,
+    "height": 70,
+    "label": "Text, Node 17",
+    "BBox": [
+      12,
+      114,
+      572,
+      184
+    ],
+    "page": 57,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 17"
+  },
+  {
+    "id": 158,
+    "x": 25,
+    "y": 101,
+    "width": 369,
+    "height": 20,
+    "label": "DTC_Code, Node 18",
+    "BBox": [
+      25,
+      101,
+      394,
+      121
+    ],
+    "page": 58,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 18"
+  },
+  {
+    "id": 159,
+    "x": 26,
+    "y": 129,
+    "width": 91,
+    "height": 20,
+    "label": "Text, Node 18",
+    "BBox": [
+      26,
+      129,
+      117,
+      149
+    ],
+    "page": 58,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 18"
+  },
+  {
+    "id": 161,
+    "x": 34,
+    "y": 154,
+    "width": 546,
+    "height": 271,
+    "label": "Table, Node 18",
+    "BBox": [
+      34,
+      154,
+      580,
+      425
+    ],
+    "page": 58,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 18"
+  },
+  {
+    "id": 163,
+    "x": 28,
+    "y": 103,
+    "width": 144,
+    "height": 17,
+    "label": "Text, Node 18",
+    "BBox": [
+      28,
+      103,
+      172,
+      120
+    ],
+    "page": 59,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 18"
+  },
+  {
+    "id": 164,
+    "x": 105,
+    "y": 123,
+    "width": 387,
+    "height": 513,
+    "label": "Image, Node 18",
+    "BBox": [
+      105,
+      123,
+      492,
+      636
+    ],
+    "page": 59,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 18"
+  },
+  {
+    "id": 165,
+    "x": 121,
+    "y": 127,
+    "width": 339,
+    "height": 205,
+    "label": "Image, Node 18",
+    "BBox": [
+      121,
+      127,
+      460,
+      332
+    ],
+    "page": 60,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 18"
+  },
+  {
+    "id": 166,
+    "x": 27,
+    "y": 100,
+    "width": 551,
+    "height": 72,
+    "label": "Text, Node 18",
+    "BBox": [
+      27,
+      100,
+      578,
+      172
+    ],
+    "page": 61,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 18"
+  },
+  {
+    "id": 169,
+    "x": 20,
+    "y": 106,
+    "width": 570,
+    "height": 35,
+    "label": "DTC_Code, Node 19",
+    "BBox": [
+      20,
+      106,
+      590,
+      141
+    ],
+    "page": 62,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 19"
+  },
+  {
+    "id": 170,
+    "x": 27,
+    "y": 149,
+    "width": 83,
+    "height": 16,
+    "label": "Text, Node 19",
+    "BBox": [
+      27,
+      149,
+      110,
+      165
+    ],
+    "page": 62,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 19"
+  },
+  {
+    "id": 171,
+    "x": 38,
+    "y": 168,
+    "width": 532,
+    "height": 205,
+    "label": "Table, Node 19",
+    "BBox": [
+      38,
+      168,
+      570,
+      373
+    ],
+    "page": 62,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 19"
+  },
+  {
+    "id": 173,
+    "x": 16,
+    "y": 112,
+    "width": 164,
+    "height": 26,
+    "label": "Text, Node 19",
+    "BBox": [
+      16,
+      112,
+      180,
+      138
+    ],
+    "page": 63,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 19"
+  },
+  {
+    "id": 174,
+    "x": 28,
+    "y": 146,
+    "width": 560,
+    "height": 228,
+    "label": "Text, Node 19",
+    "BBox": [
+      28,
+      146,
+      588,
+      374
+    ],
+    "page": 63,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 19"
+  },
+  {
+    "id": 176,
+    "x": 30,
+    "y": 101,
+    "width": 551,
+    "height": 81,
+    "label": "Text, Node 19",
+    "BBox": [
+      30,
+      101,
+      581,
+      182
+    ],
+    "page": 64,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 19"
+  },
+  {
+    "id": 178,
+    "x": 21,
+    "y": 96,
+    "width": 563,
+    "height": 41,
+    "label": "DTC_Code, Node 20",
+    "BBox": [
+      21,
+      96,
+      584,
+      137
+    ],
+    "page": 65,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 20"
+  },
+  {
+    "id": 179,
+    "x": 30,
+    "y": 147,
+    "width": 94,
+    "height": 16,
+    "label": "Text, Node 20",
+    "BBox": [
+      30,
+      147,
+      124,
+      163
+    ],
+    "page": 65,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 20"
+  },
+  {
+    "id": 182,
+    "x": 49,
+    "y": 171,
+    "width": 514,
+    "height": 179,
+    "label": "Table, Node 20",
+    "BBox": [
+      49,
+      171,
+      563,
+      350
+    ],
+    "page": 65,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 20"
+  },
+  {
+    "id": 184,
+    "x": 33,
+    "y": 103,
+    "width": 552,
+    "height": 175,
+    "label": "Text, Node 20",
+    "BBox": [
+      33,
+      103,
+      585,
+      278
+    ],
+    "page": 66,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 20"
+  },
+  {
+    "id": 186,
+    "x": 24,
+    "y": 100,
+    "width": 434,
+    "height": 22,
+    "label": "DTC_Code, Node 21",
+    "BBox": [
+      24,
+      100,
+      458,
+      122
+    ],
+    "page": 67,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 21"
+  },
+  {
+    "id": 188,
+    "x": 28,
+    "y": 124,
+    "width": 73,
+    "height": 14,
+    "label": "Text, Node 21",
+    "BBox": [
+      28,
+      124,
+      101,
+      138
+    ],
+    "page": 67,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 21"
+  },
+  {
+    "id": 191,
+    "x": 44,
+    "y": 144,
+    "width": 524,
+    "height": 254,
+    "label": "Table, Node 21",
+    "BBox": [
+      44,
+      144,
+      568,
+      398
+    ],
+    "page": 67,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 21"
+  },
+  {
+    "id": 192,
+    "x": 17,
+    "y": 96,
+    "width": 579,
+    "height": 334,
+    "label": "Text, Node 21",
+    "BBox": [
+      17,
+      96,
+      596,
+      430
+    ],
+    "page": 68,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 21"
+  },
+  {
+    "id": 193,
+    "x": 23,
+    "y": 98,
+    "width": 440,
+    "height": 23,
+    "label": "DTC_Code, Node 22",
+    "BBox": [
+      23,
+      98,
+      463,
+      121
+    ],
+    "page": 69,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 22"
+  },
+  {
+    "id": 194,
+    "x": 19,
+    "y": 124,
+    "width": 86,
+    "height": 12,
+    "label": "Text, Node 22",
+    "BBox": [
+      19,
+      124,
+      105,
+      136
+    ],
+    "page": 69,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 22"
+  },
+  {
+    "id": 195,
+    "x": 43,
+    "y": 142,
+    "width": 524,
+    "height": 208,
+    "label": "Table, Node 22",
+    "BBox": [
+      43,
+      142,
+      567,
+      350
+    ],
+    "page": 69,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 22"
+  },
+  {
+    "id": 197,
+    "x": 27,
+    "y": 113,
+    "width": 148,
+    "height": 23,
+    "label": "Text, Node 22",
+    "BBox": [
+      27,
+      113,
+      175,
+      136
+    ],
+    "page": 70,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 22"
+  },
+  {
+    "id": 199,
+    "x": 94,
+    "y": 145,
+    "width": 395,
+    "height": 407,
+    "label": "Image, Node 22",
+    "BBox": [
+      94,
+      145,
+      489,
+      552
+    ],
+    "page": 70,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 22"
+  },
+  {
+    "id": 201,
+    "x": 20,
+    "y": 101,
+    "width": 565,
+    "height": 73,
+    "label": "Text, Node 22",
+    "BBox": [
+      20,
+      101,
+      585,
+      174
+    ],
+    "page": 71,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 22"
+  },
+  {
+    "id": 202,
+    "x": 30,
+    "y": 104,
+    "width": 469,
+    "height": 19,
+    "label": "DTC_Code, Node 23",
+    "BBox": [
+      30,
+      104,
+      499,
+      123
+    ],
+    "page": 72,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 23"
+  },
+  {
+    "id": 204,
+    "x": 29,
+    "y": 125,
+    "width": 72,
+    "height": 16,
+    "label": "Text, Node 23",
+    "BBox": [
+      29,
+      125,
+      101,
+      141
+    ],
+    "page": 72,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 23"
+  },
+  {
+    "id": 207,
+    "x": 50,
+    "y": 144,
+    "width": 515,
+    "height": 228,
+    "label": "Table, Node 23",
+    "BBox": [
+      50,
+      144,
+      565,
+      372
+    ],
+    "page": 72,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 23"
+  },
+  {
+    "id": 208,
+    "x": 22,
+    "y": 100,
+    "width": 157,
+    "height": 25,
+    "label": "Text, Node 23",
+    "BBox": [
+      22,
+      100,
+      179,
+      125
+    ],
+    "page": 73,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 23"
+  },
+  {
+    "id": 209,
+    "x": 29,
+    "y": 166,
+    "width": 378,
+    "height": 424,
+    "label": "Image, Node 23",
+    "BBox": [
+      29,
+      166,
+      407,
+      590
+    ],
+    "page": 73,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 23"
+  },
+  {
+    "id": 210,
+    "x": 19,
+    "y": 103,
+    "width": 565,
+    "height": 70,
+    "label": "Text, Node 23",
+    "BBox": [
+      19,
+      103,
+      584,
+      173
+    ],
+    "page": 74,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 23"
+  },
+  {
+    "id": 211,
+    "x": 30,
+    "y": 102,
+    "width": 406,
+    "height": 20,
+    "label": "DTC_Code, Node 24",
+    "BBox": [
+      30,
+      102,
+      436,
+      122
+    ],
+    "page": 75,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 24"
+  },
+  {
+    "id": 212,
+    "x": 29,
+    "y": 135,
+    "width": 83,
+    "height": 18,
+    "label": "Text, Node 24",
+    "BBox": [
+      29,
+      135,
+      112,
+      153
+    ],
+    "page": 75,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 24"
+  },
+  {
+    "id": 213,
+    "x": 40,
+    "y": 159,
+    "width": 535,
+    "height": 201,
+    "label": "Table, Node 24",
+    "BBox": [
+      40,
+      159,
+      575,
+      360
+    ],
+    "page": 75,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 24"
+  },
+  {
+    "id": 215,
+    "x": 22,
+    "y": 125,
+    "width": 188,
+    "height": 26,
+    "label": "Text, Node 24",
+    "BBox": [
+      22,
+      125,
+      210,
+      151
+    ],
+    "page": 76,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 24"
+  },
+  {
+    "id": 216,
+    "x": 37,
+    "y": 191,
+    "width": 525,
+    "height": 445,
+    "label": "Image, Node 24",
+    "BBox": [
+      37,
+      191,
+      562,
+      636
+    ],
+    "page": 76,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 24"
+  },
+  {
+    "id": 218,
+    "x": 17,
+    "y": 105,
+    "width": 560,
+    "height": 67,
+    "label": "Text, Node 24",
+    "BBox": [
+      17,
+      105,
+      577,
+      172
+    ],
+    "page": 77,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 24"
+  },
+  {
+    "id": 220,
+    "x": 22,
+    "y": 100,
+    "width": 381,
+    "height": 26,
+    "label": "DTC_Code, Node 25",
+    "BBox": [
+      22,
+      100,
+      403,
+      126
+    ],
+    "page": 78,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 25"
+  },
+  {
+    "id": 222,
+    "x": 26,
+    "y": 134,
+    "width": 96,
+    "height": 18,
+    "label": "Text, Node 25",
+    "BBox": [
+      26,
+      134,
+      122,
+      152
+    ],
+    "page": 78,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 25"
+  },
+  {
+    "id": 223,
+    "x": 38,
+    "y": 157,
+    "width": 531,
+    "height": 206,
+    "label": "Table, Node 25",
+    "BBox": [
+      38,
+      157,
+      569,
+      363
+    ],
+    "page": 78,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 25"
+  },
+  {
+    "id": 225,
+    "x": 20,
+    "y": 128,
+    "width": 150,
+    "height": 21,
+    "label": "Text, Node 25",
+    "BBox": [
+      20,
+      128,
+      170,
+      149
+    ],
+    "page": 79,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 25"
+  },
+  {
+    "id": 226,
+    "x": 24,
+    "y": 188,
+    "width": 534,
+    "height": 479,
+    "label": "Image, Node 25",
+    "BBox": [
+      24,
+      188,
+      558,
+      667
+    ],
+    "page": 79,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 25"
+  },
+  {
+    "id": 227,
+    "x": 24,
+    "y": 103,
+    "width": 560,
+    "height": 68,
+    "label": "Text, Node 25",
+    "BBox": [
+      24,
+      103,
+      584,
+      171
+    ],
+    "page": 80,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 25"
+  },
+  {
+    "id": 229,
+    "x": 25,
+    "y": 102,
+    "width": 406,
+    "height": 26,
+    "label": "DTC_Code, Node 26",
+    "BBox": [
+      25,
+      102,
+      431,
+      128
+    ],
+    "page": 81,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 26"
+  },
+  {
+    "id": 230,
+    "x": 25,
+    "y": 134,
+    "width": 97,
+    "height": 17,
+    "label": "Text, Node 26",
+    "BBox": [
+      25,
+      134,
+      122,
+      151
+    ],
+    "page": 81,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 26"
+  },
+  {
+    "id": 231,
+    "x": 43,
+    "y": 159,
+    "width": 526,
+    "height": 217,
+    "label": "Table, Node 26",
+    "BBox": [
+      43,
+      159,
+      569,
+      376
+    ],
+    "page": 81,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 26"
+  },
+  {
+    "id": 233,
+    "x": 24,
+    "y": 100,
+    "width": 146,
+    "height": 25,
+    "label": "Text, Node 26",
+    "BBox": [
+      24,
+      100,
+      170,
+      125
+    ],
+    "page": 82,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 26"
+  },
+  {
+    "id": 235,
+    "x": 20,
+    "y": 143,
+    "width": 472,
+    "height": 520,
+    "label": "Image, Node 26",
+    "BBox": [
+      20,
+      143,
+      492,
+      663
+    ],
+    "page": 82,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 26"
+  },
+  {
+    "id": 236,
+    "x": 27,
+    "y": 102,
+    "width": 530,
+    "height": 72,
+    "label": "Text, Node 26",
+    "BBox": [
+      27,
+      102,
+      557,
+      174
+    ],
+    "page": 83,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 26"
+  },
+  {
+    "id": 237,
+    "x": 19,
+    "y": 101,
+    "width": 436,
+    "height": 25,
+    "label": "DTC_Code, Node 27",
+    "BBox": [
+      19,
+      101,
+      455,
+      126
+    ],
+    "page": 84,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 241,
+    "x": 33,
+    "y": 135,
+    "width": 80,
+    "height": 16,
+    "label": "Text, Node 27",
+    "BBox": [
+      33,
+      135,
+      113,
+      151
+    ],
+    "page": 84,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 242,
+    "x": 47,
+    "y": 158,
+    "width": 519,
+    "height": 215,
+    "label": "Table, Node 27",
+    "BBox": [
+      47,
+      158,
+      566,
+      373
+    ],
+    "page": 84,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 243,
+    "x": 29,
+    "y": 102,
+    "width": 124,
+    "height": 22,
+    "label": "Text, Node 27",
+    "BBox": [
+      29,
+      102,
+      153,
+      124
+    ],
+    "page": 85,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 244,
+    "x": 59,
+    "y": 143,
+    "width": 439,
+    "height": 508,
+    "label": "Image, Node 27",
+    "BBox": [
+      59,
+      143,
+      498,
+      651
+    ],
+    "page": 85,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 245,
+    "x": 23,
+    "y": 103,
+    "width": 547,
+    "height": 73,
+    "label": "Text, Node 27",
+    "BBox": [
+      23,
+      103,
+      570,
+      176
+    ],
+    "page": 86,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 246,
+    "x": 8,
+    "y": 103,
+    "width": 494,
+    "height": 22,
+    "label": "DTC_Code, Node 27",
+    "BBox": [
+      8,
+      103,
+      502,
+      125
+    ],
+    "page": 87,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 247,
+    "x": 25,
+    "y": 135,
+    "width": 105,
+    "height": 17,
+    "label": "Text, Node 27",
+    "BBox": [
+      25,
+      135,
+      130,
+      152
+    ],
+    "page": 87,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 248,
+    "x": 41,
+    "y": 160,
+    "width": 529,
+    "height": 213,
+    "label": "Table, Node 27",
+    "BBox": [
+      41,
+      160,
+      570,
+      373
+    ],
+    "page": 87,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 250,
+    "x": 67,
+    "y": 119,
+    "width": 146,
+    "height": 20,
+    "label": "Text, Node 27",
+    "BBox": [
+      67,
+      119,
+      213,
+      139
+    ],
+    "page": 88,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 252,
+    "x": 27,
+    "y": 155,
+    "width": 502,
+    "height": 480,
+    "label": "Image, Node 27",
+    "BBox": [
+      27,
+      155,
+      529,
+      635
+    ],
+    "page": 88,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 253,
+    "x": 8,
+    "y": 102,
+    "width": 587,
+    "height": 71,
+    "label": "Text, Node 27",
+    "BBox": [
+      8,
+      102,
+      595,
+      173
+    ],
+    "page": 89,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 27"
+  },
+  {
+    "id": 254,
+    "x": 28,
+    "y": 103,
+    "width": 393,
+    "height": 22,
+    "label": "DTC_Code, Node 28",
+    "BBox": [
+      28,
+      103,
+      421,
+      125
+    ],
+    "page": 90,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 28"
+  },
+  {
+    "id": 255,
+    "x": 32,
+    "y": 136,
+    "width": 93,
+    "height": 16,
+    "label": "Text, Node 28",
+    "BBox": [
+      32,
+      136,
+      125,
+      152
+    ],
+    "page": 90,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 28"
+  },
+  {
+    "id": 257,
+    "x": 43,
+    "y": 158,
+    "width": 524,
+    "height": 213,
+    "label": "Table, Node 28",
+    "BBox": [
+      47,
+      159,
+      571,
+      372
+    ],
+    "page": 90,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 28"
+  },
+  {
+    "id": 259,
+    "x": 26,
+    "y": 101,
+    "width": 152,
+    "height": 21,
+    "label": "Text, Node 28",
+    "BBox": [
+      26,
+      101,
+      178,
+      122
+    ],
+    "page": 91,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 28"
+  },
+  {
+    "id": 260,
+    "x": 23,
+    "y": 160,
+    "width": 333,
+    "height": 522,
+    "label": "Image, Node 28",
+    "BBox": [
+      23,
+      160,
+      356,
+      682
+    ],
+    "page": 91,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 28"
+  },
+  {
+    "id": 261,
+    "x": 22,
+    "y": 99,
+    "width": 554,
+    "height": 79,
+    "label": "Text, Node 28",
+    "BBox": [
+      22,
+      99,
+      576,
+      178
+    ],
+    "page": 92,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 28"
+  },
+  {
+    "id": 262,
+    "x": 26,
+    "y": 103,
+    "width": 371,
+    "height": 20,
+    "label": "DTC_Code, Node 29",
+    "BBox": [
+      26,
+      103,
+      397,
+      123
+    ],
+    "page": 93,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 29"
+  },
+  {
+    "id": 267,
+    "x": 26,
+    "y": 125,
+    "width": 72,
+    "height": 16,
+    "label": "Text, Node 29",
+    "BBox": [
+      26,
+      125,
+      98,
+      141
+    ],
+    "page": 93,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 29"
+  },
+  {
+    "id": 268,
+    "x": 44,
+    "y": 148,
+    "width": 522,
+    "height": 189,
+    "label": "Table, Node 29",
+    "BBox": [
+      44,
+      148,
+      566,
+      337
+    ],
+    "page": 93,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 29"
+  },
+  {
+    "id": 269,
+    "x": 26,
+    "y": 119,
+    "width": 134,
+    "height": 21,
+    "label": "Text, Node 29",
+    "BBox": [
+      26,
+      119,
+      160,
+      140
+    ],
+    "page": 94,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 29"
+  },
+  {
+    "id": 270,
+    "x": 31,
+    "y": 174,
+    "width": 515,
+    "height": 493,
+    "label": "Image, Node 29",
+    "BBox": [
+      31,
+      174,
+      546,
+      667
+    ],
+    "page": 94,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 29"
+  },
+  {
+    "id": 271,
+    "x": 20,
+    "y": 98,
+    "width": 559,
+    "height": 79,
+    "label": "Text, Node 29",
+    "BBox": [
+      20,
+      98,
+      579,
+      177
+    ],
+    "page": 95,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 29"
+  },
+  {
+    "id": 272,
+    "x": 27,
+    "y": 104,
+    "width": 333,
+    "height": 25,
+    "label": "DTC_Code, Node 30",
+    "BBox": [
+      27,
+      104,
+      360,
+      129
+    ],
+    "page": 96,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 30"
+  },
+  {
+    "id": 273,
+    "x": 22,
+    "y": 135,
+    "width": 99,
+    "height": 18,
+    "label": "Text, Node 30",
+    "BBox": [
+      22,
+      135,
+      121,
+      153
+    ],
+    "page": 96,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 30"
+  },
+  {
+    "id": 274,
+    "x": 41,
+    "y": 157,
+    "width": 535,
+    "height": 201,
+    "label": "Table, Node 30",
+    "BBox": [
+      41,
+      157,
+      576,
+      358
+    ],
+    "page": 96,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 30"
+  },
+  {
+    "id": 275,
+    "x": 30,
+    "y": 154,
+    "width": 143,
+    "height": 28,
+    "label": "Text, Node 30",
+    "BBox": [
+      30,
+      154,
+      173,
+      182
+    ],
+    "page": 97,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 30"
+  },
+  {
+    "id": 277,
+    "x": 33,
+    "y": 196,
+    "width": 534,
+    "height": 447,
+    "label": "Image, Node 30",
+    "BBox": [
+      33,
+      196,
+      567,
+      643
+    ],
+    "page": 97,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 30"
+  },
+  {
+    "id": 279,
+    "x": 28,
+    "y": 103,
+    "width": 541,
+    "height": 69,
+    "label": "Text, Node 30",
+    "BBox": [
+      28,
+      103,
+      569,
+      172
+    ],
+    "page": 98,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 30"
+  },
+  {
+    "id": 280,
+    "x": 21,
+    "y": 102,
+    "width": 413,
+    "height": 25,
+    "label": "DTC_Code, Node 31",
+    "BBox": [
+      21,
+      102,
+      434,
+      127
+    ],
+    "page": 99,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 31"
+  },
+  {
+    "id": 281,
+    "x": 22,
+    "y": 134,
+    "width": 105,
+    "height": 20,
+    "label": "Text, Node 31",
+    "BBox": [
+      22,
+      134,
+      127,
+      154
+    ],
+    "page": 99,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 31"
+  },
+  {
+    "id": 282,
+    "x": 44,
+    "y": 157,
+    "width": 524,
+    "height": 215,
+    "label": "Table, Node 31",
+    "BBox": [
+      44,
+      157,
+      568,
+      372
+    ],
+    "page": 99,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 31"
+  },
+  {
+    "id": 283,
+    "x": 28,
+    "y": 102,
+    "width": 152,
+    "height": 20,
+    "label": "Text, Node 31",
+    "BBox": [
+      28,
+      102,
+      180,
+      122
+    ],
+    "page": 100,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 31"
+  },
+  {
+    "id": 284,
+    "x": 47,
+    "y": 124,
+    "width": 524,
+    "height": 535,
+    "label": "Image, Node 31",
+    "BBox": [
+      47,
+      124,
+      571,
+      659
+    ],
+    "page": 100,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 31"
+  },
+  {
+    "id": 285,
+    "x": 23,
+    "y": 102,
+    "width": 538,
+    "height": 71,
+    "label": "Text, Node 31",
+    "BBox": [
+      23,
+      102,
+      561,
+      173
+    ],
+    "page": 101,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 31"
+  },
+  {
+    "id": 286,
+    "x": 27,
+    "y": 104,
+    "width": 488,
+    "height": 21,
+    "label": "DTC_Code, Node 32",
+    "BBox": [
+      27,
+      104,
+      515,
+      125
+    ],
+    "page": 102,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 32"
+  },
+  {
+    "id": 292,
+    "x": 49,
+    "y": 146,
+    "width": 516,
+    "height": 214,
+    "label": "Table, Node 32",
+    "BBox": [
+      49,
+      146,
+      565,
+      360
+    ],
+    "page": 102,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 32"
+  },
+  {
+    "id": 293,
+    "x": 26,
+    "y": 149,
+    "width": 160,
+    "height": 26,
+    "label": "Text, Node 32",
+    "BBox": [
+      26,
+      149,
+      186,
+      175
+    ],
+    "page": 103,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 32"
+  },
+  {
+    "id": 296,
+    "x": 20,
+    "y": 193,
+    "width": 524,
+    "height": 477,
+    "label": "Image, Node 32",
+    "BBox": [
+      20,
+      193,
+      544,
+      670
+    ],
+    "page": 103,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 32"
+  },
+  {
+    "id": 297,
+    "x": 30,
+    "y": 100,
+    "width": 545,
+    "height": 75,
+    "label": "Text, Node 32",
+    "BBox": [
+      30,
+      100,
+      575,
+      175
+    ],
+    "page": 104,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 32"
+  },
+  {
+    "id": 299,
+    "x": 21,
+    "y": 92,
+    "width": 355,
+    "height": 48,
+    "label": "DTC_Code, Node 33",
+    "BBox": [
+      21,
+      92,
+      376,
+      140
+    ],
+    "page": 105,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 33"
+  },
+  {
+    "id": 301,
+    "x": 24,
+    "y": 143,
+    "width": 78,
+    "height": 16,
+    "label": "Text, Node 33",
+    "BBox": [
+      24,
+      143,
+      102,
+      159
+    ],
+    "page": 105,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 33"
+  },
+  {
+    "id": 302,
+    "x": 47,
+    "y": 165,
+    "width": 521,
+    "height": 216,
+    "label": "Table, Node 33",
+    "BBox": [
+      47,
+      165,
+      568,
+      381
+    ],
+    "page": 105,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 33"
+  },
+  {
+    "id": 304,
+    "x": 19,
+    "y": 112,
+    "width": 155,
+    "height": 26,
+    "label": "Text, Node 33",
+    "BBox": [
+      19,
+      112,
+      174,
+      138
+    ],
+    "page": 106,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 33"
+  },
+  {
+    "id": 306,
+    "x": 26,
+    "y": 166,
+    "width": 509,
+    "height": 512,
+    "label": "Image, Node 33",
+    "BBox": [
+      26,
+      166,
+      535,
+      678
+    ],
+    "page": 106,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 33"
+  },
+  {
+    "id": 309,
+    "x": 16,
+    "y": 99,
+    "width": 554,
+    "height": 74,
+    "label": "Text, Node 33",
+    "BBox": [
+      16,
+      99,
+      570,
+      173
+    ],
+    "page": 107,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 33"
+  },
+  {
+    "id": 310,
+    "x": 22,
+    "y": 100,
+    "width": 370,
+    "height": 27,
+    "label": "DTC_Code, Node 34",
+    "BBox": [
+      22,
+      100,
+      392,
+      127
+    ],
+    "page": 108,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 34"
+  },
+  {
+    "id": 311,
+    "x": 27,
+    "y": 137,
+    "width": 90,
+    "height": 14,
+    "label": "Text, Node 34",
+    "BBox": [
+      27,
+      137,
+      117,
+      151
+    ],
+    "page": 108,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 34"
+  },
+  {
+    "id": 313,
+    "x": 47,
+    "y": 159,
+    "width": 517,
+    "height": 214,
+    "label": "Table, Node 34",
+    "BBox": [
+      47,
+      159,
+      564,
+      373
+    ],
+    "page": 108,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 34"
+  },
+  {
+    "id": 314,
+    "x": 17,
+    "y": 113,
+    "width": 200,
+    "height": 28,
+    "label": "Text, Node 34",
+    "BBox": [
+      17,
+      113,
+      217,
+      141
+    ],
+    "page": 109,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 34"
+  },
+  {
+    "id": 317,
+    "x": 25,
+    "y": 184,
+    "width": 403,
+    "height": 484,
+    "label": "Image, Node 34",
+    "BBox": [
+      25,
+      184,
+      428,
+      668
+    ],
+    "page": 109,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 34"
+  },
+  {
+    "id": 319,
+    "x": 26,
+    "y": 98,
+    "width": 531,
+    "height": 76,
+    "label": "Text, Node 34",
+    "BBox": [
+      26,
+      98,
+      557,
+      174
+    ],
+    "page": 110,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 34"
+  },
+  {
+    "id": 320,
+    "x": 26,
+    "y": 103,
+    "width": 336,
+    "height": 22,
+    "label": "DTC_Code, Node 35",
+    "BBox": [
+      26,
+      103,
+      362,
+      125
+    ],
+    "page": 111,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 35"
+  },
+  {
+    "id": 321,
+    "x": 30,
+    "y": 132,
+    "width": 86,
+    "height": 22,
+    "label": "Text, Node 35",
+    "BBox": [
+      30,
+      132,
+      116,
+      154
+    ],
+    "page": 111,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 35"
+  },
+  {
+    "id": 322,
+    "x": 43,
+    "y": 157,
+    "width": 525,
+    "height": 195,
+    "label": "Table, Node 35",
+    "BBox": [
+      43,
+      157,
+      568,
+      352
+    ],
+    "page": 111,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 35"
+  },
+  {
+    "id": 323,
+    "x": 27,
+    "y": 140,
+    "width": 150,
+    "height": 25,
+    "label": "Text, Node 35",
+    "BBox": [
+      27,
+      140,
+      177,
+      165
+    ],
+    "page": 112,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 35"
+  },
+  {
+    "id": 326,
+    "x": 22,
+    "y": 184,
+    "width": 475,
+    "height": 455,
+    "label": "Image, Node 35",
+    "BBox": [
+      22,
+      184,
+      497,
+      639
+    ],
+    "page": 112,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 35"
+  },
+  {
+    "id": 328,
+    "x": 29,
+    "y": 102,
+    "width": 553,
+    "height": 74,
+    "label": "Text, Node 35",
+    "BBox": [
+      29,
+      102,
+      582,
+      176
+    ],
+    "page": 113,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 35"
+  },
+  {
+    "id": 329,
+    "x": 27,
+    "y": 102,
+    "width": 319,
+    "height": 25,
+    "label": "DTC_Code, Node 36",
+    "BBox": [
+      27,
+      102,
+      346,
+      127
+    ],
+    "page": 114,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 36"
+  },
+  {
+    "id": 330,
+    "x": 25,
+    "y": 132,
+    "width": 95,
+    "height": 20,
+    "label": "Text, Node 36",
+    "BBox": [
+      25,
+      132,
+      120,
+      152
+    ],
+    "page": 114,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 36"
+  },
+  {
+    "id": 331,
+    "x": 46,
+    "y": 157,
+    "width": 519,
+    "height": 197,
+    "label": "Table, Node 36",
+    "BBox": [
+      46,
+      157,
+      565,
+      354
+    ],
+    "page": 114,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 36"
+  },
+  {
+    "id": 332,
+    "x": 26,
+    "y": 140,
+    "width": 149,
+    "height": 24,
+    "label": "Text, Node 36",
+    "BBox": [
+      26,
+      140,
+      175,
+      164
+    ],
+    "page": 115,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 36"
+  },
+  {
+    "id": 334,
+    "x": 30,
+    "y": 170,
+    "width": 508,
+    "height": 503,
+    "label": "Image, Node 36",
+    "BBox": [
+      30,
+      170,
+      538,
+      673
+    ],
+    "page": 115,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 36"
+  },
+  {
+    "id": 336,
+    "x": 22,
+    "y": 102,
+    "width": 552,
+    "height": 71,
+    "label": "Text, Node 36",
+    "BBox": [
+      22,
+      102,
+      574,
+      173
+    ],
+    "page": 116,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 36"
+  },
+  {
+    "id": 338,
+    "x": 29,
+    "y": 101,
+    "width": 387,
+    "height": 28,
+    "label": "DTC_Code, Node 37",
+    "BBox": [
+      29,
+      101,
+      416,
+      129
+    ],
+    "page": 117,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 37"
+  },
+  {
+    "id": 339,
+    "x": 31,
+    "y": 133,
+    "width": 76,
+    "height": 17,
+    "label": "Text, Node 37",
+    "BBox": [
+      31,
+      133,
+      107,
+      150
+    ],
+    "page": 117,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 37"
+  },
+  {
+    "id": 340,
+    "x": 45,
+    "y": 160,
+    "width": 528,
+    "height": 213,
+    "label": "Table, Node 37",
+    "BBox": [
+      45,
+      160,
+      573,
+      373
+    ],
+    "page": 117,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 37"
+  },
+  {
+    "id": 341,
+    "x": 27,
+    "y": 105,
+    "width": 149,
+    "height": 18,
+    "label": "Text, Node 37",
+    "BBox": [
+      27,
+      105,
+      176,
+      123
+    ],
+    "page": 118,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 37"
+  },
+  {
+    "id": 342,
+    "x": 21,
+    "y": 136,
+    "width": 526,
+    "height": 555,
+    "label": "Image, Node 37",
+    "BBox": [
+      21,
+      136,
+      547,
+      691
+    ],
+    "page": 118,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 37"
+  },
+  {
+    "id": 343,
+    "x": 24,
+    "y": 101,
+    "width": 545,
+    "height": 78,
+    "label": "Text, Node 37",
+    "BBox": [
+      24,
+      101,
+      569,
+      179
+    ],
+    "page": 119,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 37"
+  },
+  {
+    "id": 344,
+    "x": 27,
+    "y": 102,
+    "width": 259,
+    "height": 28,
+    "label": "DTC_Code, Node 38",
+    "BBox": [
+      27,
+      102,
+      286,
+      130
+    ],
+    "page": 120,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 38"
+  },
+  {
+    "id": 347,
+    "x": 32,
+    "y": 136,
+    "width": 96,
+    "height": 16,
+    "label": "Text, Node 38",
+    "BBox": [
+      32,
+      136,
+      128,
+      152
+    ],
+    "page": 120,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 38"
+  },
+  {
+    "id": 349,
+    "x": 48,
+    "y": 159,
+    "width": 528,
+    "height": 218,
+    "label": "Table, Node 38",
+    "BBox": [
+      48,
+      159,
+      576,
+      377
+    ],
+    "page": 120,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 38"
+  },
+  {
+    "id": 350,
+    "x": 29,
+    "y": 101,
+    "width": 164,
+    "height": 20,
+    "label": "Text, Node 38",
+    "BBox": [
+      29,
+      101,
+      193,
+      121
+    ],
+    "page": 121,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 38"
+  },
+  {
+    "id": 351,
+    "x": 51,
+    "y": 124,
+    "width": 501,
+    "height": 569,
+    "label": "Image, Node 38",
+    "BBox": [
+      51,
+      124,
+      552,
+      693
+    ],
+    "page": 121,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 38"
+  },
+  {
+    "id": 353,
+    "x": 25,
+    "y": 100,
+    "width": 546,
+    "height": 77,
+    "label": "Text, Node 38",
+    "BBox": [
+      25,
+      100,
+      571,
+      177
+    ],
+    "page": 122,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 38"
+  },
+  {
+    "id": 354,
+    "x": 31,
+    "y": 104,
+    "width": 373,
+    "height": 22,
+    "label": "DTC_Code, Node 39",
+    "BBox": [
+      31,
+      104,
+      404,
+      126
+    ],
+    "page": 123,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 39"
+  },
+  {
+    "id": 355,
+    "x": 20,
+    "y": 132,
+    "width": 104,
+    "height": 20,
+    "label": "Text, Node 39",
+    "BBox": [
+      20,
+      132,
+      124,
+      152
+    ],
+    "page": 123,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 39"
+  },
+  {
+    "id": 356,
+    "x": 43,
+    "y": 157,
+    "width": 530,
+    "height": 221,
+    "label": "Table, Node 39",
+    "BBox": [
+      43,
+      157,
+      573,
+      378
+    ],
+    "page": 123,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 39"
+  },
+  {
+    "id": 357,
+    "x": 29,
+    "y": 104,
+    "width": 146,
+    "height": 18,
+    "label": "Text, Node 39",
+    "BBox": [
+      29,
+      104,
+      175,
+      122
+    ],
+    "page": 124,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 39"
+  },
+  {
+    "id": 358,
+    "x": 41,
+    "y": 125,
+    "width": 529,
+    "height": 552,
+    "label": "Image, Node 39",
+    "BBox": [
+      41,
+      125,
+      570,
+      677
+    ],
+    "page": 124,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 39"
+  },
+  {
+    "id": 359,
+    "x": 24,
+    "y": 98,
+    "width": 557,
+    "height": 75,
+    "label": "Text, Node 39",
+    "BBox": [
+      24,
+      98,
+      581,
+      173
+    ],
+    "page": 125,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 39"
+  },
+  {
+    "id": 360,
+    "x": 27,
+    "y": 101,
+    "width": 374,
+    "height": 27,
+    "label": "DTC_Code, Node 40",
+    "BBox": [
+      27,
+      101,
+      401,
+      128
+    ],
+    "page": 126,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 40"
+  },
+  {
+    "id": 361,
+    "x": 33,
+    "y": 134,
+    "width": 84,
+    "height": 19,
+    "label": "Text, Node 40",
+    "BBox": [
+      33,
+      134,
+      117,
+      153
+    ],
+    "page": 126,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 40"
+  },
+  {
+    "id": 362,
+    "x": 27,
+    "y": 159,
+    "width": 553,
+    "height": 218,
+    "label": "Table, Node 40",
+    "BBox": [
+      27,
+      159,
+      580,
+      377
+    ],
+    "page": 126,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 40"
+  },
+  {
+    "id": 363,
+    "x": 28,
+    "y": 102,
+    "width": 157,
+    "height": 20,
+    "label": "Text, Node 40",
+    "BBox": [
+      28,
+      102,
+      185,
+      122
+    ],
+    "page": 127,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 40"
+  },
+  {
+    "id": 364,
+    "x": 32,
+    "y": 160,
+    "width": 367,
+    "height": 514,
+    "label": "Image, Node 40",
+    "BBox": [
+      32,
+      160,
+      399,
+      674
+    ],
+    "page": 127,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 40"
+  },
+  {
+    "id": 365,
+    "x": 18,
+    "y": 99,
+    "width": 554,
+    "height": 79,
+    "label": "Text, Node 40",
+    "BBox": [
+      18,
+      99,
+      572,
+      178
+    ],
+    "page": 128,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 40"
+  },
+  {
+    "id": 366,
+    "x": 25,
+    "y": 102,
+    "width": 307,
+    "height": 25,
+    "label": "DTC_Code, Node 41",
+    "BBox": [
+      25,
+      102,
+      332,
+      127
+    ],
+    "page": 129,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 41"
+  },
+  {
+    "id": 368,
+    "x": 28,
+    "y": 133,
+    "width": 69,
+    "height": 18,
+    "label": "Text, Node 41",
+    "BBox": [
+      28,
+      133,
+      97,
+      151
+    ],
+    "page": 129,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 41"
+  },
+  {
+    "id": 369,
+    "x": 48,
+    "y": 157,
+    "width": 518,
+    "height": 193,
+    "label": "Table, Node 41",
+    "BBox": [
+      48,
+      157,
+      566,
+      350
+    ],
+    "page": 129,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 41"
+  },
+  {
+    "id": 370,
+    "x": 31,
+    "y": 115,
+    "width": 129,
+    "height": 20,
+    "label": "Text, Node 41",
+    "BBox": [
+      31,
+      115,
+      160,
+      135
+    ],
+    "page": 130,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 41"
+  },
+  {
+    "id": 371,
+    "x": 29,
+    "y": 169,
+    "width": 520,
+    "height": 485,
+    "label": "Image, Node 41",
+    "BBox": [
+      29,
+      169,
+      549,
+      654
+    ],
+    "page": 130,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 41"
+  },
+  {
+    "id": 372,
+    "x": 23,
+    "y": 102,
+    "width": 551,
+    "height": 70,
+    "label": "Text, Node 41",
+    "BBox": [
+      23,
+      102,
+      574,
+      172
+    ],
+    "page": 131,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 41"
+  },
+  {
+    "id": 373,
+    "x": 24,
+    "y": 100,
+    "width": 295,
+    "height": 25,
+    "label": "DTC_Code, Node 42",
+    "BBox": [
+      24,
+      100,
+      319,
+      125
+    ],
+    "page": 132,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 42"
+  },
+  {
+    "id": 375,
+    "x": 26,
+    "y": 135,
+    "width": 86,
+    "height": 16,
+    "label": "Text, Node 42",
+    "BBox": [
+      26,
+      135,
+      112,
+      151
+    ],
+    "page": 132,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 42"
+  },
+  {
+    "id": 377,
+    "x": 48,
+    "y": 157,
+    "width": 520,
+    "height": 194,
+    "label": "Table, Node 42",
+    "BBox": [
+      48,
+      157,
+      568,
+      351
+    ],
+    "page": 132,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 42"
+  },
+  {
+    "id": 379,
+    "x": 35,
+    "y": 141,
+    "width": 134,
+    "height": 20,
+    "label": "Text, Node 42",
+    "BBox": [
+      35,
+      141,
+      169,
+      161
+    ],
+    "page": 133,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 42"
+  },
+  {
+    "id": 381,
+    "x": 31,
+    "y": 172,
+    "width": 518,
+    "height": 519,
+    "label": "Image, Node 42",
+    "BBox": [
+      31,
+      172,
+      549,
+      691
+    ],
+    "page": 133,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 42"
+  },
+  {
+    "id": 382,
+    "x": 16,
+    "y": 102,
+    "width": 555,
+    "height": 72,
+    "label": "Text, Node 42",
+    "BBox": [
+      16,
+      102,
+      571,
+      174
+    ],
+    "page": 134,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 42"
+  },
+  {
+    "id": 383,
+    "x": 29,
+    "y": 102,
+    "width": 399,
+    "height": 23,
+    "label": "DTC_Code, Node 43",
+    "BBox": [
+      29,
+      102,
+      428,
+      125
+    ],
+    "page": 135,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 43"
+  },
+  {
+    "id": 384,
+    "x": 23,
+    "y": 125,
+    "width": 78,
+    "height": 16,
+    "label": "Text, Node 43",
+    "BBox": [
+      23,
+      125,
+      101,
+      141
+    ],
+    "page": 135,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 43"
+  },
+  {
+    "id": 385,
+    "x": 47,
+    "y": 147,
+    "width": 518,
+    "height": 214,
+    "label": "Table, Node 43",
+    "BBox": [
+      47,
+      147,
+      565,
+      361
+    ],
+    "page": 135,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 43"
+  },
+  {
+    "id": 386,
+    "x": 27,
+    "y": 103,
+    "width": 147,
+    "height": 20,
+    "label": "Text, Node 43",
+    "BBox": [
+      27,
+      103,
+      174,
+      123
+    ],
+    "page": 136,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 43"
+  },
+  {
+    "id": 387,
+    "x": 26,
+    "y": 125,
+    "width": 558,
+    "height": 564,
+    "label": "Image, Node 43",
+    "BBox": [
+      26,
+      125,
+      584,
+      689
+    ],
+    "page": 136,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 43"
+  },
+  {
+    "id": 388,
+    "x": 24,
+    "y": 97,
+    "width": 548,
+    "height": 81,
+    "label": "Text, Node 43",
+    "BBox": [
+      24,
+      97,
+      572,
+      178
+    ],
+    "page": 137,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 43"
+  },
+  {
+    "id": 389,
+    "x": 24,
+    "y": 105,
+    "width": 378,
+    "height": 23,
+    "label": "DTC_Code, Node 44",
+    "BBox": [
+      24,
+      105,
+      402,
+      128
+    ],
+    "page": 138,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 44"
+  },
+  {
+    "id": 391,
+    "x": 29,
+    "y": 131,
+    "width": 79,
+    "height": 22,
+    "label": "Text, Node 44",
+    "BBox": [
+      29,
+      131,
+      108,
+      153
+    ],
+    "page": 138,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 44"
+  },
+  {
+    "id": 392,
+    "x": 49,
+    "y": 159,
+    "width": 522,
+    "height": 219,
+    "label": "Table, Node 44",
+    "BBox": [
+      49,
+      159,
+      571,
+      378
+    ],
+    "page": 138,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 44"
+  },
+  {
+    "id": 395,
+    "x": 26,
+    "y": 103,
+    "width": 143,
+    "height": 20,
+    "label": "Text, Node 44",
+    "BBox": [
+      26,
+      103,
+      169,
+      123
+    ],
+    "page": 139,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 44"
+  },
+  {
+    "id": 396,
+    "x": 21,
+    "y": 140,
+    "width": 526,
+    "height": 536,
+    "label": "Image, Node 44",
+    "BBox": [
+      21,
+      140,
+      547,
+      676
+    ],
+    "page": 139,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 44"
+  },
+  {
+    "id": 397,
+    "x": 20,
+    "y": 106,
+    "width": 541,
+    "height": 68,
+    "label": "Text, Node 44",
+    "BBox": [
+      20,
+      106,
+      561,
+      174
+    ],
+    "page": 140,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 44"
+  },
+  {
+    "id": 398,
+    "x": 19,
+    "y": 99,
+    "width": 369,
+    "height": 25,
+    "label": "DTC_Code, Node 45",
+    "BBox": [
+      19,
+      99,
+      388,
+      124
+    ],
+    "page": 141,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 45"
+  },
+  {
+    "id": 399,
+    "x": 34,
+    "y": 137,
+    "width": 63,
+    "height": 15,
+    "label": "Text, Node 45",
+    "BBox": [
+      34,
+      137,
+      97,
+      152
+    ],
+    "page": 141,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 45"
+  },
+  {
+    "id": 400,
+    "x": 44,
+    "y": 156,
+    "width": 525,
+    "height": 216,
+    "label": "Table, Node 45",
+    "BBox": [
+      44,
+      156,
+      569,
+      372
+    ],
+    "page": 141,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 45"
+  },
+  {
+    "id": 401,
+    "x": 19,
+    "y": 101,
+    "width": 187,
+    "height": 25,
+    "label": "Text, Node 45",
+    "BBox": [
+      19,
+      101,
+      206,
+      126
+    ],
+    "page": 142,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 45"
+  },
+  {
+    "id": 404,
+    "x": 21,
+    "y": 133,
+    "width": 532,
+    "height": 539,
+    "label": "Image, Node 45",
+    "BBox": [
+      21,
+      133,
+      553,
+      672
+    ],
+    "page": 142,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 45"
+  },
+  {
+    "id": 405,
+    "x": 19,
+    "y": 99,
+    "width": 548,
+    "height": 74,
+    "label": "Text, Node 45",
+    "BBox": [
+      19,
+      99,
+      567,
+      173
+    ],
+    "page": 143,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 45"
+  },
+  {
+    "id": 406,
+    "x": 22,
+    "y": 100,
+    "width": 346,
+    "height": 23,
+    "label": "DTC_Code, Node 46",
+    "BBox": [
+      22,
+      100,
+      368,
+      123
+    ],
+    "page": 144,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 46"
+  },
+  {
+    "id": 407,
+    "x": 26,
+    "y": 132,
+    "width": 78,
+    "height": 18,
+    "label": "Text, Node 46",
+    "BBox": [
+      26,
+      132,
+      104,
+      150
+    ],
+    "page": 144,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 46"
+  },
+  {
+    "id": 409,
+    "x": 43,
+    "y": 156,
+    "width": 523,
+    "height": 215,
+    "label": "Table, Node 46",
+    "BBox": [
+      43,
+      156,
+      566,
+      371
+    ],
+    "page": 144,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 46"
+  },
+  {
+    "id": 410,
+    "x": 24,
+    "y": 102,
+    "width": 138,
+    "height": 24,
+    "label": "Text, Node 46",
+    "BBox": [
+      24,
+      102,
+      162,
+      126
+    ],
+    "page": 145,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 46"
+  },
+  {
+    "id": 412,
+    "x": 27,
+    "y": 143,
+    "width": 440,
+    "height": 514,
+    "label": "Image, Node 46",
+    "BBox": [
+      27,
+      143,
+      467,
+      657
+    ],
+    "page": 145,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 46"
+  },
+  {
+    "id": 414,
+    "x": 24,
+    "y": 100,
+    "width": 559,
+    "height": 78,
+    "label": "Text, Node 46",
+    "BBox": [
+      24,
+      100,
+      583,
+      178
+    ],
+    "page": 146,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 46"
+  },
+  {
+    "id": 416,
+    "x": 26,
+    "y": 102,
+    "width": 308,
+    "height": 25,
+    "label": "DTC_Code, Node 47",
+    "BBox": [
+      26,
+      102,
+      334,
+      127
+    ],
+    "page": 147,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 47"
+  },
+  {
+    "id": 417,
+    "x": 30,
+    "y": 133,
+    "width": 81,
+    "height": 20,
+    "label": "Text, Node 47",
+    "BBox": [
+      30,
+      133,
+      111,
+      153
+    ],
+    "page": 147,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 47"
+  },
+  {
+    "id": 418,
+    "x": 46,
+    "y": 160,
+    "width": 523,
+    "height": 210,
+    "label": "Table, Node 47",
+    "BBox": [
+      46,
+      160,
+      569,
+      370
+    ],
+    "page": 147,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 47"
+  },
+  {
+    "id": 419,
+    "x": 24,
+    "y": 102,
+    "width": 184,
+    "height": 19,
+    "label": "Text, Node 47",
+    "BBox": [
+      24,
+      102,
+      208,
+      121
+    ],
+    "page": 148,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 47"
+  },
+  {
+    "id": 422,
+    "x": 55,
+    "y": 130,
+    "width": 520,
+    "height": 544,
+    "label": "Image, Node 47",
+    "BBox": [
+      55,
+      130,
+      575,
+      674
+    ],
+    "page": 148,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 47"
+  },
+  {
+    "id": 423,
+    "x": 23,
+    "y": 99,
+    "width": 553,
+    "height": 82,
+    "label": "Text, Node 47",
+    "BBox": [
+      23,
+      99,
+      576,
+      181
+    ],
+    "page": 149,
+    "filename": "SZM_ DTC_Troubleshooting_Guide_V1.4.pdf",
+    "nodeLabel": "Node 47"
+  }
+]
