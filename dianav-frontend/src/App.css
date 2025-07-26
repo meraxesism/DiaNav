@@ -665,3 +665,170 @@ html, body {
   box-shadow: 0 4px 16px #0003;
   transform: translateY(-2px) scale(1.08);
 }
+
+/* Diagnostic Images Styling */
+.dianav-images-container {
+  margin-top: 16px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.dianav-images-container h4 {
+  margin: 0 0 12px 0;
+  color: #8fa7d1;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dianav-image-item {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.dianav-image-item:last-child {
+  margin-bottom: 0;
+}
+
+.dianav-diagnostic-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dianav-diagnostic-image:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.dianav-image-description {
+  margin: 8px 0 0 0;
+  font-size: 0.8rem;
+  color: #8fa7d1;
+  font-style: italic;
+}
+
+/* Structured Data Styling */
+.dianav-structured-data {
+  margin-top: 12px;
+}
+
+.dianav-structured-data details {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.dianav-structured-data summary {
+  padding: 8px 12px;
+  background: rgba(45, 107, 230, 0.1);
+  color: #8fa7d1;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease;
+}
+
+.dianav-structured-data summary:hover {
+  background: rgba(45, 107, 230, 0.2);
+}
+
+.dianav-structured-data summary::marker {
+  color: #2d6be6;
+}
+
+.dianav-structured-data pre {
+  margin: 0;
+  padding: 12px;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #b8c7e0;
+  background: rgba(0, 0, 0, 0.2);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Courier New', monospace;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Loading Animation */
+.dianav-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+}
+
+.dianav-loading p {
+  margin: 0;
+  color: #8fa7d1;
+  font-size: 0.9rem;
+}
+
+.dianav-loading-dots {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.dianav-loading-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2d6be6;
+  animation: dianav-loading-bounce 1.4s ease-in-out infinite both;
+}
+
+.dianav-loading-dots span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dianav-loading-dots span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes dianav-loading-bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Enhanced Chat Bubble Styling */
+.dianav-chat-bubble.ai .dianav-message-text {
+  margin-bottom: 8px;
+}
+
+.dianav-chat-bubble.ai .dianav-structured-data {
+  margin-top: 8px;
+}
+
+/* Responsive Image Handling */
+@media (max-width: 768px) {
+  .dianav-diagnostic-image {
+    max-height: 200px;
+  }
+  
+  .dianav-images-container {
+    padding: 8px;
+  }
+  
+  .dianav-structured-data pre {
+    font-size: 0.7rem;
+    max-height: 150px;
+  }
+}

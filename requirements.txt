@@ -1,4 +1,6 @@
 fastapi
 uvicorn
-openai
-pydantic 
+pydantic
+PyMuPDF
+Pillow
+python-multipart 
