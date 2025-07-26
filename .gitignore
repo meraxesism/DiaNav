@@ -35,4 +35,50 @@ logs/
 *.tmp
 *.temp
 temp/
-tmp/ 
+tmp/
+
+# CONFIDENTIAL IMAGES AND EXTRACTED DATA
+# Prevent any images extracted from PDFs from being committed
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+extracted_images/
+static/
+Annotation_results/
+images/
+diagnostic_images/
+
+# Test files that might contain sensitive data
+test_image_extraction.py
+test_*.py
+
+# Cache and temporary extraction files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db 

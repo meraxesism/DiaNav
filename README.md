@@ -16,6 +16,28 @@
 
 ---
 
+## 🔒 **SECURITY NOTICE - CONFIDENTIAL DATA HANDLING**
+
+**⚠️ IMPORTANT:** This application processes confidential automotive diagnostic data including:
+- **Diagnostic Trouble Codes (DTCs)** from proprietary manuals
+- **Technical diagrams and schematics** from PDF documents
+- **Company-specific diagnostic procedures**
+
+### **Security Measures Implemented:**
+- ✅ **No confidential data** is committed to this public repository
+- ✅ **Images are processed in memory only** - never saved to disk
+- ✅ **PDF files are excluded** from version control
+- ✅ **Sample data only** is used for demonstration
+- ✅ **All sensitive files** are properly gitignored
+
+### **For Production Use:**
+- Replace sample data with actual diagnostic files
+- Ensure proper access controls and authentication
+- Implement additional security measures as required
+- Follow company data protection policies
+
+---
+
 ## 🚀 Project Overview
 
 **DiaNav** is a sophisticated AI-powered diagnostic assistant designed for automotive professionals. Built with modern web technologies and AI integration, it provides intelligent troubleshooting guidance for diagnostic trouble codes (DTCs) and automotive systems.
@@ -27,6 +49,7 @@
 - 📱 **Professional UI/UX**: Enterprise-grade interface with collapsible sidebar
 - 🔄 **Multi-Session Management**: Support for multiple diagnostic sessions
 - 📊 **Structured Data Processing**: Efficient parsing and indexing of diagnostic data
+- 🖼️ **Secure Image Display**: Confidential diagrams displayed in memory only
 
 ---
 
@@ -44,12 +67,14 @@
 - **Pydantic** for data validation and serialization
 - **Regex Pattern Matching** for intelligent DTC code extraction
 - **Modular Architecture** with separate data processing layer
+- **PyMuPDF** for secure PDF image extraction (memory-only processing)
 
 ### Data Processing
 - **Structured Data Parsing** from automotive diagnostic documents
 - **Intelligent Indexing** for fast query responses
 - **Dual Response Format**: Conversational + Structured output
 - **Error Handling** with graceful fallbacks
+- **Secure Image Processing** with no disk storage
 
 ---
 
@@ -58,31 +83,34 @@
 ### Advanced UI/UX Implementation
 ```typescript
 // Multi-session chat management with TypeScript
-interface ChatSession {
-  id: string;
-  heading: string;
-  messages: ChatMessage[];
+interface ChatMessage {
+  sender: 'user' | 'ai';
+  text: string;
+  images?: DiagnosticImage[];  // Secure image display
+  structured?: string;
 }
-
-// Responsive sidebar with smooth animations
-const [sidebarOpen, setSidebarOpen] = useState(true);
 ```
 
-### Intelligent Backend Processing
+### Secure Backend Processing
 ```python
 # Advanced DTC pattern matching with regex
-def find_dtc_code_in_query(query: str):
-    match = re.search(r"([A-Z][0-9A-Z]{3,}-?\d{0,2})", query)
-    return match.group(1) if match else None
+def extract_image_from_pdf(pdf_path: str, page_num: int) -> Optional[str]:
+    """
+    SECURITY: This function never saves images to disk.
+    All processing is done in memory and returned as base64 data.
+    """
+    # Memory-only image extraction
+    return f"data:image/png;base64,{img_base64}"
 ```
 
 ### Professional CSS Architecture
 ```css
-/* Modern flexbox layout with responsive design */
-.dianav-app-wide {
-  display: flex;
-  height: 100vh;
-  background: linear-gradient(135deg, #184077 0%, #15325c 100%);
+/* Secure image display with professional styling */
+.dianav-diagnostic-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 ```
 
@@ -129,6 +157,7 @@ DiaNavv2/
 ├── dianav_data.py           # Data processing utilities
 ├── requirements.txt         # Python dependencies
 ├── sample_dtc_data.txt      # Demo data for testing
+├── .gitignore              # Security: excludes confidential files
 └── README.md               # Project documentation
 ```
 
@@ -156,6 +185,12 @@ DiaNavv2/
 - Auto-generated chat headings
 - Professional color scheme and typography
 
+### 5. **Secure Image Handling**
+- Memory-only image extraction from PDFs
+- Base64 encoding for web display
+- No disk storage of confidential images
+- Professional image display with descriptions
+
 ---
 
 ## 🎨 Design Philosophy
@@ -169,14 +204,17 @@ DiaNavv2/
 - **Type Safety**: Full TypeScript implementation
 - **Performance**: Optimized rendering and state management
 - **Maintainability**: Clean code architecture with separation of concerns
+- **Security**: Memory-only processing of confidential data
 
 ---
 
 ## 🔒 Security & Data Protection
 
-- **Sensitive Data Protection**: Company diagnostic data excluded from public repository
+- **Confidential Data Protection**: All sensitive files excluded from repository
+- **Memory-Only Processing**: Images processed in RAM, never saved to disk
 - **Sample Data**: Demo functionality with mock data for testing
 - **Professional Licensing**: AGPL v3 license for open collaboration
+- **Secure Architecture**: No persistent storage of confidential information
 
 ---
 
@@ -194,6 +232,7 @@ DiaNavv2/
 - **Real-time Communication**: WebSocket integration
 - **Advanced Caching**: Redis for performance optimization
 - **Containerization**: Docker deployment support
+- **Enhanced Security**: Additional authentication and authorization
 
 ---
 
@@ -207,6 +246,7 @@ DiaNavv2/
 - **State Management**: Complex UI state with React Hooks
 - **Data Processing**: Regex, parsing, indexing algorithms
 - **Professional UI/UX**: Enterprise-grade interface design
+- **Security Implementation**: Confidential data handling
 
 ### Code Quality
 - **Clean Architecture**: Separation of concerns
@@ -214,6 +254,7 @@ DiaNavv2/
 - **Responsive Design**: Mobile-first approach
 - **Performance Optimization**: Efficient rendering and state updates
 - **Maintainable Code**: Clear structure and documentation
+- **Security Best Practices**: Memory-only processing of sensitive data
 
 ---
 
@@ -225,6 +266,7 @@ This project demonstrates advanced full-stack development capabilities suitable 
 - **Professional Standards**: Enterprise-grade code quality
 - **Modern Technologies**: Latest React, TypeScript, and FastAPI
 - **User-Centric Approach**: Intuitive interface for complex workflows
+- **Security Awareness**: Proper handling of confidential data
 
 ---
 

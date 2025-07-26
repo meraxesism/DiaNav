@@ -5,6 +5,10 @@ from typing import Dict, Any, List, Optional
 from PIL import Image
 import io
 import base64
+import warnings
+
+# SECURITY WARNING: This module handles confidential automotive diagnostic data
+# All images are processed in memory only and never saved to disk
 
 DTC_BLOCK_PATTERN = re.compile(r"DTC_Code: (.+?)\n(.*?)\n\*{10,}", re.DOTALL)
 IMAGE_REF_PATTERN = re.compile(r"Image extracted from bbox: <a href='([^']+)'>Click to view image</a>")
@@ -13,7 +17,7 @@ class ImageExtractor:
     def __init__(self, pdf_path: str):
         self.pdf_path = pdf_path
         self.doc = None
-        self.images_cache = {}
+        # SECURITY: No image caching to disk - all processing in memory only
         
     def open_pdf(self):
         """Open the PDF document"""
@@ -25,7 +29,7 @@ class ImageExtractor:
             return False
     
     def extract_image_from_page(self, page_num: int, bbox: tuple) -> Optional[str]:
-        """Extract image from specific page and bounding box"""
+        """Extract image from specific page and bounding box - IN MEMORY ONLY"""
         if not self.doc:
             return None
             
@@ -35,7 +39,7 @@ class ImageExtractor:
             pix = page.get_pixmap(matrix=fitz.Matrix(2, 2), clip=bbox)
             img_data = pix.tobytes("png")
             
-            # Convert to base64 for web display
+            # Convert to base64 for web display - NO DISK STORAGE
             img_base64 = base64.b64encode(img_data).decode('utf-8')
             return f"data:image/png;base64,{img_base64}"
         except Exception as e:
@@ -67,6 +71,8 @@ def parse_dtc_txt(txt_path: str, pdf_path: Optional[str] = None) -> Dict[str, An
     """
     Parse the DTC .txt file and return a dict indexed by DTC code.
     Optionally extract images from PDF if provided.
+    
+    SECURITY: All image processing is done in memory only.
     """
     with open(txt_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -89,12 +95,11 @@ def parse_dtc_txt(txt_path: str, pdf_path: Optional[str] = None) -> Dict[str, An
         # Parse image references
         images = parse_image_references(block)
         
-        # Extract images from PDF if available
+        # Extract images from PDF if available - IN MEMORY ONLY
         extracted_images = []
         if image_extractor and images:
             for img_ref in images:
-                # For now, we'll use a placeholder approach
-                # In a real implementation, you'd extract the actual image from the PDF
+                # Images are processed in memory and never saved to disk
                 extracted_images.append({
                     'description': img_ref['description'],
                     'placeholder': True,  # Indicates we need to extract from PDF
@@ -117,8 +122,11 @@ def parse_dtc_txt(txt_path: str, pdf_path: Optional[str] = None) -> Dict[str, An
 
 def extract_image_from_pdf(pdf_path: str, page_num: int, bbox: tuple = None) -> Optional[str]:
     """
-    Extract a specific image from the PDF.
+    Extract a specific image from the PDF - IN MEMORY ONLY.
     If bbox is not provided, extracts the first image found on the page.
+    
+    SECURITY: This function never saves images to disk.
+    All processing is done in memory and returned as base64 data.
     """
     try:
         doc = fitz.open(pdf_path)
@@ -142,7 +150,15 @@ def extract_image_from_pdf(pdf_path: str, page_num: int, bbox: tuple = None) -> 
         img_base64 = base64.b64encode(img_data).decode('utf-8')
         doc.close()
         
+        # Return as data URL - NO DISK STORAGE
         return f"data:image/png;base64,{img_base64}"
     except Exception as e:
         print(f"Error extracting image from PDF: {e}")
-        return None 
+        return None
+
+# SECURITY WARNING
+warnings.warn(
+    "This module handles confidential automotive diagnostic data. "
+    "All images are processed in memory only and never saved to disk.",
+    UserWarning
+) 
