@@ -7,6 +7,11 @@ data/
 dtc_data/
 layouts/
 
+# PDF Files (Sensitive Documents)
+*.pdf
+SZM_*.pdf
+**/SZM_*.pdf
+
 # Environment variables
 .env
 .env.local
