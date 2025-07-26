@@ -1,0 +1,33 @@
+# Sensitive Data Files
+SZM_ DTC_Troubleshooting_Guide_V1.4_main_v2.txt
+SZM_ DTC_Troubleshooting_Guide_V1.4_main_v2.json
+*.txt
+*.json
+data/
+dtc_data/
+layouts/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# API keys and secrets
+config.py
+secrets.py
+credentials.json
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Log files
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/ 

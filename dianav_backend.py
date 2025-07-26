@@ -7,7 +7,11 @@ import re
 app = FastAPI()
 
 # Load DTC index at startup
-DTC_INDEX = parse_dtc_txt("SZM_ DTC_Troubleshooting_Guide_V1.4_main_v2.txt")
+try:
+    DTC_INDEX = parse_dtc_txt("SZM_ DTC_Troubleshooting_Guide_V1.4_main_v2.txt")
+except FileNotFoundError:
+    # Use sample data if real data not available
+    DTC_INDEX = parse_dtc_txt("sample_dtc_data.txt")
 
 class QueryRequest(BaseModel):
     query: str
