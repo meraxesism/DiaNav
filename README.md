@@ -10,6 +10,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.104.0-green.svg)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Ollama](https://img.shields.io/badge/Ollama-LLM-orange.svg)](https://ollama.ai/)
 [![License](https://img.shields.io/badge/License-AGPL%20v3-red.svg)](LICENSE)
 
 </div>
@@ -29,6 +30,7 @@
 - ✅ **PDF files are excluded** from version control
 - ✅ **Sample data only** is used for demonstration
 - ✅ **All sensitive files** are properly gitignored
+- ✅ **Local AI processing** - no external API calls for sensitive data
 
 ### **For Production Use:**
 - Replace sample data with actual diagnostic files
@@ -40,16 +42,20 @@
 
 ## 🚀 Project Overview
 
-**DiaNav** is a sophisticated AI-powered diagnostic assistant designed for automotive professionals. Built with modern web technologies and AI integration, it provides intelligent troubleshooting guidance for diagnostic trouble codes (DTCs) and automotive systems.
+**DiaNav** is a sophisticated AI-powered diagnostic assistant designed for automotive professionals. Built with modern web technologies and advanced AI integration, it provides intelligent troubleshooting guidance for diagnostic trouble codes (DTCs) and automotive systems.
 
 ### Key Features
-- 🤖 **AI-Powered Diagnostics**: Natural language processing for automotive queries
+- 🤖 **AI-Powered Diagnostics**: Local LLM integration with Ollama for conversational responses
+- 🔍 **Semantic Vector Search**: Advanced search using sentence-transformers for natural language queries
 - 💬 **Interactive Chat Interface**: Modern, responsive UI with real-time conversations
-- 🔍 **Intelligent Search**: Advanced pattern matching for DTC codes and symptoms
+- 🎯 **Intelligent Search**: Fuzzy matching and vector search for DTC codes and symptoms
 - 📱 **Professional UI/UX**: Enterprise-grade interface with collapsible sidebar
 - 🔄 **Multi-Session Management**: Support for multiple diagnostic sessions
 - 📊 **Structured Data Processing**: Efficient parsing and indexing of diagnostic data
 - 🖼️ **Secure Image Display**: Confidential diagrams displayed in memory only
+- 📝 **Markdown Rendering**: Rich text formatting for AI responses
+- 🔍 **Image Modal**: Clickable diagnostic images with enlargement capability
+- 🚀 **One-Click Startup**: Automated deployment scripts for easy setup
 
 ---
 
@@ -57,6 +63,7 @@
 
 ### Frontend
 - **React 18** with TypeScript for type-safe development
+- **ReactMarkdown** for rich text rendering of AI responses
 - **Modern CSS** with Flexbox layouts and CSS Grid
 - **Responsive Design** optimized for desktop applications
 - **State Management** using React Hooks (useState, useEffect, useRef)
@@ -64,10 +71,19 @@
 
 ### Backend
 - **FastAPI** (Python) for high-performance REST API
+- **Ollama Integration** for local LLM processing
+- **Sentence-Transformers** for local vector embeddings
 - **Pydantic** for data validation and serialization
 - **Regex Pattern Matching** for intelligent DTC code extraction
 - **Modular Architecture** with separate data processing layer
 - **PyMuPDF** for secure PDF image extraction (memory-only processing)
+
+### AI & Search Capabilities
+- **Local LLM Processing** using Ollama (llama3.2:3b model)
+- **Vector Search** with cosine similarity for semantic matching
+- **Fuzzy Search** with fallback mechanisms
+- **Conversational AI** for casual user interactions
+- **Structured Response Generation** with markdown formatting
 
 ### Data Processing
 - **Structured Data Parsing** from automotive diagnostic documents
@@ -80,7 +96,32 @@
 
 ## 🎯 Technical Highlights
 
-### Advanced UI/UX Implementation
+### Advanced AI Integration
+```python
+# Local LLM processing with Ollama
+def call_ollama_llm(prompt: str) -> str:
+    """
+    SECURITY: All AI processing is done locally.
+    No external API calls for confidential data.
+    """
+    # Local LLM response generation
+    return structured_response
+```
+
+### Semantic Vector Search
+```python
+# Local vector search using sentence-transformers
+class LocalVectorSearch:
+    def __init__(self):
+        self.model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.embeddings = self.create_dtc_embeddings()
+    
+    def semantic_search(self, query: str) -> List[Dict]:
+        # Cosine similarity search
+        return similar_dtcs
+```
+
+### Enhanced UI/UX Implementation
 ```typescript
 // Multi-session chat management with TypeScript
 interface ChatMessage {
@@ -89,18 +130,11 @@ interface ChatMessage {
   images?: DiagnosticImage[];  // Secure image display
   structured?: string;
 }
-```
 
-### Secure Backend Processing
-```python
-# Advanced DTC pattern matching with regex
-def extract_image_from_pdf(pdf_path: str, page_num: int) -> Optional[str]:
-    """
-    SECURITY: This function never saves images to disk.
-    All processing is done in memory and returned as base64 data.
-    """
-    # Memory-only image extraction
-    return f"data:image/png;base64,{img_base64}"
+// Dynamic chat window expansion
+const getChatWindowClass = () => {
+  return messageCount > 5 ? 'expanded' : 'normal';
+};
 ```
 
 ### Professional CSS Architecture
@@ -111,6 +145,12 @@ def extract_image_from_pdf(pdf_path: str, page_num: int) -> Optional[str]:
   max-height: 300px;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.dianav-diagnostic-image:hover {
+  transform: scale(1.02);
 }
 ```
 
@@ -122,15 +162,32 @@ def extract_image_from_pdf(pdf_path: str, page_num: int) -> Optional[str]:
 - Node.js 18+ and npm
 - Python 3.8+
 - Git
+- Ollama (for LLM functionality)
 
-### Frontend Setup
+### Quick Start (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/meraxesism/DiaNav.git
+cd DiaNav
+
+# Install Ollama and pull the model
+# Follow instructions at https://ollama.ai/
+ollama pull llama3.2:3b
+
+# Start DiaNav with one command
+powershell -ExecutionPolicy Bypass -File "start_dianav.ps1"
+```
+
+### Manual Setup
+
+#### Frontend Setup
 ```bash
 cd dianav-frontend
 npm install
 npm start
 ```
 
-### Backend Setup
+#### Backend Setup
 ```bash
 pip install -r requirements.txt
 python dianav_backend.py
@@ -139,6 +196,7 @@ python dianav_backend.py
 ### Development Server
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:8000
+- API Health: http://localhost:8000/health
 
 ---
 
@@ -155,41 +213,59 @@ DiaNavv2/
 │       └── tata-logo.png    # Brand assets
 ├── dianav_backend.py         # FastAPI backend server
 ├── dianav_data.py           # Data processing utilities
+├── local_vector_search.py   # Vector search implementation
 ├── requirements.txt         # Python dependencies
-├── sample_dtc_data.txt      # Demo data for testing
-├── .gitignore              # Security: excludes confidential files
-└── README.md               # Project documentation
+├── start_dianav.ps1        # PowerShell startup script
+├── start_dianav.bat        # Windows batch startup script
+├── stop_dianav.ps1         # PowerShell stop script
+├── VECTOR_SEARCH_README.md # Vector search documentation
+├── STARTUP_GUIDE.md        # Startup guide
+├── sample_dtc_data.txt     # Demo data for testing
+├── .gitignore             # Security: excludes confidential files
+└── README.md              # Project documentation
 ```
 
 ---
 
 ## 🔧 Key Technical Implementations
 
-### 1. **Responsive Chat Interface**
-- Real-time message handling with auto-scroll
-- Professional chat bubbles with user/AI distinction
-- Smooth animations and transitions
+### 1. **AI-Powered Conversational Interface**
+- Local LLM integration with Ollama
+- Structured response generation with markdown
+- Casual conversation handling ("hey", "bro", etc.)
+- Professional diagnostic explanations
 
-### 2. **Advanced State Management**
-- Multi-session chat history
-- Dynamic sidebar collapse/expand
-- Welcome screen with animated transitions
+### 2. **Advanced Search Capabilities**
+- Vector search using sentence-transformers
+- Fuzzy search with fallback mechanisms
+- Semantic understanding of user queries
+- Multi-modal search (code, symptoms, descriptions)
 
-### 3. **Intelligent Data Processing**
-- Regex-based DTC code extraction
-- Structured data parsing and indexing
-- Dual response format (conversational + structured)
+### 3. **Enhanced UI/UX**
+- ReactMarkdown for rich text rendering
+- Dynamic chat window expansion
+- Image modal for enlarged diagnostic diagrams
+- Professional styling with hover effects
+- Responsive design for all screen sizes
 
-### 4. **Professional UI Components**
-- Collapsible sidebar with smooth animations
-- Auto-generated chat headings
-- Professional color scheme and typography
-
-### 5. **Secure Image Handling**
+### 4. **Secure Image Processing**
 - Memory-only image extraction from PDFs
+- Bounding box optimization for quality
 - Base64 encoding for web display
 - No disk storage of confidential images
 - Professional image display with descriptions
+
+### 5. **Automated Deployment**
+- One-click startup scripts
+- Process management and monitoring
+- Cross-platform compatibility
+- Easy development setup
+
+### 6. **Intelligent Data Processing**
+- Regex-based DTC code extraction
+- Structured data parsing and indexing
+- Dual response format (conversational + structured)
+- Error handling with graceful fallbacks
 
 ---
 
@@ -199,12 +275,14 @@ DiaNavv2/
 - **Intuitive Interface**: Clean, professional design suitable for enterprise use
 - **Responsive Layout**: Optimized for desktop diagnostic workstations
 - **Accessibility**: High contrast, readable typography, keyboard navigation
+- **Conversational AI**: Natural interaction patterns
 
 ### Technical Excellence
 - **Type Safety**: Full TypeScript implementation
 - **Performance**: Optimized rendering and state management
 - **Maintainability**: Clean code architecture with separation of concerns
 - **Security**: Memory-only processing of confidential data
+- **Local Processing**: No external dependencies for sensitive operations
 
 ---
 
@@ -212,20 +290,23 @@ DiaNavv2/
 
 - **Confidential Data Protection**: All sensitive files excluded from repository
 - **Memory-Only Processing**: Images processed in RAM, never saved to disk
+- **Local AI Processing**: All LLM operations performed locally
 - **Sample Data**: Demo functionality with mock data for testing
 - **Professional Licensing**: AGPL v3 license for open collaboration
 - **Secure Architecture**: No persistent storage of confidential information
+- **Vector Search Security**: Local embeddings, no external API calls
 
 ---
 
 ## 🚀 Future Enhancements
 
 ### Planned Features
-- **Machine Learning Integration**: Advanced AI for symptom analysis
+- **Advanced ML Models**: Fine-tuned models for automotive diagnostics
 - **Real-time Diagnostics**: Live vehicle data integration
 - **Mobile Application**: Cross-platform diagnostic tool
 - **Advanced Analytics**: Diagnostic pattern recognition
 - **Multi-language Support**: International automotive standards
+- **Voice Interface**: Speech-to-text and text-to-speech capabilities
 
 ### Technical Roadmap
 - **Microservices Architecture**: Scalable backend services
@@ -233,6 +314,7 @@ DiaNavv2/
 - **Advanced Caching**: Redis for performance optimization
 - **Containerization**: Docker deployment support
 - **Enhanced Security**: Additional authentication and authorization
+- **Model Optimization**: Quantized models for better performance
 
 ---
 
@@ -240,6 +322,7 @@ DiaNavv2/
 
 ### Skills Demonstrated
 - **Full-Stack Development**: React + FastAPI integration
+- **AI/ML Integration**: Local LLM and vector search implementation
 - **TypeScript Expertise**: Type-safe development practices
 - **Modern CSS**: Flexbox, Grid, animations, responsive design
 - **API Design**: RESTful API with proper error handling
@@ -247,6 +330,7 @@ DiaNavv2/
 - **Data Processing**: Regex, parsing, indexing algorithms
 - **Professional UI/UX**: Enterprise-grade interface design
 - **Security Implementation**: Confidential data handling
+- **DevOps**: Automated deployment and process management
 
 ### Code Quality
 - **Clean Architecture**: Separation of concerns
@@ -255,6 +339,7 @@ DiaNavv2/
 - **Performance Optimization**: Efficient rendering and state updates
 - **Maintainable Code**: Clear structure and documentation
 - **Security Best Practices**: Memory-only processing of sensitive data
+- **AI Best Practices**: Local processing for confidentiality
 
 ---
 
@@ -264,9 +349,10 @@ This project demonstrates advanced full-stack development capabilities suitable 
 
 - **Scalable Design**: Modular components ready for expansion
 - **Professional Standards**: Enterprise-grade code quality
-- **Modern Technologies**: Latest React, TypeScript, and FastAPI
+- **Modern Technologies**: Latest React, TypeScript, FastAPI, and AI
 - **User-Centric Approach**: Intuitive interface for complex workflows
 - **Security Awareness**: Proper handling of confidential data
+- **AI Integration**: Local processing for data privacy
 
 ---
 
