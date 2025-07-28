@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import ReactMarkdown from 'react-markdown';
 import './App.css';
 
 interface ChatMessage {
@@ -29,9 +30,9 @@ interface ApiResponse {
 
 const exampleQuestions = [
   'What causes B1087?',
-  'How do I troubleshoot LIN bus off error?',
-  'Tell me all symptoms for B1087.',
-  'What is a DTC code?',
+  'Seat movement problem',
+  'LIN bus communication error',
+  'B108 (partial code)',
 ];
 
 function App() {
@@ -45,17 +46,42 @@ function App() {
   const [showWelcome, setShowWelcome] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<DiagnosticImage | null>(null);
+  const [showImageModal, setShowImageModal] = useState(false);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const [welcomeHeight, setWelcomeHeight] = useState(0);
   const welcomeRef = useRef<HTMLDivElement | null>(null);
+  const [chatWindowClass, setChatWindowClass] = useState('');
 
   const activeChat = chats.find(c => c.id === activeChatId)!;
+
+  // Function to determine chat window expansion class
+  const getChatWindowClass = (messages: ChatMessage[]) => {
+    if (messages.length === 0) return '';
+    
+    const totalLength = messages.reduce((sum, msg) => sum + msg.text.length, 0);
+    const messageCount = messages.length;
+    
+    // Very long conversations (many messages or very long content)
+    if (messageCount >= 8 || totalLength >= 6000) {
+      return 'very-expanded';
+    }
+    // Long conversations (moderate messages or long content)
+    else if (messageCount >= 4 || totalLength >= 2000) {
+      return 'expanded';
+    }
+    
+    return '';
+  };
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     if (activeChat.messages.length > 0 && showWelcome) {
       setTimeout(() => setShowWelcome(false), 350); // allow animation
     }
+    
+    // Update chat window class based on conversation length
+    setChatWindowClass(getChatWindowClass(activeChat.messages));
     // eslint-disable-next-line
   }, [activeChat.messages, showWelcome]);
 
@@ -66,6 +92,32 @@ function App() {
       setWelcomeHeight(0);
     }
   }, [showWelcome]);
+
+  // Handle image click to open modal
+  const handleImageClick = (image: DiagnosticImage) => {
+    setSelectedImage(image);
+    setShowImageModal(true);
+  };
+
+  // Close image modal
+  const closeImageModal = () => {
+    setShowImageModal(false);
+    setSelectedImage(null);
+  };
+
+  // Handle escape key to close modal
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && showImageModal) {
+        closeImageModal();
+      }
+    };
+
+    if (showImageModal) {
+      document.addEventListener('keydown', handleEscape);
+      return () => document.removeEventListener('keydown', handleEscape);
+    }
+  }, [showImageModal]);
 
   const sendMessageToBackend = async (message: string): Promise<ApiResponse> => {
     try {
@@ -159,11 +211,18 @@ function App() {
     setActiveChatId(newId);
     setInput('');
     setShowWelcome(true);
+    setChatWindowClass(''); // Reset to default size for new chat
   };
 
   const renderMessage = (msg: ChatMessage, index: number) => (
     <div key={index} className={`dianav-chat-bubble ${msg.sender}`}>
-      <div className="dianav-message-text">{msg.text}</div>
+      <div className="dianav-message-text">
+        {msg.sender === 'ai' ? (
+          <ReactMarkdown>{msg.text}</ReactMarkdown>
+        ) : (
+          msg.text
+        )}
+      </div>
       
       {msg.structured && (
         <div className="dianav-structured-data">
@@ -184,6 +243,8 @@ function App() {
                 alt={img.description}
                 className="dianav-diagnostic-image"
                 loading="lazy"
+                onClick={() => handleImageClick(img)}
+                title="Click to enlarge"
               />
               <p className="dianav-image-description">
                 {img.description} (Page {img.page_num + 1})
@@ -216,7 +277,14 @@ function App() {
               <div
                 key={chat.id}
                 className={`dianav-chat-heading${chat.id === activeChatId ? ' active' : ''}`}
-                onClick={() => { setActiveChatId(chat.id); setShowWelcome(chat.messages.length === 0); }}
+                onClick={() => { 
+                  setActiveChatId(chat.id); 
+                  setShowWelcome(chat.messages.length === 0);
+                  // Reset chat window class when switching chats
+                  setTimeout(() => {
+                    setChatWindowClass(getChatWindowClass(chat.messages));
+                  }, 100);
+                }}
               >
                 {chat.heading}
               </div>
@@ -254,7 +322,7 @@ function App() {
               style={{ height: showWelcome ? welcomeHeight : 0 }}
             />
             <div className="dianav-chat-card">
-              <div className="dianav-chat-window">
+              <div className={`dianav-chat-window${chatWindowClass ? ` ${chatWindowClass}` : ''}`}>
                 {activeChat.messages.map((msg, i) => renderMessage(msg, i))}
                 {isLoading && (
                   <div className="dianav-chat-bubble ai">
@@ -288,6 +356,16 @@ function App() {
           </main>
         </div>
       </div>
+
+      {showImageModal && selectedImage && (
+        <div className="dianav-image-modal-overlay">
+          <div className="dianav-image-modal-content">
+            <img src={selectedImage.image_data} alt={selectedImage.description} />
+            <p>{selectedImage.description} (Page {selectedImage.page_num + 1})</p>
+            <button onClick={closeImageModal} className="dianav-close-button">X</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

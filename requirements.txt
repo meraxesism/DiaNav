@@ -3,4 +3,5 @@ uvicorn
 pydantic
 PyMuPDF
 Pillow
-python-multipart 
+python-multipart
+requests 
