@@ -26,6 +26,7 @@
 ---
 
 ## 📚 Table of Contents
+- [📋 Ownership & Licensing Disclaimer](#-ownership--licensing-disclaimer)
 - [🔒 Security Notice](#-security-notice---confidential-data-handling)
 - [📊 Project Status & Progress](#-project-status--progress)
 - [🚀 Project Overview](#-project-overview)
@@ -40,6 +41,14 @@
 - [🚀 Future Enhancements](#-future-enhancements)
 - [👨‍💻 Development Experience](#-development-experience)
 - [📞 Contact & Collaboration](#-contact--collaboration)
+
+---
+
+## 📋 **OWNERSHIP & LICENSING DISCLAIMER**
+
+**This project was developed as part of an internship at Tata Motors – Digitalization in Quality Assurance. All frontend and UI assets were originally created by Apurv Bhosale.**
+
+This code is licensed under the AGPL v3 License. Any internal or commercial use must comply with this license, including proper attribution and source disclosure.
 
 ---
 
