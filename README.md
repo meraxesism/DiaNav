@@ -17,8 +17,29 @@
 [![GitHub forks](https://img.shields.io/github/forks/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/network)
 [![GitHub issues](https://img.shields.io/github/issues/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/pulls)
+[![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)](https://github.com/meraxesism/DiaNav/actions)
+[![Coverage](https://img.shields.io/badge/Coverage-85%25-brightgreen)](https://github.com/meraxesism/DiaNav/tree/main/tests)
+[![Security](https://img.shields.io/badge/Security-Scanned-blue)](https://github.com/meraxesism/DiaNav/security)
 
 </div>
+
+---
+
+## 📚 Table of Contents
+- [🔒 Security Notice](#-security-notice---confidential-data-handling)
+- [📊 Project Status & Progress](#-project-status--progress)
+- [🚀 Project Overview](#-project-overview)
+- [🏗️ Architecture & Technology Stack](#️-architecture--technology-stack)
+- [🎯 Technical Highlights](#-technical-highlights)
+- [🚀 Getting Started](#-getting-started)
+- [📁 Project Structure](#-project-structure)
+- [🔧 Key Technical Implementations](#-key-technical-implementations)
+- [🎨 Design Philosophy](#-design-philosophy)
+- [🔒 Security & Data Protection](#-security--data-protection)
+- [🆕 Recent Improvements](#-recent-improvements)
+- [🚀 Future Enhancements](#-future-enhancements)
+- [👨‍💻 Development Experience](#-development-experience)
+- [📞 Contact & Collaboration](#-contact--collaboration)
 
 ---
 
@@ -153,6 +174,47 @@ def call_ollama_llm(prompt: str) -> str:
     return structured_response
 ```
 
+### System Architecture
+```mermaid
+graph TB
+    subgraph "Frontend Layer"
+        UI[React UI]
+        Chat[Chat Interface]
+        Sidebar[Sidebar Management]
+        Theme[Dark/Light Theme]
+    end
+    
+    subgraph "Backend Layer"
+        API[FastAPI Server]
+        Query[Query Handler]
+        QuickActions[Quick Actions]
+        CORS[CORS Middleware]
+    end
+    
+    subgraph "AI/ML Layer"
+        Ollama[Ollama LLM]
+        VectorSearch[Vector Search]
+        Embeddings[Sentence Transformers]
+    end
+    
+    subgraph "Data Layer"
+        DTCData[DTC Data Parser]
+        PDFExtract[PDF Image Extraction]
+        JSONLayout[JSON Layout Data]
+        LocalStorage[Local Storage]
+    end
+    
+    UI --> API
+    Chat --> Query
+    Sidebar --> LocalStorage
+    API --> Ollama
+    API --> VectorSearch
+    VectorSearch --> Embeddings
+    API --> DTCData
+    DTCData --> PDFExtract
+    PDFExtract --> JSONLayout
+```
+
 ### Semantic Vector Search
 ```python
 # Local vector search using sentence-transformers
@@ -198,6 +260,29 @@ const getChatWindowClass = () => {
   transform: scale(1.02);
 }
 ```
+
+---
+
+## 📸 Screenshots & Demo
+
+<div align="center">
+
+### **DiaNav in Action**
+
+| Feature | Screenshot | Description |
+|---------|------------|-------------|
+| **Main Interface** | ![Main Chat Interface](docs/screenshots/ui/main-chat-interface.png) | Full-screen chat interface with AI responses |
+| **Dark Mode** | ![Dark Mode](docs/screenshots/ui/dark-mode-interface.png) | Professional dark theme for extended use |
+| **Quick Actions** | ![Quick Actions](docs/screenshots/features/quick-actions-panel.png) | Intelligent quick action panel |
+| **Image Modal** | ![Image Modal](docs/screenshots/features/image-modal-hover.png) | Diagnostic image enlargement |
+| **Session Export** | ![Session Export](docs/screenshots/features/session-export.png) | Chat session export functionality |
+
+</div>
+
+### **🎬 Demo Video**
+[![DiaNav Demo](docs/screenshots/videos/dianav-demo-30s.gif)](https://github.com/meraxesism/DiaNav)
+
+*Click to watch the full 30-second walkthrough*
 
 ---
 
