@@ -16,7 +16,7 @@ app = FastAPI()
 # Add CORS middleware with proper configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],  # React development server
+    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:3001", "http://127.0.0.1:3001"],  # React development server
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # Include OPTIONS
     allow_headers=["*"],
@@ -110,8 +110,266 @@ def call_ollama_llm(prompt: str, model: str = "llama3.2:3b") -> str:
 def health_check():
     return {"status": "ok", "dtc_count": len(DTC_INDEX)}
 
+def handle_quick_action_request(query: str) -> dict:
+    """Handle quick action requests with intelligent responses based on the action type."""
+    query_lower = query.lower()
+    
+    # Determine which quick action was requested
+    if "need help finding diagnostic" in query_lower or "finding diagnostic codes" in query_lower:
+        return handle_search_dtc_request()
+    elif "want to check my vehicle" in query_lower or "check vehicle systems" in query_lower:
+        return handle_system_check_request()
+    elif "need step-by-step troubleshooting" in query_lower or "troubleshooting guidance" in query_lower:
+        return handle_troubleshoot_request()
+    elif "want to generate a diagnostic report" in query_lower or "generate diagnostic report" in query_lower:
+        return handle_generate_report_request()
+    elif "need help with a specific vehicle component" in query_lower or "vehicle component" in query_lower:
+        return handle_component_search_request()
+    elif "need to analyze symptoms" in query_lower or "analyze symptoms" in query_lower:
+        return handle_symptom_analysis_request()
+    else:
+        # Fallback for unrecognized quick actions
+        return {
+            "conversational": "I'm here to help with your vehicle diagnostics! What specific issue are you experiencing?",
+            "structured": "Quick action request received. Please provide more details about your vehicle issue.",
+            "images": [],
+            "has_images": False
+        }
+
+def handle_search_dtc_request() -> dict:
+    """Handle DTC search quick action."""
+    conversational = """🔍 **DTC Code Search Assistant**
+
+I can help you find and understand diagnostic trouble codes! Here's how I can assist you:
+
+**What I can do:**
+• Search for specific DTC codes (like B1087, P0300, etc.)
+• Explain what each code means in simple terms
+• Show you the diagnostic procedures
+• Provide troubleshooting steps
+• Display relevant diagrams and images
+
+**How to use me:**
+1. **Enter a DTC code** - Just type the code (e.g., "B1087")
+2. **Describe the problem** - Tell me what's happening with your car
+3. **Ask about symptoms** - Describe what you're experiencing
+
+**Example queries:**
+• "What does DTC B1087 mean?"
+• "My car is making a clicking noise, what could it be?"
+• "Check engine light is on, help me diagnose"
+
+What DTC code or problem would you like me to help you with?"""
+    
+    return {
+        "conversational": conversational,
+        "structured": "DTC Search Assistant - Ready to help find and explain diagnostic codes",
+        "images": [],
+        "has_images": False
+    }
+
+def handle_system_check_request() -> dict:
+    """Handle system check quick action."""
+    conversational = """📊 **Vehicle System Check Assistant**
+
+I can help you check various vehicle systems! Here are the main systems I can diagnose:
+
+**🔧 Engine Systems:**
+• Engine control module (ECM)
+• Fuel system
+• Ignition system
+• Emission control systems
+
+**⚡ Electrical Systems:**
+• Battery and charging system
+• Starting system
+• Lighting systems
+• Body control modules
+
+**🛡️ Safety Systems:**
+• Airbag systems
+• ABS/brake systems
+• Traction control
+• Stability control
+
+**🎛️ Comfort Systems:**
+• HVAC (heating/cooling)
+• Seat systems
+• Door systems
+• Entertainment systems
+
+**Which system would you like me to check?** You can:
+• Tell me a specific system (e.g., "Check my engine system")
+• Describe symptoms (e.g., "My car won't start")
+• Ask about a specific component (e.g., "Check my battery")"""
+    
+    return {
+        "conversational": conversational,
+        "structured": "Vehicle System Check Assistant - Ready to diagnose various vehicle systems",
+        "images": [],
+        "has_images": False
+    }
+
+def handle_troubleshoot_request() -> dict:
+    """Handle troubleshooting quick action."""
+    conversational = """🔧 **Step-by-Step Troubleshooting Assistant**
+
+I'm here to guide you through troubleshooting your vehicle issues step by step!
+
+**How I can help:**
+• Break down complex problems into simple steps
+• Guide you through diagnostic procedures
+• Help you identify the root cause
+• Provide safety tips and warnings
+• Show you what tools you might need
+
+**What I need from you:**
+1. **Describe the problem** - What's happening?
+2. **List the symptoms** - What do you notice?
+3. **Tell me when it happens** - Under what conditions?
+4. **Share any recent changes** - Did you modify anything?
+
+**Example troubleshooting scenarios:**
+• "My car won't start - help me troubleshoot"
+• "Engine is making a strange noise"
+• "Check engine light is flashing"
+• "Car is overheating"
+
+**What symptoms are you experiencing?** Let me guide you through the diagnostic process!"""
+    
+    return {
+        "conversational": conversational,
+        "structured": "Troubleshooting Assistant - Ready to provide step-by-step diagnostic guidance",
+        "images": [],
+        "has_images": False
+    }
+
+def handle_generate_report_request() -> dict:
+    """Handle diagnostic report generation quick action."""
+    conversational = """📋 **Diagnostic Report Generator**
+
+I can help you generate comprehensive diagnostic reports! Here's what I can include:
+
+**📊 Report Sections:**
+• Vehicle information and VIN
+• DTC codes found and their meanings
+• Diagnostic procedures performed
+• Test results and measurements
+• Recommended repairs
+• Parts needed
+• Estimated costs
+• Safety warnings
+
+**🔍 What I need to generate a report:**
+1. **Vehicle details** - Make, model, year, VIN
+2. **DTC codes** - Any trouble codes you've found
+3. **Symptoms** - What problems you're experiencing
+4. **Tests performed** - What diagnostics you've done
+5. **Findings** - What you've discovered
+
+**📝 Report Formats:**
+• Summary report (quick overview)
+• Detailed report (comprehensive analysis)
+• Service report (for mechanics)
+• Customer report (easy to understand)
+
+**What information should I include in your diagnostic report?** Tell me about your vehicle and the issues you're dealing with!"""
+    
+    return {
+        "conversational": conversational,
+        "structured": "Diagnostic Report Generator - Ready to create comprehensive diagnostic reports",
+        "images": [],
+        "has_images": False
+    }
+
+def handle_component_search_request() -> dict:
+    """Handle component search quick action."""
+    conversational = """🔧 **Vehicle Component Search Assistant**
+
+I can help you find information about specific vehicle components! Here are the main component categories:
+
+**🚗 Engine Components:**
+• Sensors (O2, MAF, MAP, etc.)
+• Actuators (fuel injectors, coils, etc.)
+• Mechanical parts (pistons, valves, etc.)
+
+**⚡ Electrical Components:**
+• Relays and fuses
+• Wiring harnesses
+• Control modules
+• Switches and buttons
+
+**🛡️ Safety Components:**
+• Airbag sensors and modules
+• ABS components
+• Brake system parts
+• Seat belt systems
+
+**🎛️ Comfort Components:**
+• HVAC components
+• Seat motors and switches
+• Door locks and windows
+• Audio system parts
+
+**Which component are you having issues with?** You can:
+• Name a specific component (e.g., "O2 sensor")
+• Describe the problem (e.g., "My seat won't move")
+• Ask about a system (e.g., "Brake system components")"""
+    
+    return {
+        "conversational": conversational,
+        "structured": "Component Search Assistant - Ready to help with specific vehicle components",
+        "images": [],
+        "has_images": False
+    }
+
+def handle_symptom_analysis_request() -> dict:
+    """Handle symptom analysis quick action."""
+    conversational = """🚨 **Symptom Analysis Assistant**
+
+I can help you analyze symptoms and identify potential causes! Here's how I can assist:
+
+**🔍 What I can analyze:**
+• Engine performance issues
+• Electrical problems
+• Safety system warnings
+• Comfort system malfunctions
+• Noise and vibration issues
+• Warning lights and messages
+
+**📋 Analysis Process:**
+1. **Symptom identification** - What exactly are you experiencing?
+2. **Condition analysis** - When does it happen?
+3. **Severity assessment** - How serious is the problem?
+4. **Cause investigation** - What could be causing it?
+5. **Solution recommendations** - What should you do?
+
+**💡 Common symptom categories:**
+• **Performance issues** - Power loss, poor acceleration
+• **Starting problems** - Won't start, hard to start
+• **Running issues** - Rough idle, stalling
+• **Warning lights** - Check engine, ABS, airbag lights
+• **Noises** - Squealing, knocking, rattling
+• **Leaks** - Oil, coolant, transmission fluid
+
+**Describe the symptoms you're experiencing in detail.** Include when they happen, how long they've been occurring, and any other relevant details!"""
+    
+    return {
+        "conversational": conversational,
+        "structured": "Symptom Analysis Assistant - Ready to analyze symptoms and identify causes",
+        "images": [],
+        "has_images": False
+    }
+
 @app.post("/query")
 def query_dianav(request: QueryRequest):
+    query_lower = request.query.lower()
+    
+    # Handle Quick Action requests first
+    if any(phrase in query_lower for phrase in ["need help finding diagnostic", "want to check my vehicle", "need step-by-step troubleshooting", "want to generate a diagnostic report", "need help with a specific vehicle component", "need to analyze symptoms"]):
+        return handle_quick_action_request(request.query)
+    
+    # Handle DTC code queries
     dtc_code = find_dtc_code_in_query(request.query)
     
     if dtc_code and dtc_code in DTC_INDEX:
@@ -524,6 +782,224 @@ def extract_image_from_page(page_num: int):
             raise HTTPException(status_code=404, detail=f"No image found on page {page_num}")
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error extracting image: {str(e)}")
+
+@app.get("/search-filters")
+def get_search_filters():
+    """Get available search filters and categories"""
+    return {
+        "categories": [
+            {"id": "all", "name": "All Categories", "count": len(DTC_INDEX)},
+            {"id": "common", "name": "Common DTCs", "count": len([k for k in DTC_INDEX.keys() if k.startswith('B')])},
+            {"id": "electrical", "name": "Electrical Systems", "count": len([k for k in DTC_INDEX.keys() if 'electrical' in DTC_INDEX[k]['content'].lower()])},
+            {"id": "communication", "name": "Communication", "count": len([k for k in DTC_INDEX.keys() if 'communication' in DTC_INDEX[k]['content'].lower()])},
+            {"id": "seats", "name": "Seat Systems", "count": len([k for k in DTC_INDEX.keys() if 'seat' in DTC_INDEX[k]['content'].lower()])}
+        ],
+        "severity_levels": [
+            {"id": "critical", "name": "Critical", "color": "#ff4757"},
+            {"id": "high", "name": "High", "color": "#ffa502"},
+            {"id": "medium", "name": "Medium", "color": "#ffb142"},
+            {"id": "low", "name": "Low", "color": "#2ed573"}
+        ]
+    }
+
+@app.get("/quick-actions")
+def get_quick_actions():
+    """Get available quick actions"""
+    return {
+        "actions": [
+            {
+                "id": "search_dtc",
+                "label": "🔍 Search DTC",
+                "description": "Find diagnostic codes",
+                "prompt": "Please enter a DTC code or describe the problem you're experiencing."
+            },
+            {
+                "id": "system_check",
+                "label": "📊 System Check",
+                "description": "Check vehicle systems",
+                "prompt": "I can help you check various vehicle systems. Which system would you like to diagnose?"
+            },
+            {
+                "id": "troubleshoot",
+                "label": "🔧 Troubleshoot",
+                "description": "Step-by-step guidance",
+                "prompt": "Let's troubleshoot step by step. What symptoms are you experiencing?"
+            },
+            {
+                "id": "generate_report",
+                "label": "📋 Generate Report",
+                "description": "Create diagnostic report",
+                "prompt": "I'll help you generate a diagnostic report. What information should I include?"
+            },
+            {
+                "id": "component_search",
+                "label": "🔧 Component Search",
+                "description": "Search by vehicle component",
+                "prompt": "Which vehicle component are you having issues with?"
+            },
+            {
+                "id": "symptom_analysis",
+                "label": "🚨 Symptom Analysis",
+                "description": "Analyze symptoms",
+                "prompt": "Describe the symptoms you're experiencing in detail."
+            }
+        ]
+    }
+
+@app.post("/export-chat")
+def export_chat_session(chat_data: dict):
+    """Export chat session data"""
+    try:
+        # Generate a comprehensive diagnostic report
+        report = {
+            "export_date": chat_data.get("exportDate"),
+            "chat_session": chat_data.get("chat"),
+            "summary": {
+                "total_messages": len(chat_data.get("chat", {}).get("messages", [])),
+                "dtc_codes_found": [],
+                "diagnostic_notes": [],
+                "recommendations": []
+            },
+            "metadata": {
+                "version": "1.0",
+                "exported_by": "DiaNav AI Assistant",
+                "format": "diagnostic_report"
+            }
+        }
+        
+        # Extract DTC codes from the conversation
+        messages = chat_data.get("chat", {}).get("messages", [])
+        for msg in messages:
+            if msg.get("sender") == "ai":
+                # Look for DTC codes in AI responses
+                import re
+                dtc_matches = re.findall(r'[A-Z][0-9A-Z]{3,}-?\d{0,2}', msg.get("text", ""))
+                report["summary"]["dtc_codes_found"].extend(dtc_matches)
+        
+        # Remove duplicates
+        report["summary"]["dtc_codes_found"] = list(set(report["summary"]["dtc_codes_found"]))
+        
+        return {
+            "success": True,
+            "report": report,
+            "filename": f"dianav-report-{chat_data.get('chat', {}).get('id', 'unknown')}-{chat_data.get('exportDate', '').split('T')[0]}.json"
+        }
+    except Exception as e:
+        return {"success": False, "error": str(e)}
+
+@app.get("/diagnostic-stats")
+def get_diagnostic_stats():
+    """Get diagnostic statistics"""
+    total_dtcs = len(DTC_INDEX)
+    categories = {}
+    
+    for dtc_code, dtc_data in DTC_INDEX.items():
+        content = dtc_data['content'].lower()
+        
+        if 'seat' in content:
+            categories['seat_systems'] = categories.get('seat_systems', 0) + 1
+        if 'communication' in content or 'lin' in content or 'bus' in content:
+            categories['communication'] = categories.get('communication', 0) + 1
+        if 'electrical' in content or 'wiring' in content:
+            categories['electrical'] = categories.get('electrical', 0) + 1
+        if 'motor' in content:
+            categories['motor_systems'] = categories.get('motor_systems', 0) + 1
+    
+    return {
+        "total_dtcs": total_dtcs,
+        "categories": categories,
+        "recent_searches": [],  # Could be implemented with session tracking
+        "popular_dtcs": list(DTC_INDEX.keys())[:5]  # Top 5 DTCs
+    }
+
+@app.get("/component-search")
+def search_by_component(component: str = ""):
+    """Search DTCs by vehicle component"""
+    if not component:
+        return {"results": [], "message": "Please specify a component"}
+    
+    results = []
+    component_lower = component.lower()
+    
+    for dtc_code, dtc_data in DTC_INDEX.items():
+        content = dtc_data['content'].lower()
+        score = 0
+        
+        # Component-specific scoring
+        if component_lower in ['seat', 'seats'] and 'seat' in content:
+            score += 10
+        elif component_lower in ['motor', 'motors'] and 'motor' in content:
+            score += 10
+        elif component_lower in ['lin', 'bus', 'communication'] and ('lin' in content or 'bus' in content or 'communication' in content):
+            score += 10
+        elif component_lower in ['electrical', 'wiring'] and ('electrical' in content or 'wiring' in content):
+            score += 10
+        
+        if score > 0:
+            results.append({
+                "dtc_code": dtc_code,
+                "dtc_code_line": dtc_data['dtc_code_line'],
+                "score": score,
+                "component_match": component,
+                "snippet": dtc_data['content'][:200] + "..." if len(dtc_data['content']) > 200 else dtc_data['content']
+            })
+    
+    results.sort(key=lambda x: x['score'], reverse=True)
+    return {
+        "component": component,
+        "results": results[:10],
+        "total_found": len(results)
+    }
+
+@app.get("/symptom-analysis")
+def analyze_symptoms(symptoms: str = ""):
+    """Analyze symptoms and suggest possible DTCs"""
+    if not symptoms:
+        return {"results": [], "message": "Please describe the symptoms"}
+    
+    # Use vector search for symptom analysis
+    if vector_search:
+        try:
+            results = vector_search.semantic_search(symptoms, top_k=5)
+            return {
+                "symptoms": symptoms,
+                "analysis": "AI-powered symptom analysis",
+                "results": results,
+                "confidence": "High" if results and results[0]['similarity'] > 0.7 else "Medium"
+            }
+        except Exception as e:
+            print(f"Symptom analysis error: {e}")
+    
+    # Fallback to keyword search
+    results = []
+    symptoms_lower = symptoms.lower()
+    
+    for dtc_code, dtc_data in DTC_INDEX.items():
+        content = dtc_data['content'].lower()
+        score = 0
+        
+        # Symptom keyword matching
+        symptom_keywords = ['stop', 'movement', 'error', 'fault', 'problem', 'issue']
+        for keyword in symptom_keywords:
+            if keyword in symptoms_lower and keyword in content:
+                score += 3
+        
+        if score > 0:
+            results.append({
+                "dtc_code": dtc_code,
+                "dtc_code_line": dtc_data['dtc_code_line'],
+                "score": score,
+                "symptoms": symptoms,
+                "snippet": dtc_data['content'][:200] + "..." if len(dtc_data['content']) > 200 else dtc_data['content']
+            })
+    
+    results.sort(key=lambda x: x['score'], reverse=True)
+    return {
+        "symptoms": symptoms,
+        "analysis": "Keyword-based symptom analysis",
+        "results": results[:5],
+        "confidence": "Medium"
+    }
 
 if __name__ == "__main__":
     import uvicorn

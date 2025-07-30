@@ -15,7 +15,7 @@ html, body {
   border-radius: 18px;
   box-shadow: 0 4px 32px #0003;
   color: #fff;
-  max-width: 600px;
+  max-width: 810px; /* Increased by 35% from 600px */
   width: 100%;
   padding-bottom: 0;
   overflow: hidden;
@@ -24,7 +24,7 @@ html, body {
   display: flex;
   align-items: center;
   background: #10294b;
-  padding: 18px 28px 18px 18px;
+  padding: 24px 36px 24px 24px; /* Increased padding for better spacing */
   border-radius: 18px 18px 0 0;
   justify-content: flex-start;
   gap: 18px;
@@ -142,6 +142,8 @@ html, body {
   word-break: break-word;
   overflow-wrap: break-word;
   box-sizing: border-box;
+  position: relative;
+  z-index: 15;
 }
 .dianav-chat-bubble.user {
   background: #2d6be6;
@@ -213,14 +215,17 @@ html, body {
   display: flex;
   background: #10294b;
   border-radius: 12px;
-  padding: 12px 18px;
+  padding: 16px 24px; /* Increased padding for better spacing */
   align-items: center;
   box-shadow: 0 -2px 8px #0002;
   margin: 0 0 18px 0;
   transition: box-shadow 0.2s;
+  box-sizing: border-box; /* Include padding in width calculation */
+  max-width: 100%; /* Ensure it doesn't overflow */
 }
 .dianav-input-row input {
   flex: 1;
+  min-width: 0; /* Allow flex item to shrink below content size */
   background: transparent;
   border: none;
   color: #fff;
@@ -229,6 +234,8 @@ html, body {
   outline: none;
   padding: 10px 0;
   transition: background 0.2s;
+  overflow: hidden; /* Prevent text overflow */
+  text-overflow: ellipsis; /* Show ellipsis for long text */
 }
 .dianav-input-row input:focus {
   color: #fff;
@@ -270,20 +277,24 @@ html, body {
 .dianav-example-questions {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 12px; /* Increased gap for better spacing */
+  margin-bottom: 20px; /* Increased margin for better spacing */
+  max-width: 100%; /* Ensure it doesn't overflow */
+  justify-content: flex-start; /* Align items to the left */
 }
 .dianav-example-btn {
   background: #223e6d;
   color: #dbe8ff;
   border: none;
   border-radius: 8px;
-  padding: 7px 16px;
+  padding: 10px 20px; /* Increased padding for better spacing */
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.15s;
   box-shadow: 0 1px 4px #0001;
+  white-space: nowrap; /* Prevent text wrapping */
+  max-width: 100%; /* Ensure button doesn't overflow */
 }
 .dianav-example-btn:hover {
   background: #2d6be6;
@@ -301,7 +312,7 @@ html, body {
 }
 .dianav-app-wide.sidebar-collapsed .dianav-root-wide {
   margin-left: 0;
-  max-width: 1200px;
+  max-width: 2000px; /* Increased significantly for better horizontal usage */
 }
 .dianav-sidebar {
   position: fixed;
@@ -341,8 +352,8 @@ html, body {
   right: -18px;
 }
 .dianav-root-wide {
-  max-width: 900px;
-  min-width: 600px;
+  max-width: 1215px; /* Increased by 35% from 900px */
+  min-width: 810px; /* Increased by 35% from 600px */
   width: 100%;
   margin: 32px auto;
   background: #15325c;
@@ -356,6 +367,7 @@ html, body {
   /* Remove height: 100%; */
   min-height: 0;
   transition: max-width 0.3s cubic-bezier(.4,0,.2,1), margin 0.3s cubic-bezier(.4,0,.2,1);
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 .dianav-main {
   flex: 1 1 0;
@@ -376,9 +388,19 @@ html, body {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 18px 24px 0 24px;
+  padding: 24px 32px 0 32px; /* Increased padding for better spacing */
   background: none;
   box-shadow: none;
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow: hidden; /* Prevent content from overflowing */
+}
+
+/* Ensure welcome screen is completely hidden when not needed */
+.dianav-welcome.hide {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
 }
 .dianav-welcome.hide {
   opacity: 0;
@@ -409,14 +431,23 @@ html, body {
   min-height: 0;
   height: auto;
   overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal overflow */
   display: flex;
   flex-direction: column;
   gap: 8px;
   background: none;
   border-radius: 0;
-  padding: 18px 12px 12px 12px;
+  padding: 24px 16px 16px 16px; /* Increased padding for better spacing */
   box-shadow: none;
   transition: box-shadow 0.2s, max-height 0.4s cubic-bezier(.4,0,.2,1);
+  box-sizing: border-box; /* Include padding in width calculation */
+  position: relative;
+  z-index: 10;
+}
+
+/* When chat has messages, increase minimum height for better vertical spacing */
+.dianav-chat-window.has-messages {
+  min-height: 500px;
 }
 .dianav-chat-window::-webkit-scrollbar {
   width: 8px;
@@ -437,11 +468,13 @@ html, body {
   display: flex;
   background: #10294b;
   border-radius: 12px;
-  padding: 12px 18px;
+  padding: 16px 24px; /* Increased padding for better spacing */
   align-items: center;
   box-shadow: 0 -2px 8px #0002;
   margin: 0 0 18px 0;
   transition: box-shadow 0.2s;
+  box-sizing: border-box; /* Include padding in width calculation */
+  max-width: 100%; /* Ensure it doesn't overflow */
 }
 .dianav-footer {
   padding: 8px 0 6px 0;
@@ -646,14 +679,14 @@ html, body {
   z-index: 10;
 }
 .dianav-root-wide {
-  max-width: 900px;
-  min-width: 600px;
+  max-width: 1400px;
+  min-width: 800px;
   width: 100%;
 }
 .dianav-center-wrap.center-absolute .dianav-root-wide {
-  width: 700px;
-  max-width: 90vw;
-  min-width: 320px;
+  width: 1200px; /* Increased significantly for better horizontal usage */
+  max-width: 95vw;
+  min-width: 600px; /* Increased for better minimum width */
 }
 .dianav-newchat-row {
   width: 100%;
@@ -1048,4 +1081,651 @@ html, body {
 
 .dianav-image-item:hover::after {
   opacity: 1;
+}
+
+/* Dark Mode Support */
+.dianav-app-wide.dark-mode {
+  background: #0a1428;
+}
+
+.dianav-app-wide.dark-mode .dianav-root-wide {
+  background: #1a2a4a;
+  box-shadow: 0 4px 32px #0006;
+}
+
+.dianav-app-wide.dark-mode .dianav-header {
+  background: #0f1a2e;
+}
+
+.dianav-app-wide.dark-mode .dianav-sidebar {
+  background: #1a2a4a;
+}
+
+.dianav-app-wide.dark-mode .dianav-chat-card {
+  background: #0f1a2e;
+}
+
+.dianav-app-wide.dark-mode .dianav-input-row {
+  background: #0f1a2e;
+}
+
+/* Theme Toggle Button */
+.dianav-theme-toggle {
+  background: #2a4a7a;
+  color: #fff;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 8px;
+  transition: background 0.2s, border 0.2s;
+  box-shadow: 0 2px 8px #0003;
+}
+
+/* Theme toggle positioning when sidebar is collapsed */
+.dianav-sidebar.collapsed .dianav-theme-toggle {
+  position: absolute;
+  top: 100px; /* Position below the new chat button */
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  z-index: 100;
+}
+
+.dianav-theme-toggle:hover {
+  background: #3761a8;
+  border: 2px solid #3761a8;
+}
+
+/* Enhanced Chat Items */
+.dianav-chat-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  background: #15325c;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.dianav-chat-item:hover {
+  background: #1a3a6a;
+  transform: translateX(2px);
+}
+
+.dianav-chat-heading {
+  flex: 1;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+}
+
+.dianav-chat-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.dianav-chat-meta {
+  font-size: 0.75rem;
+  color: #8fa7d1;
+  opacity: 0.8;
+}
+
+.dianav-chat-actions {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.dianav-chat-item:hover .dianav-chat-actions {
+  opacity: 1;
+}
+
+.dianav-chat-action-btn {
+  background: #2a4a7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dianav-chat-action-btn:hover {
+  background: #3761a8;
+}
+
+/* Quick Actions Panel */
+.dianav-quick-actions-panel {
+  background: #10294b;
+  border-bottom: 1px solid #2a4a7a;
+  padding: 16px 24px;
+  animation: slideDown 0.3s ease;
+}
+
+.dianav-quick-actions-panel h3 {
+  margin: 0 0 12px 0;
+  color: #dbe8ff;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.dianav-quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.dianav-quick-action-btn {
+  background: #15325c;
+  border: 1px solid #2a4a7a;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  color: #fff;
+}
+
+.dianav-quick-action-btn:hover {
+  background: #1a3a6a;
+  border-color: #3761a8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px #0003;
+}
+
+.dianav-quick-action-icon {
+  font-size: 1.5rem;
+  margin-bottom: 4px;
+}
+
+.dianav-quick-action-label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+
+.dianav-quick-action-desc {
+  font-size: 0.75rem;
+  color: #8fa7d1;
+  opacity: 0.8;
+}
+
+/* Header Actions */
+.dianav-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dianav-quick-actions-btn {
+  background: #2d6be6;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dianav-quick-actions-btn:hover {
+  background: #2351a2;
+  transform: scale(1.1);
+}
+
+/* Search Filters */
+.dianav-search-filters {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  align-items: center;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  max-width: 100%; /* Ensure it doesn't overflow */
+}
+
+.dianav-filter-input {
+  flex: 1;
+  min-width: 200px; /* Minimum width to prevent too narrow input */
+  max-width: calc(100% - 160px); /* Leave space for category dropdown */
+  background: #15325c;
+  border: 1px solid #2a4a7a;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.dianav-filter-input:focus {
+  border-color: #2d6be6;
+}
+
+.dianav-filter-input::placeholder {
+  color: #8fa7d1;
+  opacity: 0.7;
+}
+
+.dianav-category-select {
+  background: #15325c;
+  border: 1px solid #2a4a7a;
+  border-radius: 6px;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  min-width: 140px;
+  max-width: 150px; /* Fixed width to prevent overflow */
+  flex-shrink: 0; /* Prevent shrinking */
+}
+
+.dianav-category-select:focus {
+  border-color: #2d6be6;
+}
+
+.dianav-category-select option {
+  background: #15325c;
+  color: #fff;
+}
+
+/* Enhanced Message Headers */
+.dianav-message-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 0.8rem;
+}
+
+.dianav-message-sender {
+  font-weight: 600;
+  color: #b0c4e6;
+}
+
+.dianav-message-time {
+  color: #8fa7d1;
+  opacity: 0.7;
+}
+
+/* Enhanced Footer */
+.dianav-footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  max-width: 100%; /* Ensure it doesn't overflow */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.dianav-footer-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0; /* Prevent shrinking */
+  max-width: 50%; /* Limit width to prevent overflow */
+}
+
+.dianav-footer-btn {
+  background: #2a4a7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.dianav-footer-btn:hover {
+  background: #3761a8;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design for New Features */
+@media (max-width: 768px) {
+  .dianav-quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .dianav-search-filters {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .dianav-category-select {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .dianav-filter-input {
+    max-width: 100%;
+    min-width: auto;
+  }
+  
+  .dianav-footer-content {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .dianav-footer-actions {
+    max-width: 100%;
+  }
+  
+  .dianav-chat-actions {
+    opacity: 1;
+  }
+}
+
+/* Keyboard Shortcuts Indicator */
+.dianav-keyboard-shortcuts {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #15325c;
+  border: 1px solid #2a4a7a;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.8rem;
+  color: #8fa7d1;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.dianav-keyboard-shortcuts.show {
+  opacity: 1;
+}
+
+.dianav-keyboard-shortcuts h4 {
+  margin: 0 0 8px 0;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.dianav-keyboard-shortcuts ul {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.dianav-keyboard-shortcuts li {
+  margin: 2px 0;
+}
+
+/* Print Styles */
+@media print {
+  .dianav-sidebar,
+  .dianav-header,
+  .dianav-input-row,
+  .dianav-footer {
+    display: none !important;
+  }
+  
+  .dianav-chat-window {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+  
+  .dianav-chat-bubble {
+    break-inside: avoid;
+    margin-bottom: 16px;
+  }
+  
+  .dianav-diagnostic-image {
+    max-height: 400px !important;
+  }
+}
+
+/* Notification System */
+.dianav-notifications {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+}
+
+.dianav-notification {
+  background: #15325c;
+  border: 1px solid #2a4a7a;
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #fff;
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  animation: slideInRight 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dianav-notification:hover {
+  transform: translateX(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.dianav-notification-success {
+  border-left: 4px solid #2ed573;
+  background: linear-gradient(135deg, #15325c 0%, #1a3a6a 100%);
+}
+
+.dianav-notification-error {
+  border-left: 4px solid #ff4757;
+  background: linear-gradient(135deg, #15325c 0%, #1a2a4a 100%);
+}
+
+.dianav-notification-info {
+  border-left: 4px solid #2d6be6;
+  background: linear-gradient(135deg, #15325c 0%, #1a3a6a 100%);
+}
+
+.dianav-notification-message {
+  flex: 1;
+  font-weight: 500;
+}
+
+.dianav-notification-close {
+  background: none;
+  border: none;
+  color: #8fa7d1;
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.dianav-notification-close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced Input Placeholder */
+.dianav-input-row input::placeholder {
+  color: #8fa7d1;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* Loading State Improvements */
+.dianav-loading p {
+  margin: 0;
+  color: #8fa7d1;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+/* Enhanced Chat Bubble Animations */
+.dianav-chat-bubble {
+  animation: fadeInBubble 0.4s ease;
+}
+
+@keyframes fadeInBubble {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px) scale(0.95); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+/* Hover Effects for Interactive Elements */
+.dianav-example-btn:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 12px rgba(45, 107, 230, 0.3);
+}
+
+.dianav-quick-action-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(45, 107, 230, 0.4);
+}
+
+/* Focus States for Accessibility */
+.dianav-input-row input:focus {
+  box-shadow: 0 0 0 2px rgba(45, 107, 230, 0.3);
+}
+
+.dianav-example-btn:focus,
+.dianav-quick-action-btn:focus,
+.dianav-chat-action-btn:focus {
+  outline: 2px solid #2d6be6;
+  outline-offset: 2px;
+}
+
+/* Print Optimizations */
+@media print {
+  .dianav-notifications,
+  .dianav-quick-actions-panel,
+  .dianav-search-filters {
+    display: none !important;
+  }
+  
+  .dianav-chat-bubble {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .dianav-structured-data details {
+    display: block !important;
+  }
+  
+  .dianav-structured-data summary {
+    display: none !important;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 480px) {
+  .dianav-notifications {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+  
+  .dianav-quick-actions-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .dianav-quick-action-btn {
+    padding: 10px;
+  }
+  
+  .dianav-search-filters {
+    flex-direction: column;
+    gap: 6px;
+  }
+  
+  .dianav-filter-input,
+  .dianav-category-select {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+  .dianav-chat-bubble {
+    border: 2px solid #fff;
+  }
+  
+  .dianav-input-row {
+    border: 2px solid #fff;
+  }
+  
+  .dianav-notification {
+    border: 2px solid #fff;
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  .dianav-chat-bubble,
+  .dianav-notification,
+  .dianav-quick-action-btn,
+  .dianav-example-btn {
+    animation: none;
+    transition: none;
+  }
+  
+  .dianav-chat-bubble:hover,
+  .dianav-quick-action-btn:hover,
+  .dianav-example-btn:hover {
+    transform: none;
+  }
 }

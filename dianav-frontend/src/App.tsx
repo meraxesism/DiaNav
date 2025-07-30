@@ -7,6 +7,7 @@ interface ChatMessage {
   text: string;
   images?: DiagnosticImage[];
   structured?: string;
+  timestamp?: Date;
 }
 
 interface DiagnosticImage {
@@ -19,6 +20,16 @@ interface ChatSession {
   id: string;
   heading: string;
   messages: ChatMessage[];
+  createdAt: Date;
+  lastModified: Date;
+  vehicleInfo?: VehicleInfo;
+}
+
+interface VehicleInfo {
+  make?: string;
+  model?: string;
+  year?: string;
+  vin?: string;
 }
 
 interface ApiResponse {
@@ -26,13 +37,23 @@ interface ApiResponse {
   structured: string;
   images: DiagnosticImage[];
   has_images: boolean;
+  search_method?: string;
+  confidence?: string;
 }
 
+// Enhanced example questions with categories
 const exampleQuestions = [
-  'What causes B1087?',
-  'Seat movement problem',
-  'LIN bus communication error',
-  'B108 (partial code)',
+  { category: 'Common DTCs', questions: ['What causes B1087?', 'B155A-01 symptoms'] },
+  { category: 'Symptoms', questions: ['Seat movement problem', 'LIN bus communication error'] },
+  { category: 'Quick Search', questions: ['B108 (partial code)', 'Electrical fault'] },
+];
+
+// Quick actions for common diagnostic tasks
+const quickActions = [
+  { label: '🔍 Search DTC', action: 'search_dtc', description: 'Find diagnostic codes' },
+  { label: '📊 System Check', action: 'system_check', description: 'Check vehicle systems' },
+  { label: '🔧 Troubleshoot', action: 'troubleshoot', description: 'Step-by-step guidance' },
+  { label: '📋 Generate Report', action: 'generate_report', description: 'Create diagnostic report' },
 ];
 
 function App() {
@@ -40,20 +61,51 @@ function App() {
     id: '1',
     heading: 'New Chat',
     messages: [],
+    createdAt: new Date(),
+    lastModified: new Date(),
   }]);
-  const [activeChatId, setActiveChatId] = useState('1');
+  const [activeChatId, setActiveChatId] = useState('');
   const [input, setInput] = useState('');
   const [showWelcome, setShowWelcome] = useState(true);
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<DiagnosticImage | null>(null);
   const [showImageModal, setShowImageModal] = useState(false);
+  const [showQuickActions, setShowQuickActions] = useState(false);
+  const [searchFilter, setSearchFilter] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+  const [darkMode, setDarkMode] = useState(false);
+  const [notifications, setNotifications] = useState<Array<{id: string, message: string, type: 'success' | 'error' | 'info'}>>([]);
   const chatEndRef = useRef<HTMLDivElement | null>(null);
   const [welcomeHeight, setWelcomeHeight] = useState(0);
   const welcomeRef = useRef<HTMLDivElement | null>(null);
   const [chatWindowClass, setChatWindowClass] = useState('');
 
-  const activeChat = chats.find(c => c.id === activeChatId)!;
+  const activeChat = chats.find(c => c.id === activeChatId) || {
+    id: activeChatId,
+    heading: 'New Chat',
+    messages: [],
+    createdAt: new Date(),
+    lastModified: new Date()
+  };
+  
+
+
+  // Add notification
+  const addNotification = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
+    const id = Date.now().toString();
+    setNotifications(prev => [...prev, { id, message, type }]);
+    
+    // Auto-remove after 3 seconds
+    setTimeout(() => {
+      setNotifications(prev => prev.filter(n => n.id !== id));
+    }, 3000);
+  };
+
+  // Remove notification
+  const removeNotification = (id: string) => {
+    setNotifications(prev => prev.filter(n => n.id !== id));
+  };
 
   // Function to determine chat window expansion class
   const getChatWindowClass = (messages: ChatMessage[]) => {
@@ -73,6 +125,59 @@ function App() {
     
     return '';
   };
+
+      // Save chats to localStorage
+    useEffect(() => {
+      localStorage.setItem('dianav-chats', JSON.stringify(chats));
+    }, [chats]);
+
+  // Load chats from localStorage on startup
+  useEffect(() => {
+    const savedChats = localStorage.getItem('dianav-chats');
+    if (savedChats) {
+      try {
+        const parsedChats = JSON.parse(savedChats);
+        // Convert string dates back to Date objects
+        const chatsWithDates = parsedChats.map((chat: any) => ({
+          ...chat,
+          createdAt: new Date(chat.createdAt),
+          lastModified: new Date(chat.lastModified),
+          messages: chat.messages.map((msg: any) => ({
+            ...msg,
+            timestamp: msg.timestamp ? new Date(msg.timestamp) : new Date()
+          }))
+        }));
+        setChats(chatsWithDates);
+        // Set active chat to the first one if available
+        if (chatsWithDates.length > 0 && !activeChatId) {
+          setActiveChatId(chatsWithDates[0].id);
+        }
+      } catch (error) {
+        console.error('Error loading saved chats:', error);
+      }
+    } else {
+      // Create a default chat if no saved chats exist
+      const defaultChatId = (Date.now() + Math.random()).toString();
+      const defaultChat: ChatSession = {
+        id: defaultChatId,
+        heading: 'New Chat',
+        messages: [],
+        createdAt: new Date(),
+        lastModified: new Date()
+      };
+      setChats([defaultChat]);
+      setActiveChatId(defaultChatId);
+    }
+  }, []); // Empty dependency array - only run once on mount
+
+  // Ensure we always have an active chat
+  useEffect(() => {
+    if (chats.length > 0 && !activeChatId) {
+      setActiveChatId(chats[0].id);
+    }
+  }, [chats, activeChatId]);
+
+
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -119,6 +224,147 @@ function App() {
     }
   }, [showImageModal]);
 
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyboardShortcuts = (e: KeyboardEvent) => {
+      // Ctrl/Cmd + N: New chat
+      if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+        e.preventDefault();
+        handleNewChat();
+      }
+      
+      // Ctrl/Cmd + K: Quick actions
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        setShowQuickActions(!showQuickActions);
+      }
+      
+      // Ctrl/Cmd + S: Export current chat
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        exportChat(activeChatId);
+      }
+      
+      // Ctrl/Cmd + /: Show keyboard shortcuts help
+      if ((e.ctrlKey || e.metaKey) && e.key === '/') {
+        e.preventDefault();
+        showKeyboardShortcutsHelp();
+      }
+      
+      // Ctrl/Cmd + B: Toggle sidebar
+      if ((e.ctrlKey || e.metaKey) && e.key === 'b') {
+        e.preventDefault();
+        setSidebarOpen(v => !v);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyboardShortcuts);
+    return () => document.removeEventListener('keydown', handleKeyboardShortcuts);
+  }, [activeChatId, showQuickActions]);
+
+  // Show keyboard shortcuts help
+  const showKeyboardShortcutsHelp = () => {
+    const helpText = `Keyboard Shortcuts:
+    
+⌘/Ctrl + N: New Chat
+⌘/Ctrl + K: Quick Actions
+⌘/Ctrl + S: Export Chat
+⌘/Ctrl + B: Toggle Sidebar
+⌘/Ctrl + /: Show This Help
+Escape: Close Modals
+
+Navigation:
+↑/↓: Navigate through chat history
+Enter: Send message
+Tab: Focus input field`;
+    
+    alert(helpText);
+  };
+
+  // Handle quick actions
+  const handleQuickAction = (action: string) => {
+    let userMessage = '';
+    switch (action) {
+      case 'search_dtc':
+        userMessage = 'I need help finding diagnostic codes.';
+        break;
+      case 'system_check':
+        userMessage = 'I want to check my vehicle systems.';
+        break;
+      case 'troubleshoot':
+        userMessage = 'I need step-by-step troubleshooting guidance.';
+        break;
+      case 'generate_report':
+        userMessage = 'I want to generate a diagnostic report.';
+        break;
+      case 'component_search':
+        userMessage = 'I need help with a specific vehicle component.';
+        break;
+      case 'symptom_analysis':
+        userMessage = 'I need to analyze symptoms I\'m experiencing.';
+        break;
+    }
+    
+    // Set the input with the user's request and send it
+    setInput(userMessage);
+    setShowQuickActions(false);
+    
+    // Send the message after a short delay to ensure input is set
+    setTimeout(() => {
+      handleSend();
+    }, 100);
+  };
+
+  // Export chat session
+  const exportChat = (chatId: string) => {
+    const chat = chats.find(c => c.id === chatId);
+    if (!chat) {
+      addNotification('Chat not found', 'error');
+      return;
+    }
+
+    const exportData = {
+      chat: chat,
+      exportDate: new Date().toISOString(),
+      version: '1.0'
+    };
+
+    const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `dianav-chat-${chatId}-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    addNotification('Chat exported successfully!', 'success');
+  };
+
+  // Delete chat session
+  const deleteChat = (chatId: string) => {
+    if (window.confirm('Are you sure you want to delete this chat session?')) {
+      const updatedChats = chats.filter(c => c.id !== chatId);
+      setChats(updatedChats);
+      
+      // If we deleted the active chat, handle it
+      if (activeChatId === chatId) {
+        // If there are other chats, switch to the first one
+        if (updatedChats.length > 0) {
+          setActiveChatId(updatedChats[0].id);
+        } else {
+          // If no chats left, create a new one after a small delay
+          setTimeout(() => {
+            handleNewChat();
+          }, 100);
+        }
+      }
+      
+      addNotification('Chat deleted successfully', 'info');
+    }
+  };
+
   const sendMessageToBackend = async (message: string): Promise<ApiResponse> => {
     try {
       const response = await fetch('http://localhost:8000/query', {
@@ -149,13 +395,28 @@ function App() {
     if (e) e.preventDefault();
     if (!input.trim() || isLoading) return;
     
-    const userMsg: ChatMessage = { sender: 'user', text: input };
-    const updatedChats = chats.map(chat =>
-      chat.id === activeChatId
-        ? { ...chat, messages: [...chat.messages, userMsg] }
-        : chat
-    );
-    setChats(updatedChats);
+
+    
+    const userMsg: ChatMessage = { 
+      sender: 'user', 
+      text: input,
+      timestamp: new Date()
+    };
+    
+    // Add user message first
+    setChats(prevChats => {
+      const updatedChats = prevChats.map(chat =>
+        chat.id === activeChatId
+          ? { 
+              ...chat, 
+              messages: [...chat.messages, userMsg],
+              lastModified: new Date()
+            }
+          : chat
+      );
+      return updatedChats;
+    });
+    
     setInput('');
     setIsLoading(true);
     
@@ -165,38 +426,67 @@ function App() {
         sender: 'ai',
         text: response.conversational,
         structured: response.structured,
-        images: response.images
+        images: response.images,
+        timestamp: new Date()
       };
       
-      setChats(chats => chats.map(chat =>
-        chat.id === activeChatId
-          ? { ...chat, messages: [...chat.messages, aiMsg] }
-          : chat
-      ));
+      // Add AI response
+      setChats(prevChats => {
+        const updatedChats = prevChats.map(chat =>
+          chat.id === activeChatId
+            ? { 
+                ...chat, 
+                messages: [...chat.messages, aiMsg],
+                lastModified: new Date()
+              }
+            : chat
+        );
+        return updatedChats;
+      });
+      
+      // Update heading if it's still 'New Chat'
+      setChats(prevChats => {
+        const currentChat = prevChats.find(chat => chat.id === activeChatId);
+        if (currentChat && currentChat.heading === 'New Chat') {
+          const updatedChats = prevChats.map(chat =>
+            chat.id === activeChatId
+              ? { 
+                  ...chat, 
+                  heading: userMsg.text.slice(0, 30) + (userMsg.text.length > 30 ? '...' : ''),
+                  lastModified: new Date()
+                }
+              : chat
+          );
+          return updatedChats;
+        }
+        return prevChats;
+      });
+      
     } catch (error) {
       console.error('Error in handleSend:', error);
       const errorMsg: ChatMessage = {
         sender: 'ai',
-        text: "I'm sorry, I encountered an error while processing your request. Please try again."
+        text: "I'm sorry, I encountered an error while processing your request. Please try again.",
+        timestamp: new Date()
       };
       
-      setChats(chats => chats.map(chat =>
-        chat.id === activeChatId
-          ? { ...chat, messages: [...chat.messages, errorMsg] }
-          : chat
-      ));
+      // Add error message
+      setChats(prevChats => {
+        const updatedChats = prevChats.map(chat =>
+          chat.id === activeChatId
+            ? { 
+                ...chat, 
+                messages: [...chat.messages, errorMsg],
+                lastModified: new Date()
+              }
+            : chat
+        );
+        return updatedChats;
+      });
     } finally {
       setIsLoading(false);
     }
     
-    // Set heading if it's still 'New Chat'
-    if (activeChat.heading === 'New Chat') {
-      setChats(chats => chats.map(chat =>
-        chat.id === activeChatId
-          ? { ...chat, heading: userMsg.text.slice(0, 30) + (userMsg.text.length > 30 ? '...' : '') }
-          : chat
-      ));
-    }
     if (showWelcome) setShowWelcome(false);
   };
 
@@ -207,63 +497,110 @@ function App() {
 
   const handleNewChat = () => {
     const newId = (Date.now() + Math.random()).toString();
-    setChats(prevChats => [{ id: newId, heading: 'New Chat', messages: [] }, ...prevChats]);
+    const newChat: ChatSession = {
+      id: newId, 
+      heading: 'New Chat', 
+      messages: [],
+      createdAt: new Date(),
+      lastModified: new Date()
+    };
+    setChats(prevChats => [newChat, ...prevChats]);
     setActiveChatId(newId);
     setInput('');
     setShowWelcome(true);
-    setChatWindowClass(''); // Reset to default size for new chat
+    setChatWindowClass('');
   };
 
-  const renderMessage = (msg: ChatMessage, index: number) => (
-    <div key={index} className={`dianav-chat-bubble ${msg.sender}`}>
-      <div className="dianav-message-text">
-        {msg.sender === 'ai' ? (
-          <ReactMarkdown>{msg.text}</ReactMarkdown>
-        ) : (
-          msg.text
+  const renderMessage = (msg: ChatMessage, index: number) => {
+    return (
+      <div 
+        key={index} 
+        className={`dianav-chat-bubble ${msg.sender}`}
+        style={{
+          opacity: 1,
+          visibility: 'visible',
+          display: 'block',
+          position: 'relative',
+          zIndex: 999,
+          backgroundColor: msg.sender === 'ai' ? '#2351a2' : '#2d6be6',
+          color: 'white',
+          padding: '14px 20px',
+          borderRadius: '12px',
+          marginBottom: '8px',
+          maxWidth: '80%',
+          alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start',
+          marginLeft: msg.sender === 'user' ? 'auto' : '0',
+          marginRight: msg.sender === 'user' ? '0' : 'auto'
+        }}
+      >
+        <div className="dianav-message-header">
+          <span className="dianav-message-sender">
+            {msg.sender === 'ai' ? '🤖 AI Assistant' : '👤 You'}
+          </span>
+          {msg.timestamp && (
+            <span className="dianav-message-time">
+              {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+            </span>
+          )}
+        </div>
+        
+        <div className="dianav-message-text">
+          {msg.sender === 'ai' ? (
+            <ReactMarkdown>{msg.text}</ReactMarkdown>
+          ) : (
+            msg.text
+          )}
+        </div>
+        
+        {msg.structured && (
+          <div className="dianav-structured-data">
+            <details>
+              <summary>View Diagnostic Details</summary>
+              <pre>{msg.structured}</pre>
+            </details>
+          </div>
+        )}
+        
+        {msg.images && msg.images.length > 0 && (
+          <div className="dianav-images-container">
+            <h4>Diagnostic Images:</h4>
+            {msg.images.map((img, imgIndex) => (
+              <div key={imgIndex} className="dianav-image-item">
+                <img 
+                  src={img.image_data} 
+                  alt={img.description}
+                  className="dianav-diagnostic-image"
+                  loading="lazy"
+                  onClick={() => handleImageClick(img)}
+                  title="Click to enlarge"
+                />
+                <p className="dianav-image-description">
+                  {img.description} (Page {img.page_num + 1})
+                </p>
+              </div>
+            ))}
+          </div>
         )}
       </div>
-      
-      {msg.structured && (
-        <div className="dianav-structured-data">
-          <details>
-            <summary>View Diagnostic Details</summary>
-            <pre>{msg.structured}</pre>
-          </details>
-        </div>
-      )}
-      
-      {msg.images && msg.images.length > 0 && (
-        <div className="dianav-images-container">
-          <h4>Diagnostic Images:</h4>
-          {msg.images.map((img, imgIndex) => (
-            <div key={imgIndex} className="dianav-image-item">
-              <img 
-                src={img.image_data} 
-                alt={img.description}
-                className="dianav-diagnostic-image"
-                loading="lazy"
-                onClick={() => handleImageClick(img)}
-                title="Click to enlarge"
-              />
-              <p className="dianav-image-description">
-                {img.description} (Page {img.page_num + 1})
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
+    );
+  };
 
   return (
-    <div className={`dianav-app-wide${sidebarOpen ? '' : ' sidebar-collapsed'}`}>
+    <div className={`dianav-app-wide${sidebarOpen ? '' : ' sidebar-collapsed'}${darkMode ? ' dark-mode' : ''}`}>
       <aside className={`dianav-sidebar${sidebarOpen ? '' : ' collapsed'}`}>
         <div className="dianav-sidebar-toggle-row">
           <button className="dianav-sidebar-toggle" onClick={() => setSidebarOpen(v => !v)}>
             {sidebarOpen ? '<' : '>'}
           </button>
+          <button 
+            className="dianav-theme-toggle" 
+            onClick={() => setDarkMode(v => !v)}
+            title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+          >
+            {darkMode ? '☀️' : '🌙'}
+          </button>
         </div>
+        
         <div className="dianav-newchat-row">
           {sidebarOpen ? (
             <button className="dianav-newchat-btn" onClick={handleNewChat}>+ New Chat</button>
@@ -271,27 +608,48 @@ function App() {
             <button className="dianav-newchat-btn-collapsed" title="New Chat" onClick={handleNewChat}>+</button>
           )}
         </div>
+        
         {sidebarOpen && (
           <div className="dianav-chat-list">
             {chats.map(chat => (
-              <div
-                key={chat.id}
-                className={`dianav-chat-heading${chat.id === activeChatId ? ' active' : ''}`}
-                onClick={() => { 
-                  setActiveChatId(chat.id); 
-                  setShowWelcome(chat.messages.length === 0);
-                  // Reset chat window class when switching chats
-                  setTimeout(() => {
-                    setChatWindowClass(getChatWindowClass(chat.messages));
-                  }, 100);
-                }}
-              >
-                {chat.heading}
+              <div key={chat.id} className="dianav-chat-item">
+                <div
+                  className={`dianav-chat-heading${chat.id === activeChatId ? ' active' : ''}`}
+                  onClick={() => { 
+                    setActiveChatId(chat.id); 
+                    setShowWelcome(chat.messages.length === 0);
+                    setTimeout(() => {
+                      setChatWindowClass(getChatWindowClass(chat.messages));
+                    }, 100);
+                  }}
+                >
+                  <div className="dianav-chat-title">{chat.heading}</div>
+                  <div className="dianav-chat-meta">
+                    {chat.messages.length} messages • {chat.lastModified.toLocaleDateString()}
+                  </div>
+                </div>
+                <div className="dianav-chat-actions">
+                  <button 
+                    className="dianav-chat-action-btn"
+                    onClick={() => exportChat(chat.id)}
+                    title="Export Chat"
+                  >
+                    📤
+                  </button>
+                  <button 
+                    className="dianav-chat-action-btn"
+                    onClick={() => deleteChat(chat.id)}
+                    title="Delete Chat"
+                  >
+                    🗑️
+                  </button>
+                </div>
               </div>
             ))}
           </div>
         )}
       </aside>
+      
       <div className={`dianav-center-wrap${sidebarOpen ? '' : ' center-absolute'}`}>
         <div className="dianav-root dianav-root-wide">
           <header className="dianav-header">
@@ -300,7 +658,36 @@ function App() {
             </div>
             <div className="dianav-title">DIAGNOSTIC NAVIGATOR</div>
             <div className="dianav-ai-label">AI Assistant</div>
+            <div className="dianav-header-actions">
+              <button 
+                className="dianav-quick-actions-btn"
+                onClick={() => setShowQuickActions(!showQuickActions)}
+                title="Quick Actions"
+              >
+                ⚡
+              </button>
+            </div>
           </header>
+          
+          {showQuickActions && (
+            <div className="dianav-quick-actions-panel">
+              <h3>Quick Actions</h3>
+              <div className="dianav-quick-actions-grid">
+                {quickActions.map((action, index) => (
+                  <button
+                    key={index}
+                    className="dianav-quick-action-btn"
+                    onClick={() => handleQuickAction(action.action)}
+                  >
+                    <div className="dianav-quick-action-icon">{action.label.split(' ')[0]}</div>
+                    <div className="dianav-quick-action-label">{action.label.split(' ').slice(1).join(' ')}</div>
+                    <div className="dianav-quick-action-desc">{action.description}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+          
           <main className="dianav-main">
             <div
               className={`dianav-welcome${showWelcome ? ' show' : ' hide'}`}
@@ -309,20 +696,64 @@ function App() {
             >
               <h1 className="dianav-h1">Hello! I'm your Diagnostic Assistant.</h1>
               <div className="dianav-subtitle">How can I help you today?</div>
+              
+              <div className="dianav-search-filters">
+                <input
+                  type="text"
+                  placeholder="Filter examples..."
+                  value={searchFilter}
+                  onChange={(e) => setSearchFilter(e.target.value)}
+                  className="dianav-filter-input"
+                />
+                <select 
+                  value={selectedCategory} 
+                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  className="dianav-category-select"
+                >
+                  <option value="all">All Categories</option>
+                  <option value="Common DTCs">Common DTCs</option>
+                  <option value="Symptoms">Symptoms</option>
+                  <option value="Quick Search">Quick Search</option>
+                </select>
+              </div>
+              
               <div className="dianav-example-questions">
-                {exampleQuestions.map((q, i) => (
-                  <button key={i} className="dianav-example-btn" onClick={() => handleExampleClick(q)}>
-                    {q}
-                  </button>
-                ))}
+                {exampleQuestions
+                  .filter(category => selectedCategory === 'all' || category.category === selectedCategory)
+                  .flatMap(category => category.questions)
+                  .filter(question => 
+                    searchFilter === '' || 
+                    question.toLowerCase().includes(searchFilter.toLowerCase())
+                  )
+                  .map((q, i) => (
+                    <button key={i} className="dianav-example-btn" onClick={() => handleExampleClick(q)}>
+                      {q}
+                    </button>
+                  ))}
               </div>
             </div>
+            
             <div
               className="dianav-welcome-placeholder"
               style={{ height: showWelcome ? welcomeHeight : 0 }}
             />
+            
             <div className="dianav-chat-card">
-              <div className={`dianav-chat-window${chatWindowClass ? ` ${chatWindowClass}` : ''}`}>
+              <div 
+                className={`dianav-chat-window${chatWindowClass ? ` ${chatWindowClass}` : ''}${activeChat.messages.length > 0 ? ' has-messages' : ''}`}
+                style={{
+                  position: 'relative',
+                  zIndex: 100,
+                  opacity: 1,
+                  visibility: 'visible',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '8px',
+                  padding: '24px 16px 16px 16px',
+                  overflowY: 'auto',
+                  minHeight: activeChat.messages.length > 0 ? '500px' : '200px'
+                }}
+              >
                 {activeChat.messages.map((msg, i) => renderMessage(msg, i))}
                 {isLoading && (
                   <div className="dianav-chat-bubble ai">
@@ -338,10 +769,11 @@ function App() {
                 )}
                 <div ref={chatEndRef} />
               </div>
+              
               <form className="dianav-input-row" onSubmit={handleSend} autoComplete="off">
                 <input
                   type="text"
-                  placeholder="Enter your message"
+                  placeholder="Enter your message or DTC code..."
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   disabled={isLoading}
@@ -351,7 +783,20 @@ function App() {
                   {isLoading ? 'Sending...' : 'Send'}
                 </button>
               </form>
-              <footer className="dianav-footer">Powered by Tata Motors</footer>
+              
+              <footer className="dianav-footer">
+                <div className="dianav-footer-content">
+                  <span>Powered by Tata Motors</span>
+                  <div className="dianav-footer-actions">
+                    <button className="dianav-footer-btn" onClick={() => exportChat(activeChatId)}>
+                      Export Chat
+                    </button>
+                    <button className="dianav-footer-btn" onClick={() => window.print()}>
+                      Print Report
+                    </button>
+                  </div>
+                </div>
+              </footer>
             </div>
           </main>
         </div>
@@ -366,6 +811,20 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Notifications */}
+      <div className="dianav-notifications">
+        {notifications.map(notification => (
+          <div 
+            key={notification.id} 
+            className={`dianav-notification dianav-notification-${notification.type}`}
+            onClick={() => removeNotification(notification.id)}
+          >
+            <span className="dianav-notification-message">{notification.message}</span>
+            <button className="dianav-notification-close">×</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
