@@ -12,6 +12,11 @@
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![Ollama](https://img.shields.io/badge/Ollama-LLM-orange.svg)](https://ollama.ai/)
 [![License](https://img.shields.io/badge/License-AGPL%20v3-red.svg)](LICENSE)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/releases)
+[![GitHub stars](https://img.shields.io/github/stars/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/network)
+[![GitHub issues](https://img.shields.io/github/issues/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/pulls)
 
 </div>
 
