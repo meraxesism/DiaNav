@@ -2,9 +2,11 @@
 
 <div align="center">
 
-![DiaNav Logo](dianav-frontend/public/tata-logo.png)
+# 🚗 DiaNav
 
-**Advanced AI Diagnostic System for Automotive Troubleshooting**
+**Advanced AI-Powered Automotive Diagnostic Assistant**
+
+*Intelligent Diagnostic System for Professional Automotive Troubleshooting*
 
 [![React](https://img.shields.io/badge/React-18.2.0-blue.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue.svg)](https://www.typescriptlang.org/)
