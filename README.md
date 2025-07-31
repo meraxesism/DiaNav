@@ -291,9 +291,9 @@ const getChatWindowClass = () => {
 </div>
 
 ### **🌐 Live Demo (Frontend Only)**
-**[🚀 Try DiaNav Frontend](https://dia-nav-git-main-apurvs-projects-a41ddd87.vercel.app)**
+**[🚀 Try DiaNav Frontend](https://dia-nav.vercel.app/)**
 
-*Experience the frontend interface - Backend requires local setup with Ollama*
+*Experience the frontend interface - Backend requires local setup with Ollama - Desktop only deployment temporarily*
 
 ---
 
