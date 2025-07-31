@@ -290,10 +290,10 @@ const getChatWindowClass = () => {
 
 </div>
 
-### **🎬 Demo Video**
-[![DiaNav Demo](docs/screenshots/videos/dianav-demo-30s.gif)](https://github.com/meraxesism/DiaNav)
+### **🌐 Live Demo**
+**[🚀 Try DiaNav Live](https://dia-nav-git-main-apurvs-projects-a41ddd87.vercel.app)**
 
-*Click to watch the full 30-second walkthrough*
+*Experience the full AI-powered diagnostic assistant in action*
 
 ---
 
