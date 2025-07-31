@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd dianav-frontend && npm install --legacy-peer-deps --force && npm run build",
+  "outputDirectory": "dianav-frontend/build",
+  "framework": "create-react-app",
+  "installCommand": "cd dianav-frontend && npm install --legacy-peer-deps --force"
+} 
