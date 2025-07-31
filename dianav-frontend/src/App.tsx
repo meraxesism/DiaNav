@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 
 interface ChatMessage {
@@ -825,6 +826,9 @@ Tab: Focus input field`;
           </div>
         ))}
       </div>
+      
+      {/* Vercel Analytics */}
+      <Analytics />
     </div>
   );
 }
