@@ -1,0 +1,117 @@
+{
+  "common": {
+    "newChat": "नवीन चॅट",
+    "search": "शोधा",
+    "send": "पाठवा",
+    "cancel": "रद्द करा",
+    "save": "जतन करा",
+    "delete": "हटवा",
+    "export": "निर्यात",
+    "import": "आयात",
+    "settings": "सेटिंग्ज",
+    "close": "बंद करा",
+    "loading": "लोड होत आहे...",
+    "error": "त्रुटी",
+    "success": "यशस्वी",
+    "warning": "चेतावणी",
+    "info": "माहिती"
+  },
+  "chat": {
+    "welcome": "DiaNav मध्ये आपले स्वागत आहे",
+    "welcomeSubtitle": "आपला AI-चालित ऑटोमोटिव्ह डायग्नोस्टिक सहाय्यक",
+    "placeholder": "डायग्नोस्टिक कोड, लक्षणे, किंवा समस्या सोडवण्याबद्दल विचारा...",
+    "sendMessage": "संदेश पाठवा",
+    "typing": "AI टाइप करत आहे...",
+    "noMessages": "अद्याप कोणतेही संदेश नाहीत. संवाद सुरू करा!",
+    "exportChat": "चॅट निर्यात करा",
+    "deleteChat": "चॅट हटवा",
+    "confirmDelete": "तुम्हाला खात्री आहे की ही चॅट हटवायची आहे?",
+    "chatExported": "चॅट यशस्वीरित्या निर्यात केली",
+    "chatDeleted": "चॅट यशस्वीरित्या हटवली"
+  },
+  "sidebar": {
+    "chats": "चॅट्स",
+    "recent": "अलीकडील",
+    "all": "सर्व चॅट्स",
+    "searchChats": "चॅट्स शोधा...",
+    "noChats": "कोणतीही चॅट सापडली नाही",
+    "toggleSidebar": "साइडबार टॉगल करा"
+  },
+  "quickActions": {
+    "title": "त्वरित कृती",
+    "searchDTC": "🔍 DTC शोधा",
+    "searchDTCDesc": "डायग्नोस्टिक कोड शोधा",
+    "systemCheck": "📊 सिस्टम तपासणी",
+    "systemCheckDesc": "वाहन सिस्टम तपासा",
+    "troubleshoot": "🔧 समस्या सोडवणे",
+    "troubleshootDesc": "चरण-दर-चरण मार्गदर्शन",
+    "generateReport": "📋 अहवाल तयार करा",
+    "generateReportDesc": "डायग्नोस्टिक अहवाल तयार करा"
+  },
+  "exampleQuestions": {
+    "title": "उदाहरण प्रश्न",
+    "commonDTCs": "सामान्य DTC",
+    "symptoms": "लक्षणे",
+    "quickSearch": "त्वरित शोध",
+    "examples": {
+      "dtc1": "B1087 चे कारण काय आहे?",
+      "dtc2": "B155A-01 ची लक्षणे",
+      "symptom1": "सीट हलवण्याची समस्या",
+      "symptom2": "LIN बस संप्रेषण त्रुटी",
+      "search1": "B108 (आंशिक कोड)",
+      "search2": "इलेक्ट्रिकल फॉल्ट"
+    }
+  },
+  "diagnostic": {
+    "dtcCode": "DTC कोड",
+    "description": "विवरण",
+    "symptoms": "लक्षणे",
+    "causes": "कारणे",
+    "solutions": "उपाय",
+    "wiring": "वायरिंग",
+    "connector": "कनेक्टर",
+    "component": "घटक",
+    "pageNumber": "पृष्ठ {{number}}",
+    "noImages": "कोणतीही प्रतिमा उपलब्ध नाही",
+    "confidence": "विश्वास",
+    "searchMethod": "शोध पद्धत"
+  },
+  "notifications": {
+    "messageSent": "संदेश यशस्वीरित्या पाठवला",
+    "messageError": "संदेश पाठवण्यात अयशस्वी",
+    "exportSuccess": "चॅट यशस्वीरित्या निर्यात केली",
+    "exportError": "चॅट निर्यात करण्यात अयशस्वी",
+    "deleteSuccess": "चॅट यशस्वीरित्या हटवली",
+    "deleteError": "चॅट हटवण्यात अयशस्वी"
+  },
+  "keyboard": {
+    "shortcuts": "कीबोर्ड शॉर्टकट",
+    "sendMessage": "संदेश पाठवा: Ctrl+Enter",
+    "newChat": "नवीन चॅट: Ctrl+N",
+    "toggleSidebar": "साइडबार टॉगल: Ctrl+B",
+    "searchChats": "चॅट्स शोधा: Ctrl+K",
+    "closeModal": "मॉडल बंद करा: Escape"
+  },
+  "language": {
+    "title": "भाषा",
+    "english": "English",
+    "hindi": "हिंदी",
+    "marathi": "मराठी",
+    "selectLanguage": "भाषा निवडा",
+    "currentLanguage": "सध्याची भाषा"
+  },
+  "mode": {
+    "sample": "🧪 नमुना मोड",
+    "real": "🔐 वास्तविक मोड",
+    "switchMode": "मोड बदला",
+    "sampleModeDesc": "चाचणीसाठी नमुना डेटा वापरणे",
+    "realModeDesc": "वास्तविक डायग्नोस्टिक डेटा वापरणे"
+  },
+  "vehicle": {
+    "make": "निर्माता",
+    "model": "मॉडेल",
+    "year": "वर्ष",
+    "vin": "VIN",
+    "vehicleInfo": "वाहन माहिती"
+  }
+} 

@@ -3,6 +3,8 @@ SZM_ DTC_Troubleshooting_Guide_V1.4_main_v2.txt
 SZM_ DTC_Troubleshooting_Guide_V1.4_main_v2.json
 *.txt
 *.json
+# Exception: Allow translation files for i18n
+!dianav-frontend/src/locales/*.json
 data/
 dtc_data/
 layouts/
