@@ -33,7 +33,7 @@ function Stop-ProcessOnPort {
     }
 }
 
-# Check and kill existing processes on ports 8000 and 3000
+# Check and kill existing processes on ports 8000, 3000, and 11434 (Ollama)
 Write-Host "Checking for existing processes..." -ForegroundColor Cyan
 
 if (Test-Port -Port 8000) {
@@ -44,6 +44,29 @@ if (Test-Port -Port 8000) {
 if (Test-Port -Port 3000) {
     Write-Host "Port 3000 is in use. Stopping existing frontend..." -ForegroundColor Yellow
     Stop-ProcessOnPort -Port 3000
+}
+
+if (Test-Port -Port 11434) {
+    Write-Host "Port 11434 is in use. Ollama is already running..." -ForegroundColor Green
+} else {
+    Write-Host "Starting Ollama LLM Server..." -ForegroundColor Cyan
+    Start-Process powershell -ArgumentList "-NoExit", "-Command", "ollama serve" -WindowStyle Normal
+    Start-Sleep -Seconds 3
+}
+
+# Ensure Llama 3.2:3b model is available
+Write-Host "Checking for Llama 3.2:3b model..." -ForegroundColor Cyan
+try {
+    $modelCheck = ollama list | Select-String "llama3.2:3b"
+    if ($modelCheck) {
+        Write-Host "Llama 3.2:3b model is available" -ForegroundColor Green
+    } else {
+        Write-Host "Pulling Llama 3.2:3b model (this may take a few minutes)..." -ForegroundColor Yellow
+        Start-Process powershell -ArgumentList "-NoExit", "-Command", "ollama pull llama3.2:3b" -WindowStyle Normal
+        Start-Sleep -Seconds 5
+    }
+} catch {
+    Write-Host "Warning: Could not check/pull Llama model. Make sure Ollama is installed." -ForegroundColor Yellow
 }
 
 # Start Backend
@@ -101,6 +124,7 @@ Write-Host ""
 Write-Host "Tips:" -ForegroundColor Cyan
 Write-Host "   The frontend will automatically open in your browser" -ForegroundColor White
 Write-Host "   Try asking: 'What is DTC B1087?' to test the system" -ForegroundColor White
+Write-Host "   Try asking general questions like 'How are you?' or 'What's the weather?'" -ForegroundColor White
 Write-Host "   Press Ctrl+C in the server windows to stop them" -ForegroundColor White
 Write-Host ""
 Write-Host "Security: All diagnostic images are processed in memory only" -ForegroundColor Yellow
@@ -112,8 +136,9 @@ try {
     while ($true) {
         $backendStatus = if (Test-Port -Port 8000) { "OK" } else { "DOWN" }
         $frontendStatus = if (Test-Port -Port 3000) { "OK" } else { "DOWN" }
+        $ollamaStatus = if (Test-Port -Port 11434) { "OK" } else { "DOWN" }
         
-        Write-Host "Backend: $backendStatus | Frontend: $frontendStatus" -ForegroundColor White
+        Write-Host "Backend: $backendStatus | Frontend: $frontendStatus | Ollama: $ollamaStatus" -ForegroundColor White
         Start-Sleep -Seconds 5
     }
 }

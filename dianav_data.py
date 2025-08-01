@@ -143,8 +143,8 @@ class ImageExtractor:
         page_area = page_width * page_height
         area_ratio = image_area / page_area
         
-        # Should be between 5% and 50% of page area
-        if area_ratio < 0.05 or area_ratio > 0.5:
+        # Should be between 5% and 60% of page area (increased from 50% to 60%)
+        if area_ratio < 0.05 or area_ratio > 0.6:
             print(f"DEBUG: Rejected - Bad area ratio: {area_ratio}")
             return False
             
@@ -250,12 +250,28 @@ def parse_dtc_txt(txt_path: str, pdf_path: Optional[str] = None, json_path: Opti
         image_extractor.open_pdf()
         image_extractor.load_json_data()
     
-    for match in DTC_BLOCK_PATTERN.finditer(content):
+    # Find all DTC blocks
+    all_matches = list(DTC_BLOCK_PATTERN.finditer(content))
+    
+    for match in all_matches:
         dtc_code_line = match.group(1).strip()
         block = match.group(2).strip()
         
-        # Extract just the DTC code (e.g., B1087, B155A-01, etc.)
-        dtc_code = dtc_code_line.split()[0]
+        # Extract the full DTC code line and clean it up
+        # e.g., "B155A – 01:- General Electrical Failure..." should become "B155A-01"
+        
+        # Fix encoding issues first
+        dtc_code = dtc_code_line.replace('â', '–')  # Fix en dash encoding
+        dtc_code = dtc_code.replace('–', '-')  # Convert en dash to regular dash
+        
+        # Handle cases where there are spaces and colons in the DTC code
+        # e.g., "B155A – 01:-" should become "B155A-01"
+        dtc_code = re.sub(r'\s+', '', dtc_code)  # Remove all spaces
+        dtc_code = re.sub(r':-.*$', '', dtc_code)  # Remove ":--" and everything after
+        dtc_code = re.sub(r':.*$', '', dtc_code)  # Remove ":" and everything after
+        
+        # Remove any remaining trailing punctuation or extra characters
+        dtc_code = re.sub(r'[^\w\-]', '', dtc_code)
         
         # Parse image references
         images = parse_image_references(block)

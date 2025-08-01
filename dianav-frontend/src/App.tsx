@@ -1,7 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { Analytics } from '@vercel/analytics/react';
+import { useTranslation } from 'react-i18next';
+import i18n from './i18n';
 import './App.css';
+import LanguageSwitcher from './components/LanguageSwitcher';
+import './components/LanguageSwitcher.css';
 
 interface ChatMessage {
   sender: 'user' | 'ai';
@@ -44,23 +48,24 @@ interface ApiResponse {
 
 // Enhanced example questions with categories
 const exampleQuestions = [
-  { category: 'Common DTCs', questions: ['What causes B1087?', 'B155A-01 symptoms'] },
-  { category: 'Symptoms', questions: ['Seat movement problem', 'LIN bus communication error'] },
-  { category: 'Quick Search', questions: ['B108 (partial code)', 'Electrical fault'] },
+  { category: 'Common DTCs', questions: ['What causes B1087?', 'B155A-01 symptoms'], tKey: 'commonDTCs' },
+  { category: 'Symptoms', questions: ['Seat movement problem', 'LIN bus communication error'], tKey: 'symptoms' },
+  { category: 'Quick Search', questions: ['B108 (partial code)', 'Electrical fault'], tKey: 'quickSearch' },
 ];
 
 // Quick actions for common diagnostic tasks
 const quickActions = [
-  { label: '🔍 Search DTC', action: 'search_dtc', description: 'Find diagnostic codes' },
-  { label: '📊 System Check', action: 'system_check', description: 'Check vehicle systems' },
-  { label: '🔧 Troubleshoot', action: 'troubleshoot', description: 'Step-by-step guidance' },
-  { label: '📋 Generate Report', action: 'generate_report', description: 'Create diagnostic report' },
+  { label: '🔍 Search DTC', action: 'search_dtc', description: 'Find diagnostic codes', tKey: 'searchDTC' },
+  { label: '📊 System Check', action: 'system_check', description: 'Check vehicle systems', tKey: 'systemCheck' },
+  { label: '🔧 Troubleshoot', action: 'troubleshoot', description: 'Step-by-step guidance', tKey: 'troubleshoot' },
+  { label: '📋 Generate Report', action: 'generate_report', description: 'Create diagnostic report', tKey: 'generateReport' },
 ];
 
 function App() {
+  const { t } = useTranslation();
   const [chats, setChats] = useState<ChatSession[]>([{
     id: '1',
-    heading: 'New Chat',
+    heading: t('common.newChat'),
     messages: [],
     createdAt: new Date(),
     lastModified: new Date(),
@@ -72,7 +77,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<DiagnosticImage | null>(null);
   const [showImageModal, setShowImageModal] = useState(false);
-  const [showQuickActions, setShowQuickActions] = useState(false);
+  const [showQuickActions, setShowQuickActions] = useState(window.innerWidth <= 768);
   const [searchFilter, setSearchFilter] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [darkMode, setDarkMode] = useState(false);
@@ -81,6 +86,21 @@ function App() {
   const [welcomeHeight, setWelcomeHeight] = useState(0);
   const welcomeRef = useRef<HTMLDivElement | null>(null);
   const [chatWindowClass, setChatWindowClass] = useState('');
+
+  // Update chat headings when language changes
+  useEffect(() => {
+    const handleLanguageChange = () => {
+      setChats(prevChats => 
+        prevChats.map(chat => ({
+          ...chat,
+          heading: chat.heading === 'New Chat' ? t('common.newChat') : chat.heading
+        }))
+      );
+    };
+
+    window.addEventListener('languageChanged', handleLanguageChange);
+    return () => window.removeEventListener('languageChanged', handleLanguageChange);
+  }, [t]);
 
   const activeChat = chats.find(c => c.id === activeChatId) || {
     id: activeChatId,
@@ -272,6 +292,9 @@ function App() {
       } else if (!isMobile && !sidebarOpen) {
         setSidebarOpen(true);
       }
+      
+      // Update Quick Actions visibility based on screen size
+      setShowQuickActions(isMobile);
     };
 
     const isMobile = window.innerWidth <= 768;
@@ -325,6 +348,17 @@ function App() {
   // Handle mobile sidebar toggle
   const handleMobileSidebarToggle = () => {
     setSidebarOpen(!sidebarOpen);
+  };
+
+  // Enhanced mobile sidebar handling
+  const handleSidebarToggle = () => {
+    if (window.innerWidth <= 768) {
+      // Mobile: toggle sidebar with slide animation
+      setSidebarOpen(!sidebarOpen);
+    } else {
+      // Desktop: use existing behavior
+      setSidebarOpen(!sidebarOpen);
+    }
   };
 
   // Show keyboard shortcuts help
@@ -432,12 +466,18 @@ Tab: Focus input field`;
 
   const sendMessageToBackend = async (message: string): Promise<ApiResponse> => {
     try {
+      // Get current language from i18n
+      const currentLanguage = i18n.language || 'en';
+      
       const response = await fetch('http://localhost:8000/query', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ query: message }),
+        body: JSON.stringify({ 
+          query: message,
+          language: currentLanguage
+        }),
       });
       
       if (!response.ok) {
@@ -654,7 +694,7 @@ Tab: Focus input field`;
     <div className={`dianav-app-wide${sidebarOpen ? '' : ' sidebar-collapsed'}${darkMode ? ' dark-mode' : ''}`}>
       <aside className={`dianav-sidebar${sidebarOpen ? ' open' : ' collapsed'}`}>
         <div className="dianav-sidebar-toggle-row">
-          <button className="dianav-sidebar-toggle" onClick={handleMobileSidebarToggle}>
+          <button className="dianav-sidebar-toggle" onClick={handleSidebarToggle}>
             {sidebarOpen ? '<' : '>'}
           </button>
           <button 
@@ -668,9 +708,9 @@ Tab: Focus input field`;
         
         <div className="dianav-newchat-row">
           {sidebarOpen ? (
-            <button className="dianav-newchat-btn" onClick={handleNewChat}>+ New Chat</button>
+            <button className="dianav-newchat-btn" onClick={handleNewChat}>+ {t('common.newChat')}</button>
           ) : (
-            <button className="dianav-newchat-btn-collapsed" title="New Chat" onClick={handleNewChat}>+</button>
+                          <button className="dianav-newchat-btn-collapsed" title={t('common.newChat')} onClick={handleNewChat}>+</button>
           )}
         </div>
         
@@ -724,6 +764,7 @@ Tab: Focus input field`;
             <div className="dianav-title">DIAGNOSTIC NAVIGATOR</div>
             <div className="dianav-ai-label">AI Assistant</div>
             <div className="dianav-header-actions">
+              <LanguageSwitcher />
               <button 
                 className="dianav-quick-actions-btn"
                 onClick={() => setShowQuickActions(!showQuickActions)}
@@ -736,7 +777,7 @@ Tab: Focus input field`;
           
           {showQuickActions && (
             <div className="dianav-quick-actions-panel">
-              <h3>Quick Actions</h3>
+              <h3>{t('quickActions.title')}</h3>
               <div className="dianav-quick-actions-grid">
                 {quickActions.map((action, index) => (
                   <button
@@ -745,8 +786,8 @@ Tab: Focus input field`;
                     onClick={() => handleQuickAction(action.action)}
                   >
                     <div className="dianav-quick-action-icon">{action.label.split(' ')[0]}</div>
-                    <div className="dianav-quick-action-label">{action.label.split(' ').slice(1).join(' ')}</div>
-                    <div className="dianav-quick-action-desc">{action.description}</div>
+                    <div className="dianav-quick-action-label">{t(`quickActions.${action.tKey}`)}</div>
+                    <div className="dianav-quick-action-desc">{t(`quickActions.${action.tKey}Desc`)}</div>
                   </button>
                 ))}
               </div>
@@ -759,13 +800,13 @@ Tab: Focus input field`;
               ref={welcomeRef}
               style={{ pointerEvents: showWelcome ? 'auto' : 'none' }}
             >
-              <h1 className="dianav-h1">Hello! I'm your Diagnostic Assistant.</h1>
-              <div className="dianav-subtitle">How can I help you today?</div>
+              <h1 className="dianav-h1">{t('chat.welcome')}</h1>
+              <div className="dianav-subtitle">{t('chat.welcomeSubtitle')}</div>
               
               <div className="dianav-search-filters">
                 <input
                   type="text"
-                  placeholder="Filter examples..."
+                  placeholder={t('common.search')}
                   value={searchFilter}
                   onChange={(e) => setSearchFilter(e.target.value)}
                   className="dianav-filter-input"
@@ -776,9 +817,9 @@ Tab: Focus input field`;
                   className="dianav-category-select"
                 >
                   <option value="all">All Categories</option>
-                  <option value="Common DTCs">Common DTCs</option>
-                  <option value="Symptoms">Symptoms</option>
-                  <option value="Quick Search">Quick Search</option>
+                  <option value="Common DTCs">{t('exampleQuestions.commonDTCs')}</option>
+                  <option value="Symptoms">{t('exampleQuestions.symptoms')}</option>
+                  <option value="Quick Search">{t('exampleQuestions.quickSearch')}</option>
                 </select>
               </div>
               
@@ -828,7 +869,7 @@ Tab: Focus input field`;
                         <span></span>
                         <span></span>
                       </div>
-                      <p>Processing your diagnostic query...</p>
+                      <p>{t('chat.typing')}</p>
                     </div>
                   </div>
                 )}
@@ -838,14 +879,14 @@ Tab: Focus input field`;
               <form className="dianav-input-row" onSubmit={handleSend} autoComplete="off">
                 <input
                   type="text"
-                  placeholder="Enter your message or DTC code..."
+                  placeholder={t('chat.placeholder')}
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   disabled={isLoading}
                   autoFocus
                 />
                 <button type="submit" disabled={isLoading}>
-                  {isLoading ? 'Sending...' : 'Send'}
+                  {isLoading ? t('common.loading') : t('common.send')}
                 </button>
               </form>
               
@@ -854,7 +895,7 @@ Tab: Focus input field`;
                   <span>Powered by Tata Motors</span>
                   <div className="dianav-footer-actions">
                     <button className="dianav-footer-btn" onClick={() => exportChat(activeChatId)}>
-                      Export Chat
+                      {t('chat.exportChat')}
                     </button>
                     <button className="dianav-footer-btn" onClick={() => window.print()}>
                       Print Report
@@ -871,7 +912,7 @@ Tab: Focus input field`;
         <div className="dianav-image-modal-overlay">
           <div className="dianav-image-modal-content">
             <img src={selectedImage.image_data} alt={selectedImage.description} />
-            <p>{selectedImage.description} (Page {selectedImage.page_num + 1})</p>
+            <p>{selectedImage.description} ({t('diagnostic.pageNumber', { number: selectedImage.page_num + 1 })})</p>
             <button onClick={closeImageModal} className="dianav-close-button">X</button>
           </div>
         </div>

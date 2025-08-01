@@ -33,12 +33,15 @@ try:
     if os.path.exists(PDF_PATH) and os.path.exists(TXT_PATH):
         DTC_INDEX = parse_dtc_txt(TXT_PATH, PDF_PATH, JSON_PATH)
         print(f"Loaded DTC data with PDF image extraction support using JSON bounding boxes")
+        print(f"Total DTCs loaded: {len(DTC_INDEX)}")
     else:
         DTC_INDEX = parse_dtc_txt(SAMPLE_PATH)
         print(f"Loaded sample DTC data (PDF not available)")
+        print(f"Total DTCs loaded: {len(DTC_INDEX)}")
 except Exception as e:
     print(f"Error loading DTC data: {e}")
     DTC_INDEX = parse_dtc_txt(SAMPLE_PATH)
+    print(f"Total DTCs loaded from sample: {len(DTC_INDEX)}")
 
 # Initialize local vector search
 try:
@@ -55,20 +58,35 @@ except Exception as e:
 
 class QueryRequest(BaseModel):
     query: str
+    language: str = "en"  # Default to English
 
 class ImageResponse(BaseModel):
     image_data: str
     description: str
     page_num: int
 
+class TranslationRequest(BaseModel):
+    text: str
+    target_language: str
+    source_language: str = "en"
+
 def find_dtc_code_in_query(query: str):
     """Enhanced DTC search that uses vector search as primary method"""
     import re
     
     # First, try exact DTC code patterns (e.g., B1087, B155A-01, etc.)
-    match = re.search(r"([A-Z][0-9A-Z]{3,}-?\d{0,2})", query)
+    # Improved pattern to handle various DTC code formats
+    match = re.search(r"([A-Z][0-9A-Z]{3,}[–-]?\d{0,2})", query)
     if match:
-        return match.group(1)
+        dtc_code = match.group(1)
+        # Clean up the matched code to match our stored format
+        dtc_code = dtc_code.replace('â', '–')  # Fix en dash encoding
+        dtc_code = dtc_code.replace('–', '-')  # Convert en dash to regular dash
+        dtc_code = re.sub(r'\s+', '', dtc_code)  # Remove all spaces
+        dtc_code = re.sub(r':-.*$', '', dtc_code)  # Remove ":--" and everything after
+        dtc_code = re.sub(r':.*$', '', dtc_code)  # Remove ":" and everything after
+        dtc_code = re.sub(r'[^\w\-]', '', dtc_code)
+        return dtc_code
     
     # Use vector search as primary method for semantic understanding
     if vector_search:
@@ -84,10 +102,36 @@ def find_dtc_code_in_query(query: str):
     # Fallback to fuzzy matching if vector search fails
     query_lower = query.lower()
     
+    # Clean up the query for better matching - handle spaces and dashes
+    query_clean = re.sub(r'[^\w\-]', '', query_lower)
+    
+    # Also try matching with spaces removed from query
+    query_no_spaces = re.sub(r'\s+', '', query_lower)
+    
+    # Debug logging
+    print(f"DEBUG: Query: '{query}' -> query_clean: '{query_clean}' -> query_no_spaces: '{query_no_spaces}'")
+    
     # Try partial DTC code matching (e.g., "B108" matches "B1087")
     for dtc_code in DTC_INDEX.keys():
-        if dtc_code.lower().startswith(query_lower) or query_lower.startswith(dtc_code.lower()):
+        dtc_lower = dtc_code.lower()
+        
+        # Check multiple variations of the query
+        if (dtc_lower.startswith(query_clean) or 
+            query_clean.startswith(dtc_lower) or
+            dtc_lower in query_clean or
+            query_clean in dtc_lower or
+            dtc_lower.startswith(query_no_spaces) or
+            query_no_spaces.startswith(dtc_lower) or
+            dtc_lower in query_no_spaces or
+            query_no_spaces in dtc_lower or
+            # Handle cases where user types with spaces like "B2203 - 15"
+            dtc_lower == query_no_spaces or
+            query_no_spaces == dtc_lower):
+            print(f"DEBUG: Found match! '{query}' -> '{dtc_code}'")
             return dtc_code
+    
+    print(f"DEBUG: No match found for '{query}'")
+    return None
     
     return None
 
@@ -106,37 +150,138 @@ def call_ollama_llm(prompt: str, model: str = "llama3.2:3b") -> str:
         print(f"Error calling Ollama LLM: {e}")
         return "[AI Error: Could not generate a human-like response. Please check Ollama is running.]"
 
+def translate_text_with_llama(text: str, target_language: str, source_language: str = "en") -> str:
+    """Translate text using Llama 3 for dynamic translation support."""
+    try:
+        # Language mapping for better prompts
+        language_names = {
+            "hi": "Hindi",
+            "mr": "Marathi",
+            "en": "English"
+        }
+        
+        target_lang_name = language_names.get(target_language, target_language)
+        source_lang_name = language_names.get(source_language, source_language)
+        
+        prompt = f"""You are a professional translator. Translate the following text from {source_lang_name} to {target_lang_name}.
+
+Text to translate: "{text}"
+
+Please provide only the translated text without any explanations or additional text. If the text contains technical automotive terms, maintain their technical accuracy while translating.
+
+Translation:"""
+        
+        response = call_ollama_llm(prompt, model="llama3.2:3b")
+        
+        # Clean up the response
+        response = response.strip()
+        if response.startswith('"') and response.endswith('"'):
+            response = response[1:-1]
+        
+        return response if response else text
+        
+    except Exception as e:
+        print(f"Translation error: {e}")
+        return text  # Return original text if translation fails
+
+def translate_ai_response(text: str, target_language: str) -> str:
+    """Translate AI response while preserving numbers, DTC codes, and technical terms."""
+    if target_language == "en":
+        return text
+    
+    try:
+        # Preserve numbers, DTC codes, and technical terms by temporarily replacing them
+        import re
+        
+        # Store DTC codes (e.g., B1087, B155A-01)
+        dtc_codes = re.findall(r'[A-Z][0-9A-Z]{3,}-?\d{0,2}', text)
+        dtc_placeholders = [f"__DTC_{i}__" for i in range(len(dtc_codes))]
+        
+        # Store numbers (including decimals, percentages)
+        numbers = re.findall(r'\d+\.?\d*%?', text)
+        number_placeholders = [f"__NUM_{i}__" for i in range(len(numbers))]
+        
+        # Store technical terms that should not be translated
+        technical_terms = [
+            'LIN', 'CAN', 'ECU', 'ABS', 'ESP', 'TCS', 'VIN', 'OBD', 'DTC',
+            'PCM', 'BCM', 'TCM', 'SRS', 'TPMS', 'CVT', 'ATF', 'MAF', 'MAP',
+            'O2', 'OBD-II', 'UDS', 'KWP', 'ISO', 'J1939', 'J1850'
+        ]
+        
+        # Create a mapping for technical terms
+        term_mappings = {}
+        for term in technical_terms:
+            if term in text:
+                placeholder = f"__TECH_{term}__"
+                term_mappings[placeholder] = term
+                text = text.replace(term, placeholder)
+        
+        # Replace DTC codes with placeholders
+        for i, dtc in enumerate(dtc_codes):
+            text = text.replace(dtc, dtc_placeholders[i])
+        
+        # Replace numbers with placeholders
+        for i, num in enumerate(numbers):
+            text = text.replace(num, number_placeholders[i])
+        
+        # Translate the text
+        translated_text = translate_text_with_llama(text, target_language, "en")
+        
+        # Restore DTC codes
+        for i, placeholder in enumerate(dtc_placeholders):
+            if i < len(dtc_codes):
+                translated_text = translated_text.replace(placeholder, dtc_codes[i])
+        
+        # Restore numbers
+        for i, placeholder in enumerate(number_placeholders):
+            if i < len(numbers):
+                translated_text = translated_text.replace(placeholder, numbers[i])
+        
+        # Restore technical terms
+        for placeholder, term in term_mappings.items():
+            translated_text = translated_text.replace(placeholder, term)
+        
+        return translated_text
+        
+    except Exception as e:
+        print(f"AI response translation error: {e}")
+        return text
+
 @app.get("/health")
 def health_check():
     return {"status": "ok", "dtc_count": len(DTC_INDEX)}
 
-def handle_quick_action_request(query: str) -> dict:
+def handle_quick_action_request(query: str, language: str = "en") -> dict:
     """Handle quick action requests with intelligent responses based on the action type."""
     query_lower = query.lower()
     
     # Determine which quick action was requested
     if "need help finding diagnostic" in query_lower or "finding diagnostic codes" in query_lower:
-        return handle_search_dtc_request()
+        return handle_search_dtc_request(language)
     elif "want to check my vehicle" in query_lower or "check vehicle systems" in query_lower:
-        return handle_system_check_request()
+        return handle_system_check_request(language)
     elif "need step-by-step troubleshooting" in query_lower or "troubleshooting guidance" in query_lower:
-        return handle_troubleshoot_request()
+        return handle_troubleshoot_request(language)
     elif "want to generate a diagnostic report" in query_lower or "generate diagnostic report" in query_lower:
-        return handle_generate_report_request()
+        return handle_generate_report_request(language)
     elif "need help with a specific vehicle component" in query_lower or "vehicle component" in query_lower:
-        return handle_component_search_request()
+        return handle_component_search_request(language)
     elif "need to analyze symptoms" in query_lower or "analyze symptoms" in query_lower:
-        return handle_symptom_analysis_request()
+        return handle_symptom_analysis_request(language)
     else:
         # Fallback for unrecognized quick actions
+        fallback_response = "I'm here to help with your vehicle diagnostics! What specific issue are you experiencing?"
+        if language != "en":
+            fallback_response = translate_ai_response(fallback_response, language)
+        
         return {
-            "conversational": "I'm here to help with your vehicle diagnostics! What specific issue are you experiencing?",
+            "conversational": fallback_response,
             "structured": "Quick action request received. Please provide more details about your vehicle issue.",
             "images": [],
             "has_images": False
         }
 
-def handle_search_dtc_request() -> dict:
+def handle_search_dtc_request(language: str = "en") -> dict:
     """Handle DTC search quick action."""
     conversational = """🔍 **DTC Code Search Assistant**
 
@@ -161,6 +306,10 @@ I can help you find and understand diagnostic trouble codes! Here's how I can as
 
 What DTC code or problem would you like me to help you with?"""
     
+    # Translate the response if language is not English
+    if language != "en":
+        conversational = translate_ai_response(conversational, language)
+    
     return {
         "conversational": conversational,
         "structured": "DTC Search Assistant - Ready to help find and explain diagnostic codes",
@@ -168,7 +317,7 @@ What DTC code or problem would you like me to help you with?"""
         "has_images": False
     }
 
-def handle_system_check_request() -> dict:
+def handle_system_check_request(language: str = "en") -> dict:
     """Handle system check quick action."""
     conversational = """📊 **Vehicle System Check Assistant**
 
@@ -203,6 +352,10 @@ I can help you check various vehicle systems! Here are the main systems I can di
 • Describe symptoms (e.g., "My car won't start")
 • Ask about a specific component (e.g., "Check my battery")"""
     
+    # Translate the response if language is not English
+    if language != "en":
+        conversational = translate_ai_response(conversational, language)
+    
     return {
         "conversational": conversational,
         "structured": "Vehicle System Check Assistant - Ready to diagnose various vehicle systems",
@@ -210,7 +363,7 @@ I can help you check various vehicle systems! Here are the main systems I can di
         "has_images": False
     }
 
-def handle_troubleshoot_request() -> dict:
+def handle_troubleshoot_request(language: str = "en") -> dict:
     """Handle troubleshooting quick action."""
     conversational = """🔧 **Step-by-Step Troubleshooting Assistant**
 
@@ -237,6 +390,10 @@ I'm here to guide you through troubleshooting your vehicle issues step by step!
 
 **What symptoms are you experiencing?** Let me guide you through the diagnostic process!"""
     
+    # Translate the response if language is not English
+    if language != "en":
+        conversational = translate_ai_response(conversational, language)
+    
     return {
         "conversational": conversational,
         "structured": "Troubleshooting Assistant - Ready to provide step-by-step diagnostic guidance",
@@ -244,7 +401,7 @@ I'm here to guide you through troubleshooting your vehicle issues step by step!
         "has_images": False
     }
 
-def handle_generate_report_request() -> dict:
+def handle_generate_report_request(language: str = "en") -> dict:
     """Handle diagnostic report generation quick action."""
     conversational = """📋 **Diagnostic Report Generator**
 
@@ -275,6 +432,10 @@ I can help you generate comprehensive diagnostic reports! Here's what I can incl
 
 **What information should I include in your diagnostic report?** Tell me about your vehicle and the issues you're dealing with!"""
     
+    # Translate the response if language is not English
+    if language != "en":
+        conversational = translate_ai_response(conversational, language)
+    
     return {
         "conversational": conversational,
         "structured": "Diagnostic Report Generator - Ready to create comprehensive diagnostic reports",
@@ -282,7 +443,7 @@ I can help you generate comprehensive diagnostic reports! Here's what I can incl
         "has_images": False
     }
 
-def handle_component_search_request() -> dict:
+def handle_component_search_request(language: str = "en") -> dict:
     """Handle component search quick action."""
     conversational = """🔧 **Vehicle Component Search Assistant**
 
@@ -316,6 +477,10 @@ I can help you find information about specific vehicle components! Here are the 
 • Describe the problem (e.g., "My seat won't move")
 • Ask about a system (e.g., "Brake system components")"""
     
+    # Translate the response if language is not English
+    if language != "en":
+        conversational = translate_ai_response(conversational, language)
+    
     return {
         "conversational": conversational,
         "structured": "Component Search Assistant - Ready to help with specific vehicle components",
@@ -323,7 +488,7 @@ I can help you find information about specific vehicle components! Here are the 
         "has_images": False
     }
 
-def handle_symptom_analysis_request() -> dict:
+def handle_symptom_analysis_request(language: str = "en") -> dict:
     """Handle symptom analysis quick action."""
     conversational = """🚨 **Symptom Analysis Assistant**
 
@@ -354,6 +519,10 @@ I can help you analyze symptoms and identify potential causes! Here's how I can 
 
 **Describe the symptoms you're experiencing in detail.** Include when they happen, how long they've been occurring, and any other relevant details!"""
     
+    # Translate the response if language is not English
+    if language != "en":
+        conversational = translate_ai_response(conversational, language)
+    
     return {
         "conversational": conversational,
         "structured": "Symptom Analysis Assistant - Ready to analyze symptoms and identify causes",
@@ -367,7 +536,7 @@ def query_dianav(request: QueryRequest):
     
     # Handle Quick Action requests first
     if any(phrase in query_lower for phrase in ["need help finding diagnostic", "want to check my vehicle", "need step-by-step troubleshooting", "want to generate a diagnostic report", "need help with a specific vehicle component", "need to analyze symptoms"]):
-        return handle_quick_action_request(request.query)
+        return handle_quick_action_request(request.query, request.language)
     
     # Handle DTC code queries
     dtc_code = find_dtc_code_in_query(request.query)
@@ -404,6 +573,10 @@ def query_dianav(request: QueryRequest):
         )
         conversational = call_ollama_llm(prompt)
         
+        # Translate the response if language is not English
+        if request.language != "en":
+            conversational = translate_ai_response(conversational, request.language)
+        
         # Extract images from the DTC data (already extracted during parsing)
         images = []
         if dtc.get('images'):
@@ -422,127 +595,7 @@ def query_dianav(request: QueryRequest):
             "has_images": len(images) > 0
         }
     else:
-        # Check for conversational responses like "no, that's not right"
-        query_lower = request.query.lower()
-        conversational_responses = {
-            # Technical corrections
-            "no": "😅 Oh, my bad! Let me try a different approach. Can you tell me more specifically what's happening with your car?",
-            "not right": "🤔 Hmm, I might have misunderstood. What exactly are you experiencing?",
-            "wrong": "😕 Sorry about that! Let me get this right - what's the actual issue you're dealing with?",
-            "not what i meant": "🙈 Got it! I was way off. Can you describe your car problem in a different way?",
-            "that's not it": "😅 Alright, let me start over. What's really going on with your vehicle?",
-            "incorrect": "🤷‍♂️ My mistake! Help me understand your car issue better.",
-            "nope": "😊 Fair enough! Let's try again - what's the problem you're trying to solve?",
-            "nah": "😄 Got it! What's the real issue here?",
-            "that's wrong": "🤦‍♂️ You're right, I messed up. What's actually happening?",
-            "not correct": "😅 My bad! Can you explain your car problem differently?",
-            
-            # Casual greetings and chat
-            "hey": "👋 Hey there! What's up?",
-            "hi": "😊 Hi! How's it going?",
-            "hello": "👋 Hello! Nice to chat with you!",
-            "sup": "🤙 What's up! How are you doing?",
-            "yo": "😎 Yo! What's good?",
-            "bro": "🤜🤛 Bro! What's happening?",
-            "dude": "🤙 Dude! How's it going?",
-            "man": "👨‍🔧 Hey man! What's up?",
-            "buddy": "🤝 Hey buddy! How are you?",
-            "mate": "🇬🇧 G'day mate! How's your day going?",
-            
-            # Random casual responses
-            "what": "🤔 What what? What are you thinking about?",
-            "huh": "😕 Huh? What's on your mind?",
-            "ok": "👍 Ok! What's up?",
-            "cool": "😎 Cool! What's going on?",
-            "nice": "👌 Nice! What's happening?",
-            "lol": "😄 Haha! That's funny!",
-            "haha": "😂 Funny! What's so funny?",
-            "omg": "😱 Oh my! What's the big news?",
-            "wow": "😲 Wow! What's so amazing?",
-            "seriously": "😐 Seriously though, what's up?",
-            
-            # Questions about the AI
-            "who are you": "🤖 I'm your AI assistant! I can help with car diagnostics, but I'm also just here to chat. What's up?",
-            "what are you": "🚗 I'm an AI! I'm pretty good with car stuff, but I can also just hang out and chat. What's on your mind?",
-            "how are you": "😊 I'm doing great, thanks for asking! How about you?",
-            "are you real": "🤖 I'm an AI assistant, but I'm real good at chatting! What's happening?",
-            "are you human": "👨‍🔧 Nope, I'm an AI, but I'm pretty friendly! What's going on?",
-            
-            # Random words/phrases
-            "test": "🧪 Testing what? What are you testing?",
-            "hello world": "🌍 Hello world! Nice to meet you!",
-            "random": "🎲 Random indeed! What's on your mind?",
-            "stuff": "📦 Stuff? What kind of stuff?",
-            "things": "🔧 Things? What things are you thinking about?",
-            "whatever": "🤷‍♂️ Whatever you say! What's going on?",
-            "idk": "🤔 You don't know? What are you trying to figure out?",
-            "maybe": "🤷‍♂️ Maybe? What are you thinking about?",
-            "probably": "🤔 Probably what? What's on your mind?",
-            "sure": "👍 Sure! What's up?",
-            
-            # Emojis and reactions
-            "😊": "😊 Smiling back! What's up?",
-            "😂": "😂 Haha! What's so funny?",
-            "😎": "😎 Cool! What's going on?",
-            "🤔": "🤔 Thinking about what?",
-            "😅": "😅 Sweating? What's stressing you out?",
-            "😱": "😱 Scared? What's the big deal?",
-            "👍": "👍 Thumbs up! What's good?",
-            "👎": "👎 Thumbs down? What's not working?",
-            "❤️": "❤️ Love you too! What's happening?",
-            "🔥": "🔥 Fire! What's hot?",
-        }
-        
-        # Check if user is saying something is wrong
-        for phrase, response in conversational_responses.items():
-            if phrase in query_lower:
-                return {
-                    "conversational": response,
-                    "structured": "",
-                    "images": [],
-                    "has_images": False
-                }
-        
-        # Check for longer conversational patterns
-        if any(word in query_lower for word in ["how's it going", "how are you doing", "what's up", "what's new"]):
-            return {
-                "conversational": "😊 I'm doing great! How about you? What's new in your world?",
-                "structured": "",
-                "images": [],
-                "has_images": False
-            }
-        
-        if any(word in query_lower for word in ["thanks", "thank you", "thx", "ty"]):
-            return {
-                "conversational": "😊 You're welcome! Happy to help with whatever you need!",
-                "structured": "",
-                "images": [],
-                "has_images": False
-            }
-        
-        if any(word in query_lower for word in ["bye", "goodbye", "see you", "later"]):
-            return {
-                "conversational": "👋 See you later! Have a great day! Come back anytime!",
-                "structured": "",
-                "images": [],
-                "has_images": False
-            }
-        
-        if any(word in query_lower for word in ["good", "great", "awesome", "amazing"]):
-            return {
-                "conversational": "😎 That's awesome! What's making it so great?",
-                "structured": "",
-                "images": [],
-                "has_images": False
-            }
-        
-        if any(word in query_lower for word in ["bad", "terrible", "awful", "horrible"]):
-            return {
-                "conversational": "😕 That sounds rough! What's going wrong?",
-                "structured": "",
-                "images": [],
-                "has_images": False
-            }
+        # Try vector search as fallback
         
         # Try vector search as fallback
         if vector_search:
@@ -584,6 +637,10 @@ def query_dianav(request: QueryRequest):
                             "Keep it friendly and easy to understand. Use emojis and conversational language!"
                         )
                         conversational = call_ollama_llm(prompt)
+                        
+                        # Translate the response if language is not English
+                        if request.language != "en":
+                            conversational = translate_ai_response(conversational, request.language)
                         
                         # Extract images from the DTC data (already extracted during parsing)
                         images = []
@@ -646,6 +703,10 @@ def query_dianav(request: QueryRequest):
 
 Just describe what's happening with your car, and I'll help you find the right diagnostic info! 😊"""
         
+        # Translate the response if language is not English
+        if request.language != "en":
+            conversational = translate_ai_response(conversational, request.language)
+        
         structured = "General conversation - no structured automotive data."
         return {
             "conversational": conversational,
@@ -689,9 +750,17 @@ def get_dtc_info(dtc_code: str):
 @app.get("/dtc-list")
 def get_dtc_list():
     """Get list of all available DTC codes"""
+    # Debug: Check which DTCs have images
+    dtcs_with_images = []
+    for dtc_code, dtc_data in DTC_INDEX.items():
+        if dtc_data.get('images') and len(dtc_data['images']) > 0:
+            dtcs_with_images.append(dtc_code)
+    
     return {
         "dtc_codes": list(DTC_INDEX.keys()),
-        "total_count": len(DTC_INDEX)
+        "total_count": len(DTC_INDEX),
+        "dtcs_with_images": dtcs_with_images,
+        "dtcs_with_images_count": len(dtcs_with_images)
     }
 
 @app.get("/search-dtc")
@@ -1017,6 +1086,35 @@ def analyze_symptoms(symptoms: str = ""):
         "results": results[:5],
         "confidence": "Medium"
     }
+
+@app.post("/translate")
+def translate_text(request: TranslationRequest):
+    """Translate text using Llama 3 for dynamic translation support."""
+    try:
+        translated_text = translate_text_with_llama(
+            request.text, 
+            request.target_language, 
+            request.source_language
+        )
+        
+        return {
+            "translated_text": translated_text,
+            "original_text": request.text,
+            "source_language": request.source_language,
+            "target_language": request.target_language,
+            "success": True
+        }
+        
+    except Exception as e:
+        print(f"Translation endpoint error: {e}")
+        return {
+            "translated_text": request.text,  # Return original text on error
+            "original_text": request.text,
+            "source_language": request.source_language,
+            "target_language": request.target_language,
+            "success": False,
+            "error": str(e)
+        }
 
 if __name__ == "__main__":
     import uvicorn
