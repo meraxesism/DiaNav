@@ -107,6 +107,7 @@ This code is licensed under the AGPL v3 License. Any internal or commercial use 
 **DiaNav** is a sophisticated AI-powered diagnostic assistant designed for automotive professionals. Built with modern web technologies and advanced AI integration, it provides intelligent troubleshooting guidance for diagnostic trouble codes (DTCs) and automotive systems.
 
 ### Key Features
+- 🌍 **Multi-Language Support**: Full internationalization with Hindi and Marathi translations
 - 🤖 **AI-Powered Diagnostics**: Local LLM integration with Ollama for conversational responses
 - 🎯 **Intelligent Quick Actions**: Smart handling of common diagnostic requests with structured responses
 - 🔍 **Semantic Vector Search**: Advanced search using sentence-transformers for natural language queries
@@ -121,6 +122,7 @@ This code is licensed under the AGPL v3 License. Any internal or commercial use 
 - 🚀 **One-Click Startup**: Automated deployment scripts for easy setup
 - 🎨 **Enhanced Responsive Design**: Optimized horizontal and vertical spacing for better usability
 - 🔧 **Advanced State Management**: Robust chat session handling with localStorage persistence
+- 🌐 **Language-Aware AI**: AI responses automatically translated while preserving technical terms
 
 ---
 
@@ -269,6 +271,75 @@ const getChatWindowClass = () => {
 
 .dianav-diagnostic-image:hover {
   transform: scale(1.02);
+}
+```
+
+---
+
+## 🌍 Multi-Language Support
+
+DiaNav now supports **full internationalization** with Hindi and Marathi translations, making it accessible to a wider range of automotive professionals.
+
+### Supported Languages
+- 🇺🇸 **English** - Primary language
+- 🇮🇳 **Hindi** - हिंदी
+- 🇮🇳 **Marathi** - मराठी
+
+### Key Features
+- 🌐 **Language Switcher**: Elegant dropdown with flag icons and native language names
+- 🤖 **AI Response Translation**: Automatic translation of AI responses while preserving technical terms
+- 📱 **UI Translation**: Complete interface translation including buttons, labels, and messages
+- 🔧 **Technical Term Preservation**: DTC codes, numbers, and technical terms remain unchanged
+- 💾 **Language Persistence**: Selected language saved in localStorage
+- ⚡ **Performance Optimized**: Translation caching for improved response times
+
+### Implementation Details
+```typescript
+// Language switcher component with flag icons
+const LanguageSwitcher: React.FC = () => {
+  const languages = [
+    { code: 'en', name: 'English', nativeName: 'English', flag: '🇺🇸' },
+    { code: 'hi', name: 'Hindi', nativeName: 'हिंदी', flag: '🇮🇳' },
+    { code: 'mr', name: 'Marathi', nativeName: 'मराठी', flag: '🇮🇳' }
+  ];
+  
+  const handleLanguageChange = (languageCode: string) => {
+    i18n.changeLanguage(languageCode);
+    localStorage.setItem('language', languageCode);
+  };
+};
+```
+
+### Backend Translation API
+```python
+def translate_ai_response(text: str, target_language: str) -> str:
+    """Translate AI response while preserving numbers, DTC codes, and technical terms."""
+    if target_language == "en":
+        return text
+    
+    # Preserve technical terms by temporarily replacing them
+    technical_terms = ['LIN', 'CAN', 'ECU', 'ABS', 'ESP', 'TCS', 'VIN', 'OBD', 'DTC']
+    # ... translation logic with term preservation
+    return translated_text
+```
+
+### Translation File Structure
+```json
+{
+  "common": {
+    "newChat": "New Chat",
+    "search": "Search",
+    "send": "Send"
+  },
+  "chat": {
+    "welcome": "Welcome to DiaNav",
+    "placeholder": "Ask about diagnostic codes, symptoms, or troubleshooting..."
+  },
+  "diagnostic": {
+    "dtcCode": "DTC Code",
+    "description": "Description",
+    "symptoms": "Symptoms"
+  }
 }
 ```
 
@@ -457,16 +528,27 @@ DiaNavv2/
 
 ## 🆕 Recent Improvements (Latest Update)
 
+### 🌍 Multi-Language Support (NEW!)
+- **Full Internationalization**: Complete Hindi and Marathi language support
+- **Language Switcher**: Elegant dropdown with flag icons and native language names
+- **AI Response Translation**: Automatic translation while preserving technical terms
+- **UI Translation**: Complete interface translation including all buttons and labels
+- **Technical Term Preservation**: DTC codes, numbers, and technical terms remain unchanged
+- **Language Persistence**: Selected language saved in localStorage
+- **Translation Caching**: Performance optimization with translation caching
+
 ### Enhanced AI Intelligence
 - **Intelligent Quick Actions**: Smart handling of common diagnostic requests with structured, professional responses
 - **Enhanced Response Quality**: Improved AI responses with detailed diagnostic explanations
 - **Advanced Error Handling**: Graceful fallbacks and user-friendly error messages
+- **Language-Aware Responses**: AI responses automatically translated based on user preference
 
 ### Improved User Interface
 - **Dynamic Chat Window**: Conditional vertical expansion for better response visibility
 - **Optimized Spacing**: Enhanced horizontal and vertical spacing for improved usability
 - **Dark Mode Support**: Theme toggle functionality with proper positioning
 - **Responsive Design**: Better layout adaptation for different screen sizes
+- **Language Switcher Integration**: Seamless language selection in header
 
 ### Advanced Session Management
 - **Persistent Chat Sessions**: Robust localStorage-based session persistence
@@ -479,6 +561,7 @@ DiaNavv2/
 - **Improved Accessibility**: Better keyboard navigation and user feedback
 - **Performance Optimization**: Efficient rendering and state updates
 - **Scalable Architecture**: Modular design ready for future enhancements
+- **Internationalization Ready**: Built with i18n best practices
 
 ---
 
@@ -489,7 +572,7 @@ DiaNavv2/
 - **Real-time Diagnostics**: Live vehicle data integration
 - **Mobile Application**: Cross-platform diagnostic tool
 - **Advanced Analytics**: Diagnostic pattern recognition
-- **Multi-language Support**: International automotive standards
+- **Additional Languages**: Support for more regional languages (Gujarati, Tamil, etc.)
 - **Voice Interface**: Speech-to-text and text-to-speech capabilities
 
 ### Technical Roadmap
@@ -519,6 +602,8 @@ DiaNavv2/
 - **Session Management**: Persistent chat sessions with export capabilities
 - **Error Handling**: Robust error management and user feedback
 - **Performance Optimization**: Efficient rendering and state updates
+- **Internationalization**: Multi-language support with react-i18next
+- **Translation Services**: Backend translation API with Llama 3
 
 ### Code Quality
 - **Clean Architecture**: Separation of concerns
