@@ -607,11 +607,28 @@ def query_dianav(request: QueryRequest):
             except Exception as e:
                 print(f"Vector search error: {e}")
         
-        # Fallback to keyword suggestions
-        available_dtcs = list(DTC_INDEX.keys())[:5]
-        dtc_list = ", ".join(available_dtcs)
+        # Use Llama 3 for general questions and conversation
+        general_prompt = (
+            f"User query: {request.query}\n\n"
+            "You are a friendly, knowledgeable AI assistant. You're particularly good at automotive diagnostics and car-related topics, but you can also chat about general topics, answer questions, and have casual conversations.\n\n"
+            "Guidelines:\n"
+            "- Be conversational and friendly, like talking to a friend\n"
+            "- If it's about cars, diagnostics, or automotive topics, use your expertise\n"
+            "- If it's a general question, answer it helpfully\n"
+            "- If it's casual conversation, be engaging and friendly\n"
+            "- Use emojis and conversational language\n"
+            "- Keep responses helpful and informative\n\n"
+            "Respond naturally to the user's query:"
+        )
         
-        conversational = f"""🤔 Hmm, I'm not sure I found the right DTC for your issue. Let me help you better!
+        conversational = call_ollama_llm(general_prompt)
+        
+        # If Llama 3 fails, fall back to keyword suggestions
+        if "[AI Error:" in conversational or "[No response from LLM]" in conversational:
+            available_dtcs = list(DTC_INDEX.keys())[:5]
+            dtc_list = ", ".join(available_dtcs)
+            
+            conversational = f"""🤔 Hmm, I'm not sure I found the right DTC for your issue. Let me help you better!
 
 **💡 Try asking like this:**
 • **Exact codes:** "B1087", "What causes B1087?"
@@ -629,7 +646,7 @@ def query_dianav(request: QueryRequest):
 
 Just describe what's happening with your car, and I'll help you find the right diagnostic info! 😊"""
         
-        structured = "No structured data found."
+        structured = "General conversation - no structured automotive data."
         return {
             "conversational": conversational,
             "structured": structured,
