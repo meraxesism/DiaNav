@@ -68,7 +68,7 @@ function App() {
   const [activeChatId, setActiveChatId] = useState('');
   const [input, setInput] = useState('');
   const [showWelcome, setShowWelcome] = useState(true);
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(window.innerWidth > 768);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState<DiagnosticImage | null>(null);
   const [showImageModal, setShowImageModal] = useState(false);
@@ -262,6 +262,70 @@ function App() {
     document.addEventListener('keydown', handleKeyboardShortcuts);
     return () => document.removeEventListener('keydown', handleKeyboardShortcuts);
   }, [activeChatId, showQuickActions]);
+
+  // Mobile touch gestures and responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile && sidebarOpen) {
+        setSidebarOpen(false);
+      } else if (!isMobile && !sidebarOpen) {
+        setSidebarOpen(true);
+      }
+    };
+
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+      // Add mobile-specific classes
+      document.body.classList.add('mobile-device');
+      
+      // Touch gesture handling for sidebar
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
+      const handleTouchStart = (e: TouchEvent) => {
+        touchStartX = e.changedTouches[0].screenX;
+      };
+      
+      const handleTouchEnd = (e: TouchEvent) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      };
+      
+      const handleSwipe = () => {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+          // Swipe left - close sidebar
+          setSidebarOpen(false);
+        } else if (touchEndX > touchStartX + swipeThreshold) {
+          // Swipe right - open sidebar
+          setSidebarOpen(true);
+        }
+      };
+      
+      document.addEventListener('touchstart', handleTouchStart);
+      document.addEventListener('touchend', handleTouchEnd);
+      
+      return () => {
+        document.removeEventListener('touchstart', handleTouchStart);
+        document.removeEventListener('touchend', handleTouchEnd);
+        document.body.classList.remove('mobile-device');
+      };
+    }
+
+    // Add resize listener
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [sidebarOpen]);
+
+  // Handle mobile sidebar toggle
+  const handleMobileSidebarToggle = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
   // Show keyboard shortcuts help
   const showKeyboardShortcutsHelp = () => {
@@ -588,9 +652,9 @@ Tab: Focus input field`;
 
   return (
     <div className={`dianav-app-wide${sidebarOpen ? '' : ' sidebar-collapsed'}${darkMode ? ' dark-mode' : ''}`}>
-      <aside className={`dianav-sidebar${sidebarOpen ? '' : ' collapsed'}`}>
+      <aside className={`dianav-sidebar${sidebarOpen ? ' open' : ' collapsed'}`}>
         <div className="dianav-sidebar-toggle-row">
-          <button className="dianav-sidebar-toggle" onClick={() => setSidebarOpen(v => !v)}>
+          <button className="dianav-sidebar-toggle" onClick={handleMobileSidebarToggle}>
             {sidebarOpen ? '<' : '>'}
           </button>
           <button 
