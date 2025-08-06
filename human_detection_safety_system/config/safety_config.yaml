@@ -1,0 +1,113 @@
+# Human Detection Safety System Configuration
+# For Automobile Assembly Line Safety
+
+# Camera Settings
+camera:
+  device_id: 0  # Camera device ID (0 for default webcam, or IP camera URL)
+  resolution:
+    width: 1920
+    height: 1080
+  fps: 30
+  exposure: -7  # Adjust for industrial lighting conditions
+
+# Detection Models
+models:
+  yolo:
+    model_path: "yolov8n.pt"  # Can be yolov8n.pt, yolov8s.pt, yolov8m.pt, yolov8l.pt, yolov8x.pt
+    confidence_threshold: 0.5
+    iou_threshold: 0.45
+    classes_to_detect: [0]  # 0 = person in COCO dataset
+  
+  pose_estimation:
+    enabled: true
+    min_detection_confidence: 0.7
+    min_tracking_confidence: 0.5
+
+# Safety Zones (normalized coordinates 0.0-1.0)
+safety_zones:
+  danger_zones:
+    - name: "Assembly Robot Area"
+      coordinates: [[0.2, 0.3], [0.8, 0.3], [0.8, 0.9], [0.2, 0.9]]
+      color: [255, 0, 0]  # Red
+      alpha: 0.3
+    - name: "Conveyor Belt Zone"
+      coordinates: [[0.0, 0.7], [1.0, 0.7], [1.0, 1.0], [0.0, 1.0]]
+      color: [255, 165, 0]  # Orange
+      alpha: 0.3
+  
+  safe_zones:
+    - name: "Operator Walkway"
+      coordinates: [[0.0, 0.0], [1.0, 0.0], [1.0, 0.3], [0.0, 0.3]]
+      color: [0, 255, 0]  # Green
+      alpha: 0.2
+
+# Alert System
+alerts:
+  visual:
+    enabled: true
+    flash_duration: 0.5  # seconds
+    flash_color: [255, 0, 0]  # Red
+  
+  audio:
+    enabled: true
+    alarm_file: "audio/alarm.wav"
+    volume: 0.8
+    repeat_interval: 2.0  # seconds between repeats
+  
+  text_alerts:
+    font_size: 2
+    font_color: [255, 255, 255]  # White
+    background_color: [255, 0, 0]  # Red background
+    messages:
+      human_detected: "⚠️ HUMAN DETECTED IN DANGER ZONE ⚠️"
+      hand_detected: "⚠️ HAND DETECTED IN RESTRICTED AREA ⚠️"
+      pose_detected: "⚠️ UNSAFE POSTURE DETECTED ⚠️"
+
+# Body Parts Detection
+body_parts:
+  hands:
+    enabled: true
+    confidence_threshold: 0.6
+  head:
+    enabled: true
+    confidence_threshold: 0.7
+  arms:
+    enabled: true
+    confidence_threshold: 0.6
+
+# Logging
+logging:
+  enabled: true
+  log_level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  log_file: "logs/safety_system.log"
+  max_log_size: 10485760  # 10MB
+  backup_count: 5
+  
+  incident_logging:
+    enabled: true
+    incident_file: "logs/incidents.csv"
+    include_screenshots: true
+    screenshot_dir: "logs/screenshots"
+
+# Performance
+performance:
+  max_fps: 30
+  skip_frames: 0  # Skip every N frames for performance (0 = no skipping)
+  resize_factor: 1.0  # Resize input for faster processing (1.0 = no resize)
+  
+# GUI Settings
+gui:
+  window_title: "Assembly Line Safety Monitor"
+  fullscreen: false
+  window_size: [1280, 720]
+  show_fps: true
+  show_detection_boxes: true
+  show_pose_landmarks: true
+  show_safety_zones: true
+
+# Emergency Protocols
+emergency:
+  auto_shutdown_enabled: false  # Automatically shut down equipment on detection
+  emergency_contact: "security@company.com"
+  max_consecutive_detections: 5  # Trigger emergency after N consecutive detections
+  detection_timeout: 10.0  # seconds to wait before resetting detection count
