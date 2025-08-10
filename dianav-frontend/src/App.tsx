@@ -760,6 +760,7 @@ Tab: Focus input field`;
           <header className="dianav-header">
             <div className="dianav-logo">
               <img src="/tata-logo.png" alt="Tata Motors Logo" style={{ width: 48, height: 48, objectFit: 'contain' }} />
+              <div className="dianav-logo-text">TMPV / TPEM</div>
             </div>
             <div className="dianav-title">DIAGNOSTIC NAVIGATOR</div>
             <div className="dianav-ai-label">AI Assistant</div>
