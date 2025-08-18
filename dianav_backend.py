@@ -29,8 +29,13 @@ JSON_PATH = "SZM_ DTC_Troubleshooting_Guide_V1.4_main_v2.json"
 SAMPLE_PATH = "sample_dtc_data.txt"
 
 # Load DTC index at startup with PDF for image extraction
+USE_SAMPLE_DATA = os.getenv("USE_SAMPLE_DATA", "false").lower() == "true"
 try:
-    if os.path.exists(PDF_PATH) and os.path.exists(TXT_PATH):
+    if USE_SAMPLE_DATA:
+        DTC_INDEX = parse_dtc_txt(SAMPLE_PATH)
+        print(f"Loaded sample DTC data (USE_SAMPLE_DATA is true)")
+        print(f"Total DTCs loaded: {len(DTC_INDEX)}")
+    elif os.path.exists(PDF_PATH) and os.path.exists(TXT_PATH):
         DTC_INDEX = parse_dtc_txt(TXT_PATH, PDF_PATH, JSON_PATH)
         print(f"Loaded DTC data with PDF image extraction support using JSON bounding boxes")
         print(f"Total DTCs loaded: {len(DTC_INDEX)}")

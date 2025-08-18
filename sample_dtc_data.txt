@@ -1,0 +1,68 @@
+DTC_Code: S1001 – 01:- Sample Seat Sensor Failure
+Overview:
+| ISO Code                   | S1001-01                                  |
+|:---------------------------|:------------------------------------------|
+| Customer Symptom           | Seat sensor not detected                  |
+| Fault Effects (On Vehicle) | Seat adjustment disabled                  |
+| Lamp Status (If Any)       | N.A                                      |
+| Fault Detection Condition  | Sensor communication lost                 |
+| Normal Operating Condition | Sensor communication normal               |
+| Probable Trouble Area      | 1.Sensor wiring disconnected.             |
+|                            | 2.Sensor internal failure.                |
+| Healing Condition          | 1.Reconnect sensor wiring.                |
+|                            | 2.Replace seat sensor.                    |
+|                            | 3.Clear DTC                               |
+Trouble Shooting: -
+Image extracted from bbox: <a href='./static/Annotation_results/images/SZM_ DTC_Troubleshooting_Guide_V1.4_page8_Node 1_image2.png'>Click to view image</a>
+DTC’s confirmation: -
+
+After rectification, ensure the following points using diagnostic tool before handing over to customer.
+
+a. DTC should not be present in ECU memory.
+********************************************************************************
+
+DTC_Code: S2002 – 02:- Sample Motor Output Circuit Short
+Overview:
+| ISO Code                   | S2002-02                                  |
+|:---------------------------|:------------------------------------------|
+| Customer Symptom           | Motor does not operate                    |
+| Fault Effects (On Vehicle) | Motor function disabled                   |
+| Lamp Status (If Any)       | N.A                                      |
+| Fault Detection Condition  | Output circuit short detected             |
+| Normal Operating Condition | Output circuit normal                     |
+| Probable Trouble Area      | 1.Motor wiring shorted.                   |
+|                            | 2.Motor internal failure.                 |
+| Healing Condition          | 1.Repair wiring harness                   |
+|                            | 2.Replace motor                           |
+|                            | 3.Clear DTC                               |
+Trouble Shooting: -
+Image extracted from bbox: <a href='./static/Annotation_results/images/SZM_ DTC_Troubleshooting_Guide_V1.4_page11_Node 2_image2.png'>Click to view image</a>
+DTC’s confirmation: -
+
+After rectification, ensure the following points using diagnostic tool before handing over to customer.
+
+b. DTC should not be present in ECU memory.
+********************************************************************************
+
+DTC_Code: S3003 – 03:- Sample Communication Bus Error
+Overview:
+| ISO Code                   | S3003-03                                  |
+|:---------------------------|:------------------------------------------|
+| Customer Symptom           | Communication error warning                |
+| Fault Effects (On Vehicle) | System communication lost                  |
+| Lamp Status (If Any)       | Warning lamp ON                            |
+| Fault Detection Condition  | Bus off condition detected                 |
+| Normal Operating Condition | Communication bus normal                   |
+| Probable Trouble Area      | 1.Bus wiring open/short.                   |
+|                            | 2.Control module failure.                  |
+| Healing Condition          | 1.Repair bus wiring                        |
+|                            | 2.Replace control module                   |
+|                            | 3.Clear DTC                                |
+Trouble Shooting: -
+Image extracted from bbox: <a href='./static/Annotation_results/images/SZM_ DTC_Troubleshooting_Guide_V1.4_page14_Node 3_image2.png'>Click to view image</a>
+DTC’s confirmation: -
+
+After rectification, ensure the following points using diagnostic tool before handing over to customer.
+
+c. DTC should not be present in ECU memory.
+******************************************************************************** 
