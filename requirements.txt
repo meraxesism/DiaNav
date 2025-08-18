@@ -6,3 +6,6 @@ Pillow
 python-multipart
 requests 
 numpy
+scikit-learn
+pandas
+scipy
