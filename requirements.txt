@@ -9,3 +9,6 @@ numpy
 scikit-learn
 pandas
 scipy
+sentence-transformers
+torch
+openai==0.28.1
