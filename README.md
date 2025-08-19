@@ -20,7 +20,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/issues)
 [![GitHub pull requests](https://img.shields.io/github/issues-pr/meraxesism/DiaNav)](https://github.com/meraxesism/DiaNav/pulls)
 [![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)](https://github.com/meraxesism/DiaNav/actions)
-[![Coverage](https://img.shields.io/badge/Coverage-85%25-brightgreen)](https://github.com/meraxesism/DiaNav/tree/main/tests)
+[![Coverage](https://img.shields.io/badge/Coverage-99%25-brightgreen)](https://github.com/meraxesism/DiaNav/tree/main/tests)
 [![Security](https://img.shields.io/badge/Security-Scanned-blue)](https://github.com/meraxesism/DiaNav/security)
 
 </div>
