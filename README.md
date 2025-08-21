@@ -353,11 +353,11 @@ def translate_ai_response(text: str, target_language: str) -> str:
 
 | Feature | Screenshot | Description |
 |---------|------------|-------------|
-| **Main Interface** | ![Main Chat Interface](docs/screenshots/ui/main-chat-interface.png) | Full-screen chat interface with AI responses |
-| **Dark Mode** | ![Dark Mode](docs/screenshots/ui/dark-mode-interface.png) | Professional dark theme for extended use |
-| **Quick Actions** | ![Quick Actions](docs/screenshots/features/quick-actions-panel.png) | Intelligent quick action panel |
-| **Image Modal** | ![Image Modal](docs/screenshots/features/image-modal-hover.png) | Diagnostic image enlargement |
-| **Session Export** | ![Session Export](docs/screenshots/features/session-export.png) | Chat session export functionality |
+| **Main Interface** | ![Main Chat Interface](docs/screenshots/mainui.png) | Full-screen chat interface with AI responses |
+| **Dark Mode** | ![Dark Mode](docs/screenshots/darkmode.png) | Professional dark theme for extended use |
+| **Quick Actions** | ![Quick Actions](docs/screenshots/quickactions.png) | Intelligent quick action panel |
+| **Image Modal** | ![Image Modal](docs/screenshots/imagemod.png) | Diagnostic image enlargement |
+| **Session Export** | ![Session Export](docs/screenshots/export.png) | Chat session export functionality |
 
 </div>
 
