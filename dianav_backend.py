@@ -13,10 +13,26 @@ import requests
 
 app = FastAPI()
 
-# Add CORS middleware with proper configuration
+# Add CORS middleware with proper configuration (env-driven)
+default_origins = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
+]
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "")
+if allowed_origins_env:
+    try:
+        # Comma-separated list
+        allow_origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
+    except Exception:
+        allow_origins = default_origins
+else:
+    allow_origins = default_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:3001", "http://127.0.0.1:3001"],  # React development server
+    allow_origins=allow_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],  # Include OPTIONS
     allow_headers=["*"],
@@ -140,13 +156,25 @@ def find_dtc_code_in_query(query: str):
     
     return None
 
-def call_ollama_llm(prompt: str, model: str = "llama3.2:3b") -> str:
-    """Call Ollama LLM running locally and return the response text."""
+# Import cache manager
+try:
+    from utils.cache_manager import cache_llm_response
+except ImportError:
+    # Fallback if cache module not available
+    def cache_llm_response(func):
+        return func
+
+@cache_llm_response
+def call_ollama_llm(prompt: str, model: str = None) -> str:
+    """Call Ollama LLM running locally and return the response text with caching."""
     try:
+        # Allow overriding via environment
+        ollama_host = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+        resolved_model = model or os.getenv("LLM_MODEL", "llama3.2:3b")
         response = requests.post(
-            "http://localhost:11434/api/generate",
-            json={"model": model, "prompt": prompt, "stream": False},
-            timeout=60
+            f"{ollama_host.rstrip('/')}/api/generate",
+            json={"model": resolved_model, "prompt": prompt, "stream": False},
+            timeout=30  # Reduced from 60s to 30s for better perceived performance
         )
         response.raise_for_status()
         data = response.json()

@@ -7,6 +7,16 @@ import './App.css';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import './components/LanguageSwitcher.css';
 
+// Determine backend API base URL from environment with sensible fallback
+const API_BASE: string = (() => {
+  const envUrl = (process.env.REACT_APP_BACKEND_URL || '').trim();
+  if (envUrl) {
+    // remove any trailing slash
+    return envUrl.replace(/\/+$/, '');
+  }
+  return 'http://localhost:8000';
+})();
+
 interface ChatMessage {
   sender: 'user' | 'ai';
   text: string;
@@ -86,6 +96,7 @@ function App() {
   const [welcomeHeight, setWelcomeHeight] = useState(0);
   const welcomeRef = useRef<HTMLDivElement | null>(null);
   const [chatWindowClass, setChatWindowClass] = useState('');
+  const [isGenerating, setIsGenerating] = useState(false);
 
   // Update chat headings when language changes
   useEffect(() => {
@@ -469,7 +480,7 @@ Tab: Focus input field`;
       // Get current language from i18n
       const currentLanguage = i18n.language || 'en';
       
-      const response = await fetch('http://localhost:8000/query', {
+      const response = await fetch(`${API_BASE}/query`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -499,89 +510,191 @@ Tab: Focus input field`;
   const handleSend = async (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     if (!input.trim() || isLoading) return;
-    
 
-    
-    const userMsg: ChatMessage = { 
-      sender: 'user', 
-      text: input,
+    const userMessage = input.trim();
+    setInput('');
+    setIsLoading(true);
+
+    // Get current language
+    const currentLanguage = i18n.language || 'en';
+
+    // Add user message
+    const userMsg: ChatMessage = {
+      sender: 'user',
+      text: userMessage,
       timestamp: new Date()
     };
-    
-    // Add user message first
+
+    // Add streaming message placeholder
+    const streamingMsg: ChatMessage = {
+      sender: 'ai',
+      text: '🤖 Analyzing your request...',
+      timestamp: new Date()
+    };
+
+    // Update chats with user message and initial streaming message
     setChats(prevChats => {
       const updatedChats = prevChats.map(chat =>
         chat.id === activeChatId
           ? { 
               ...chat, 
-              messages: [...chat.messages, userMsg],
+              messages: [...chat.messages, userMsg, streamingMsg],
               lastModified: new Date()
             }
           : chat
       );
       return updatedChats;
     });
-    
-    setInput('');
-    setIsLoading(true);
-    
+
+    // Simulate streaming text generation
+    const streamingTexts = [
+      '🤖 Analyzing your request...',
+      '🔍 Searching diagnostic database...',
+      '⚙️ Processing automotive data...',
+      '🧠 Generating AI response...',
+      '📋 Preparing detailed information...'
+    ];
+
+    let currentTextIndex = 0;
+    const streamingInterval = setInterval(() => {
+      if (currentTextIndex < streamingTexts.length) {
+        const currentStreamingText = streamingTexts[currentTextIndex];
+        
+        // Update the streaming message
+        setChats(prevChats => {
+          const updatedChats = prevChats.map(chat =>
+            chat.id === activeChatId
+              ? { 
+                  ...chat, 
+                  messages: chat.messages.map((msg, index) => 
+                    index === chat.messages.length - 1 && msg.sender === 'ai'
+                      ? { ...msg, text: currentStreamingText }
+                      : msg
+                  ),
+                  lastModified: new Date()
+                }
+              : chat
+          );
+          return updatedChats;
+        });
+        
+        currentTextIndex++;
+      }
+    }, 800);
+
     try {
-      const response = await sendMessageToBackend(input);
-      const aiMsg: ChatMessage = {
-        sender: 'ai',
-        text: response.conversational,
-        structured: response.structured,
-        images: response.images,
-        timestamp: new Date()
-      };
-      
-      // Add AI response
+      const response = await fetch(`${API_BASE}/query`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: userMessage,
+          language: currentLanguage,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Network response was not ok');
+
+      const data = await response.json();
+      const aiResponse = data.conversational || data.response || 'Sorry, I could not process your request.';
+
+      // Clear streaming interval
+      clearInterval(streamingInterval);
+      setIsGenerating(false);
+
+      // Start with empty text for typewriter effect
       setChats(prevChats => {
         const updatedChats = prevChats.map(chat =>
           chat.id === activeChatId
             ? { 
                 ...chat, 
-                messages: [...chat.messages, aiMsg],
+                messages: chat.messages.map((msg, index) => 
+                  index === chat.messages.length - 1 && msg.sender === 'ai'
+                    ? { ...msg, text: '' }
+                    : msg
+                ),
                 lastModified: new Date()
               }
             : chat
         );
         return updatedChats;
       });
-      
-      // Update heading if it's still 'New Chat'
-      setChats(prevChats => {
-        const currentChat = prevChats.find(chat => chat.id === activeChatId);
-        if (currentChat && currentChat.heading === 'New Chat') {
-          const updatedChats = prevChats.map(chat =>
-            chat.id === activeChatId
-              ? { 
-                  ...chat, 
-                  heading: userMsg.text.slice(0, 30) + (userMsg.text.length > 30 ? '...' : ''),
-                  lastModified: new Date()
-                }
-              : chat
-          );
-          return updatedChats;
+
+      // Typewriter effect for AI response text (faster and smoother)
+      setIsGenerating(true);
+      let currentIndex = 0;
+      const totalLen = aiResponse.length;
+      const baseDelay = 8; // faster typing
+      // Dynamic chunk size: longer texts render more chars per tick (faster overall)
+      const chunkSize = Math.min(20, Math.max(3, Math.floor(totalLen / 300)));
+      const typewriterInterval = setInterval(() => {
+        if (currentIndex < totalLen) {
+          currentIndex = Math.min(totalLen, currentIndex + chunkSize);
+          const currentText = aiResponse.substring(0, currentIndex);
+
+          setChats(prevChats => {
+            const updatedChats = prevChats.map(chat =>
+              chat.id === activeChatId
+                ? {
+                    ...chat,
+                    messages: chat.messages.map((msg, index) =>
+                      index === chat.messages.length - 1 && msg.sender === 'ai'
+                        ? { ...msg, text: currentText }
+                        : msg
+                    ),
+                    lastModified: new Date()
+                  }
+                : chat
+            );
+            return updatedChats;
+          });
+        } else {
+          clearInterval(typewriterInterval);
+          setIsGenerating(false);
+          // After typewriter completes, add diagnostic details and images with smooth transition
+          setTimeout(() => {
+            setChats(prevChats => {
+              const updatedChats = prevChats.map(chat =>
+                chat.id === activeChatId
+                  ? {
+                      ...chat,
+                      messages: chat.messages.map((msg, index) =>
+                        index === chat.messages.length - 1 && msg.sender === 'ai'
+                          ? {
+                              ...msg,
+                              structured: data.structured || undefined,
+                              images: data.images && data.images.length > 0 ? data.images : undefined
+                            }
+                          : msg
+                      ),
+                      lastModified: new Date()
+                    }
+                  : chat
+              );
+              return updatedChats;
+            });
+          }, 300); // Small delay before showing diagnostic details
         }
-        return prevChats;
-      });
-      
+      }, baseDelay);
+
     } catch (error) {
       console.error('Error in handleSend:', error);
-      const errorMsg: ChatMessage = {
-        sender: 'ai',
-        text: "I'm sorry, I encountered an error while processing your request. Please try again.",
-        timestamp: new Date()
-      };
       
-      // Add error message
+      // Clear streaming interval
+      clearInterval(streamingInterval);
+      
+      const errorMsg = "I'm sorry, I encountered an error while processing your request. Please try again.";
+      
+      // Replace streaming message with error message
       setChats(prevChats => {
         const updatedChats = prevChats.map(chat =>
           chat.id === activeChatId
             ? { 
                 ...chat, 
-                messages: [...chat.messages, errorMsg],
+                messages: chat.messages.map((msg, index) => 
+                  index === chat.messages.length - 1 && msg.sender === 'ai'
+                    ? { ...msg, text: errorMsg }
+                    : msg
+                ),
                 lastModified: new Date()
               }
             : chat
@@ -617,6 +730,16 @@ Tab: Focus input field`;
   };
 
   const renderMessage = (msg: ChatMessage, index: number) => {
+    // Dynamic width for AI bubble to smoothly expand with content
+    const isAi = msg.sender === 'ai';
+    const isLastAi = isAi && index === activeChat.messages.length - 1;
+    const currentLen = msg.text ? msg.text.length : 0;
+    // Estimate target min-width in ch units based on current text length
+    // Ensures a pleasant expansion from ~18ch up to ~72ch as content grows
+    const estimatedMinCh = isAi
+      ? Math.min(72, Math.max(18, Math.floor((currentLen || (isLastAi && isGenerating ? 1 : 0)) * 0.5)))
+      : undefined;
+
     return (
       <div 
         key={index} 
@@ -633,6 +756,7 @@ Tab: Focus input field`;
           borderRadius: '12px',
           marginBottom: '8px',
           maxWidth: '80%',
+          minWidth: isAi ? `${estimatedMinCh}ch` : undefined,
           alignSelf: msg.sender === 'user' ? 'flex-end' : 'flex-start',
           marginLeft: msg.sender === 'user' ? 'auto' : '0',
           marginRight: msg.sender === 'user' ? '0' : 'auto'
@@ -887,7 +1011,19 @@ Tab: Focus input field`;
                   autoFocus
                 />
                 <button type="submit" disabled={isLoading}>
-                  {isLoading ? t('common.loading') : t('common.send')}
+                  {isLoading ? (
+                    <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div className="spinner" style={{
+                        width: '16px',
+                        height: '16px',
+                        border: '2px solid #ffffff40',
+                        borderTop: '2px solid #ffffff',
+                        borderRadius: '50%',
+                        animation: 'spin 1s linear infinite'
+                      }}></div>
+                      {t('common.loading')}
+                    </span>
+                  ) : t('common.send')}
                 </button>
               </form>
               

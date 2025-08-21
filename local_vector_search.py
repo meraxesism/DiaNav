@@ -5,6 +5,14 @@ import os
 from typing import List, Dict, Tuple, Optional
 from sentence_transformers import SentenceTransformer
 
+# Import cache manager
+try:
+    from utils.cache_manager import cache_vector_search
+except ImportError:
+    # Fallback if cache module not available
+    def cache_vector_search(func):
+        return func
+
 class LocalVectorSearch:
     def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
         """Initialize local vector search with sentence-transformers"""
@@ -47,8 +55,9 @@ class LocalVectorSearch:
         print(f"Created embeddings for {len(self.dtc_embeddings)} DTC codes")
         return self.dtc_embeddings
     
+    @cache_vector_search
     def semantic_search(self, query: str, top_k: int = 5) -> List[Dict]:
-        """Perform semantic search for DTC codes based on query"""
+        """Perform semantic search for DTC codes based on query with caching"""
         if not self.dtc_embeddings:
             print("No DTC embeddings available. Run create_dtc_embeddings() first.")
             return []
