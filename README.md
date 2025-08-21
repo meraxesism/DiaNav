@@ -399,6 +399,13 @@ npm install
 npm start
 ```
 
+Set the backend API URL via env var (used at build/runtime by the app):
+
+- Copy `dianav-frontend/.env.example` to `dianav-frontend/.env`
+- Set `REACT_APP_BACKEND_URL` to your backend base URL (no trailing slash)
+  - Example (local): `REACT_APP_BACKEND_URL=http://localhost:8000`
+  - Example (Cloudflare Tunnel): `REACT_APP_BACKEND_URL=https://<your-subdomain>.trycloudflare.com`
+
 #### Backend Setup
 ```bash
 pip install -r requirements.txt
@@ -411,6 +418,44 @@ python dianav_backend.py
 - API Health: http://localhost:8000/health
 
 ---
+
+## 🌐 Free HTTPS Backend via Cloudflare Tunnel
+
+Deploy your backend for free over HTTPS without a domain or VPS by exposing your local FastAPI server through Cloudflare Tunnel, and point the frontend to it.
+
+### Prerequisites
+- Installed Ollama locally and model pulled (e.g., `llama3.2:3b`)
+- cloudflared installed on Windows (winget or MSI)
+
+### Steps
+1. Start the Cloudflare Tunnel (gets you a stable HTTPS URL):
+   ```powershell
+   # Example path; adjust if needed
+   & "C:\Program Files (x86)\cloudflared\cloudflared.exe" tunnel --url http://localhost:8000
+   ```
+   - Copy the printed HTTPS URL (e.g., `https://abc123.trycloudflare.com`), no trailing slash.
+
+2. Start the backend with strict CORS (include both your Vercel URL and the tunnel URL):
+   ```powershell
+   $env:ALLOWED_ORIGINS="https://dia-nav.vercel.app,https://abc123.trycloudflare.com"
+   $env:OLLAMA_HOST="http://localhost:11434"
+   $env:LLM_MODEL="llama3.2:3b"
+   uvicorn dianav_backend:app --host 0.0.0.0 --port 8000
+   ```
+   - Verify health: open `https://abc123.trycloudflare.com/health`
+
+3. Point the frontend to the tunnel URL:
+   - Vercel → Project → Settings → Environment Variables
+   - Key: `REACT_APP_BACKEND_URL`
+   - Value: `https://abc123.trycloudflare.com` (no trailing slash)
+   - Save and redeploy
+
+### Notes
+- Keep both processes running: cloudflared and uvicorn.
+- If the tunnel URL changes, update:
+  - Backend `ALLOWED_ORIGINS`
+  - Vercel `REACT_APP_BACKEND_URL` and redeploy
+- CORS origins must match exactly (scheme + host + port, no trailing slash).
 
 ## 📁 Project Structure
 
@@ -492,6 +537,21 @@ DiaNavv2/
 
 ---
 
+### 7. **Caching Layer**
+- In-memory caching implemented in `utils/cache_manager.py` to reduce latency and repeated computation
+- Two decorators provided:
+  - `cache_llm_response` — caches LLM responses for identical prompts/model args
+  - `cache_vector_search` — caches vector search results for repeated queries
+- Defaults:
+  - LLM cache: max 100 entries, 30 min TTL
+  - Vector cache: max 50 entries, 60 min TTL
+- Integration:
+  - Applied to backend LLM call in `dianav_backend.py` (e.g., `call_ollama_llm()`)
+  - Prints lightweight "Cache hit"/"Cached ..." logs to help verify behavior during dev
+- Benefits: Faster repeated responses, smoother UI (pairs with typewriter effect and non-blocking updates)
+
+---
+
 ## 🎨 Design Philosophy
 
 ### User Experience
@@ -549,6 +609,17 @@ DiaNavv2/
 - **Dark Mode Support**: Theme toggle functionality with proper positioning
 - **Responsive Design**: Better layout adaptation for different screen sizes
 - **Language Switcher Integration**: Seamless language selection in header
+
+### UI Improvements (2025-08-21)
+- **Configurable Backend URL**: Frontend now reads `REACT_APP_BACKEND_URL` instead of hardcoding localhost
+- **Resilience**: Added `ErrorBoundary` (`dianav-frontend/src/components/ErrorBoundary.tsx`) for graceful UI error handling
+- **CORS-Friendly**: Coordinated with backend env-based CORS allowing Vercel + Cloudflare tunnel origins
+- **Image/Markdown Polishing**: Improved rendering flow and stability for diagnostic images and markdown
+- **Notifications & Feedback**: Clearer toasts for actions like chat deletion and errors
+- **General Polish**: Spacing, scrolling, and focus behavior tuned for long chats
+ - **Chat Bubbles**: Refined bubble styling, alignment, and spacing for user vs AI messages (cleaner visual hierarchy)
+ - **Typewriter Effect**: Progressive display of AI responses for better perceived responsiveness
+ - **Speed Improvements**: Smoother scrolling and reduced UI jank on long conversations; non-blocking UI during network requests
 
 ### Advanced Session Management
 - **Persistent Chat Sessions**: Robust localStorage-based session persistence
